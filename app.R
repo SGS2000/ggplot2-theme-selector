@@ -1,41 +1,40 @@
 #Configuración#
 Sys.setlocale("LC_ALL", 'es_ES.UTF-8')
 
-##Librerias previas##
+##Librerias##
 library(shiny)
 library(shinyWidgets)
+library(shinythemes)
 library(shinyjs)
 library(tidyverse)
 library(SOfun) #Extraer descripciones de las funciones
 library(tfse) #Citas
 library(pacman) #Instalar paquetes
- 
+
 ##Cargar temas##
   paquetes = c("ggplot2", sort(c(
-    "add2ggplot", "artyfarty", "bbplot","darknerdthemes", "delgosha",
-    "ewenthemes", "firatheme", "fontMPlus", "ggcute", "ggCyberPunk", "ggdark",
-    "ggdecor", "gghighcontrast", "ggnuplot", "ggplot2bdc",
-    "ggpomological", "ggprism", "ggtech", "ggthemepark", "ggthemes",
-    "ggthemr","hrbrthemes", "industRial", "jmvcore", "lato","Rokemon", "sfthemes",
-    "tvthemes", "urbnthemes","vapoRwave", "visibly", "xkcd",
-    "ggexpanse")))
+    "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha", 
+    "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute", 
+    "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast", 
+    "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", "ggshredR", 
+    "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", 
+    "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon", 
+    "sfthemes", "tvthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+    )))
   
-  p_load("add2ggplot", "artyfarty", "bbplot","darknerdthemes", "delgosha",
-         "ewenthemes", "firatheme", "fontMPlus", "ggcute", "ggCyberPunk", "ggdark",
-         "ggdecor", "gghighcontrast", "ggnuplot", "ggplot2bdc",
-         "ggpomological", "ggprism", "ggtech", "ggthemepark", "ggthemes",
-         "ggthemr","hrbrthemes", "industRial", "jmvcore", "lato","Rokemon", "sfthemes",
-         "tvthemes", "urbnthemes","vapoRwave", "visibly", "xkcd",
-         "ggexpanse")
+  library(ggshredR)
+    reset_theme_settings() #Evita que el paquete anterior haga cambios globales
   
-  # paquetes = c("ggplot2", sort(c(
-  #   "AcidPlots", "add2ggplot", "artyfarty", "bbplot","darknerdthemes", "delgosha",
-  #   "ewenthemes", "firatheme", "fontMPlus", "ggcute", "ggCyberPunk", "ggdark",
-  #   "ggdecor", "ggexpanse","gghighcontrast", "ggnuplot", "ggplot2bdc",
-  #   "ggpomological", "ggprism", "ggschemes","ggtech", "ggthemepark", "ggthemes",
-  #   "ggthemr","hrbrthemes", "industRial", "jmvcore", "lato","Rokemon", "sfthemes",
-  #   "tvthemes", "urbnthemes","vapoRwave", "visibly", "xkcd"))) #Algunos no funcionan en la web
-  
+  p_load(
+    "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha", 
+    "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute", 
+    "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast", 
+    "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", 
+    "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", 
+    "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon", 
+    "sfthemes", "tvthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+         )
+     
   descripciones = list()
   temas = list()
   citas = list()
@@ -68,10 +67,17 @@ temas[["ggthemr"]] = c("flat", "flat dark", "dust", "light", "earth", "fresh", "
                "lilac", "carrot", "pale", "copper",
                "grape", "greyscale", "sky", "solarized",
                "grass", "sea", "camouflage")
+temas[["hjplottools"]] = c("hj_theme")
 temas[["vapoRwave"]] = c("floral_shoppe","new_retro","jwz")
 temas[["visibly"]] = c("theme_clean","theme_trueMinimal")
+temas[["wwplot"]] = c("wolves_theme")
 
-##Cargar fuentes##
+##Fuentes##
+
+  #Cargar fuentes
+source("fuentes.R")
+showtext_auto()
+
   #Fuentes para tvthemes
 funciones_tvthemes = list('theme_avatar(title.font = "Slayer",text.font = "Slayer")',
                         'theme_brooklyn99(title.font = "Titillium Web",text.font = "Calibri Light")',
@@ -88,15 +94,6 @@ funciones_tvthemes = list('theme_avatar(title.font = "Slayer",text.font = "Slaye
 )
 names(funciones_tvthemes) = temas[["tvthemes"]]
 
-#En servidor
-library(showtext)
-source("fuentes.R")
-showtext_auto()
-
-#Alternativa, solo en local
-# library(extrafont)
-# loadfonts(device = "all", quiet = T)
-
 ##Graficos de muestra##
 grafico1 = get(load("www/muestra/grafico1.Rdata"))
 grafico2 = get(load("www/muestra/grafico2.Rdata"))
@@ -107,7 +104,7 @@ names(muestras) = nombres_muestra
 
 ##Construcción de la aplicacion##
 # Interfaz
-ui <- fluidPage(
+ui <- fluidPage(theme = shinytheme("yeti"),
   useShinyjs(),
   
     # Titulo
@@ -127,7 +124,7 @@ ui <- fluidPage(
             choices = nombres_muestra
           ),
           p(strong('Cargar gráfico (formato .Rdata)')),
-          p('Guarde su objeto ggplot2 con la función "save()" y luego navegue hasta él para cargarlo'),
+          p('Guarde su objeto ggplot2 con la función "save()" y luego navegue hasta él para cargarlo.'),
           fileInput("selectorGraf", label = ""),
             ),
           
@@ -153,7 +150,7 @@ ui <- fluidPage(
           textOutput("descActualTema"),
           br(),
           h4("Cita del paquete"),
-          textOutput("citaActual"),
+          textOutput("citaActual")
           ),
           
           #Tamaño
@@ -255,6 +252,39 @@ server <- function(input, output, session) {
       })
     }
   
+    if(temaActual() == "theme_map" & paqueteActual()=="ggthemes"){
+      try({descripcion = "A clean theme that is good for displaying maps from geom_map."
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    if(temaActual() == "theme_map" & paqueteActual()=="cowplot"){
+      try({descripcion = "The theme created by this function is useful for plotting maps with cowplot default sizing."
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    if(temaActual() == "theme_classic2" & paqueteActual()=="ggpubr"){
+      try({descripcion = "Create a classic theme with axis lines."
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    if(temaActual() == "theme_classic2" & paqueteActual()=="add2ggplot"){
+      try({descripcion = "Inspired by https://www.datacamp.com//courses/intermediate-data-visualization-with-ggplot2"
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
+    if(temaActual() == "theme_min" & paqueteActual()=="jmvcore"){
+      try({descripcion = "Creates the minimal jmv ggplot2 theme"
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
+    if(temaActual() == "theme_min" & paqueteActual()=="ggmin"){
+      try({descripcion = "A clean theme for ggplot2"
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
     })
   
   #Grafico
@@ -268,8 +298,11 @@ server <- function(input, output, session) {
       grafico() + eval(parse(text=temaActual()))
     } else if (paqueteActual() == "tvthemes"){ #De esa manera se pueden usar fuentes
       if(temaActual() %in% temas[["tvthemes"]]){grafico() + eval(parse(text=funciones_tvthemes[[ temaActual()  ]]))}
-    } else {
-      grafico() + eval(parse(text=paste0(temaActual(),"()")))
+    } else if (paqueteActual() == "xkcd"){ #Aplicando fuente
+      try ( grafico() + eval(parse(text=paste0(temaActual(),"()","+ theme(text = element_text(size = 16, family = 'xkcd'))"))) )
+    }
+      else {
+      try ( grafico() + eval(parse(text=paste0(paqueteActual(), "::" , temaActual(),"()"))) )
     }
     })
   })

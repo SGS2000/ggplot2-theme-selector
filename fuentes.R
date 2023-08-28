@@ -22,7 +22,7 @@ try({font_add_google(name = "Inter", family = "Inter")})
 try({font_add_google(name = "Chelsea Market", family = "Chelsea Market")})
 try({font_add_google(name = "Cairo", family = "Cairo")})
 
-#Fuentes en el equipo
+#Ruta de las fuentes
 font_paths("www/fonts")
 
 try({
@@ -285,15 +285,6 @@ try({
   font_add("M+ 1m light", regular="mplus-1m-light-sub.ttf")
 })
 
-try({
-  font_paths("www/fonts/mplus-1m-black-sub.ttf")
-  font_add("M+ 1m black", regular="mplus-1m-black-sub.ttf")
-})
-
-try({
-  font_paths("www/fonts/mplus-1m-heavy-sub.ttf")
-  font_add("M+ 1m heavy", regular="mplus-1m-heavy-sub.ttf")
-})
 
 try({
   font_paths("www/fonts/mplus-1m-thin-sub.ttf")
@@ -322,15 +313,6 @@ try({
   font_add("M+ 2m light", regular="mplus-2m-light-sub.ttf")
 })
 
-try({
-  font_paths("www/fonts/mplus-2m-black-sub.ttf")
-  font_add("M+ 2m black", regular="mplus-2m-black-sub.ttf")
-})
-
-try({
-  font_paths("www/fonts/mplus-2m-heavy-sub.ttf")
-  font_add("M+ 2m heavy", regular="mplus-2m-heavy-sub.ttf")
-})
 
 try({
   font_paths("www/fonts/mplus-2m-thin-sub.ttf")
@@ -359,15 +341,6 @@ try({
   font_add("M+ 1mn light", regular="mplus-1mn-light-sub.ttf")
 })
 
-try({
-  font_paths("www/fonts/mplus-1mn-black-sub.ttf")
-  font_add("M+ 1mn black", regular="mplus-1mn-black-sub.ttf")
-})
-
-try({
-  font_paths("www/fonts/mplus-1mn-heavy-sub.ttf")
-  font_add("M+ 1mn heavy", regular="mplus-1mn-heavy-sub.ttf")
-})
 
 try({
   font_paths("www/fonts/mplus-1mn-thin-sub.ttf")
@@ -563,7 +536,7 @@ try({font_paths("www/fonts/Inter-Light.ttf")
            italic = "Inter-LightItalic.ttf")})
 
 try({font_paths("www/fonts/Inter-Bold.ttf")
-  font_paths("www/fonts/Inter-Boldtalic.ttf")
+  font_paths("www/fonts/Inter-BoldItalic.ttf")
   font_add("Inter Bold", regular="Inter-Bold.ttf",
            italic = "Inter-BoldItalic.ttf",
            bold = "Inter-Bold.ttf")})
@@ -575,7 +548,7 @@ try({font_paths("www/fonts/SFAlienEncounters.ttf")
   font_add("SF Alien Encounters", regular="www/fonts/SFAlienEncounters.ttf",
            italic = "www/fonts/SFAlienEncounters-Italic.ttf")})
 
-try({font_paths("www/fonts/SFAlienEncounterSolid.ttf")
+try({font_paths("www/fonts/SFAlienEncountersSolid.ttf")
   font_paths("www/fonts/SFAlienEncountersSolid-Ital.ttf")
   font_add("SF Alien Encounters Solid", regular="www/fonts/SFAlienEncountersSolid.ttf",
            italic = "www/fonts/SFAlienEncountersSolid-Ital.ttf")})
@@ -588,9 +561,6 @@ try({font_paths("www/fonts/BLADRMF.ttf")
 
 try({font_paths("www/fonts/xkcd.ttf")
   font_add("xkcd", regular="xkcd.ttf")})
-
-# try({font_paths("www/fonts/slayer.ttf")
-#   font_add("Slayer", regular="slayer.ttf")})
 
 try({font_paths("www/fonts/HerculanumRegular.ttf")
   font_add("Slayer", regular="HerculanumRegular.ttf")})
@@ -616,6 +586,32 @@ try({font_paths("www/fonts/TitilliumWeb-Regular.ttf")
            italic = "TitilliumWeb-Italic.ttf",
            bolditalic = "TitilliumWeb-BoldItalic.ttf")})
 
+try({font_paths("www/fonts/Hind-Regular.ttf")
+  font_paths("www/fonts/Hind-Bold.ttf")
+  font_add("Hind", regular="Hind-Regular.ttf",
+           bold = "Hind-Bold.ttf")
+})
+
+try({font_paths("www/fonts/Hind-Medium.ttf")
+  font_add("Hind Medium", regular="Hind-Medium.ttf")})
+
+try({font_paths("www/fonts/Hind-Medium.ttf")
+  font_add("Hind Medium", regular="Hind-Medium.ttf")})
+
+try({font_paths("www/fonts/Hind-Medium.ttf")
+  font_add("Hind-Medium", regular="Hind-Medium.ttf")})
+
+try({font_paths("www/fonts/Hind-Light.ttf")
+  font_add("Hind-Light", regular="Hind-Light.ttf")})
+
+try({font_paths("www/fonts/Hind-SemiBold.ttf")
+  font_add("Hind-SemiBold", regular="Hind-SemiBold.ttf")})
+
+try({font_paths("www/fonts/Marianne-Regular.otf")
+  font_add("Marianne", regular="Marianne-Regular.otf")})
+
+try({font_paths("www/fonts/Marianne-Regular.otf")
+  font_add("Marianne Light", regular="Marianne-Regular.otf")})
 
 ## Corregir temas
 theme_fira <- function(family = "Fira Sans") {
