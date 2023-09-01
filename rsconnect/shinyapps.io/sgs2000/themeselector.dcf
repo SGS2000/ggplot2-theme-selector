@@ -5,7 +5,7 @@ account: sgs2000
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9284744
-bundleId: 7618259
+bundleId: 7633227
 url: https://sgs2000.shinyapps.io/themeselector/
 asMultiple: FALSE
 asStatic: FALSE
