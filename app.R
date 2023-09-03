@@ -300,7 +300,7 @@ server <- function(input, output, session) {
       if(temaActual() %in% temas[["tvthemes"]]){grafico() + eval(parse(text=funciones_tvthemes[[ temaActual()  ]]))}
     } else if (paqueteActual() == "xkcd"){ #Aplicando fuente
       try ( grafico() + eval(parse(text=paste0(temaActual(),"()","+ theme(text = element_text(size = 16, family = 'xkcd'))"))) )
-    } else if (paqueteActual() == "ggexpanse"){ #Aplicando fuente
+    } else if (paqueteActual() %in% c("ggexpanse","firatheme") ){ #Temas corregidos
       try ( grafico() + eval(parse(text=paste0(temaActual(),"()"))) )
     }
       else {
