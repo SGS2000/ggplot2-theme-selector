@@ -6,6 +6,7 @@ library(shiny)
 library(shinyWidgets)
 library(shinythemes)
 library(shinyjs)
+library(urbnthemes) #Se carga antes de tidyverse
 library(tidyverse)
 library(SOfun) #Extraer descripciones de las funciones
 library(tfse) #Citas
@@ -32,7 +33,7 @@ library(pacman) #Instalar paquetes
     "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", 
     "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", 
     "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon", 
-    "sfthemes", "tvthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+    "sfthemes", "tvthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
          )
      
   descripciones = list()
@@ -41,7 +42,7 @@ library(pacman) #Instalar paquetes
   for (paquete in paquetes) {
     #Se guardan las descripciones de los paquetes
     descripciones <- append(descripciones, packageDescription(paquete, fields = 'Description') )
-    #Se buscan todas los funciones con la palabra "theme"
+    #Se buscan todas las funciones con la palabra "theme"
     temas <- append(temas,list(eval(bquote(lsf.str( paste0("package:",paquete), pattern = "theme_")))))
     #Se guardan citas en formato APA
     citas <- append(citas, apa_citation(paquete))
