@@ -99,8 +99,9 @@ names(funciones_tvthemes) = temas[["tvthemes"]]
 grafico1 = get(load("www/muestra/grafico1.Rdata"))
 grafico2 = get(load("www/muestra/grafico2.Rdata"))
 grafico3 = get(load("www/muestra/grafico3.Rdata"))
-muestras = list(grafico1, grafico2, grafico3)
-nombres_muestra = c("Gráfico de dispersión", "Boxplot", "Gráfico de barras")
+grafico4 = get(load("www/muestra/grafico4.Rdata"))
+muestras = list(grafico1, grafico2, grafico3, grafico4)
+nombres_muestra = c("Gráfico de dispersión", "Boxplot", "Gráfico de barras", "Histograma")
 names(muestras) = nombres_muestra
 
 ##Construcción de la aplicacion##
