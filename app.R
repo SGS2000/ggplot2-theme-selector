@@ -20,21 +20,23 @@ library(pacman) #Instalar paquetes
     "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", "ggshredR", 
     "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", 
     "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon", 
-    "sfthemes", "tvthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+    "sfthemes", "ThemePark","tvthemes", "urbnthemes", "vapoRwave", "visibly", 
+    "wwplot", "xkcd"
     )))
   
   library(ggshredR)
     reset_theme_settings() #Evita que el paquete anterior haga cambios globales
   
   p_load(
-    "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha", 
-    "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute", 
-    "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast", 
-    "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", 
-    "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", 
-    "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon", 
-    "sfthemes", "tvthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
-         )
+      "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
+      "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute",
+      "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast",
+      "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr",
+      "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools",
+      "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon",
+      "sfthemes", "ThemePark", "tvthemes", "vapoRwave", "visibly", 
+      "wwplot", "xkcd"
+      )
      
   descripciones = list()
   temas = list()
@@ -283,6 +285,30 @@ server <- function(input, output, session) {
     
     if(temaActual() == "theme_min" & paqueteActual()=="ggmin"){
       try({descripcion = "A clean theme for ggplot2"
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
+    if(temaActual() == "theme_avatar" & paqueteActual()=="tvthemes"){
+      try({descripcion = "Avatar: The Last Airbender theme, Recommended font: 'Slayer'"
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
+    if(temaActual() == "theme_avatar" & paqueteActual()=="ThemePark"){
+      try({descripcion = "Avatar Inspired Theme"
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
+    if(temaActual() == "theme_simpsons" & paqueteActual()=="tvthemes"){
+      try({descripcion = "The Simpsons theme, Recommended font: 'Akbar' "
+      output$descActualTema <- renderText({descripcion})
+      })
+    }
+    
+    if(temaActual() == "theme_simpsons" & paqueteActual()=="ThemePark"){
+      try({descripcion = "Simpsons Inspired Theme"
       output$descActualTema <- renderText({descripcion})
       })
     }
