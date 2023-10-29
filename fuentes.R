@@ -27,7 +27,7 @@ try({font_add_google(name = "Permanent Marker", family = "Permanent Marker")})
 try({font_add_google(name = "Cinzel", family = "Cinzel")})
 try({font_add_google(name = "Philosopher", family = "Philosopher")})
 try({font_add_google(name = "Henny Penny", family = "Henny Penny")})
-try({font_add_google(name = "Lugrasimo", family = "Lugrasimo")})
+try({font_add_google(name = "MedievalSharp", family = "MedievalSharp")})
 try({font_add_google(name = "Rock Salt", family = "Rock Salt")})
 try({font_add_google(name = "Bangers", family = "Bangers")})
 try({font_add_google(name = "Russo One", family = "Russo One")})
@@ -39,6 +39,9 @@ try({font_add_google(name = "Bungee Shade", family = "Bungee Shade")})
 try({font_add_google(name = "Montserrat Subrayada", family = "Montserrat Subrayada")})
 try({font_add_google(name = "Lobster", family = "Lobster")})
 try({font_add_google(name = "Bowlby One SC", family = "Bowlby One SC")})
+try({font_add_google(name = "Mr De Haviland", family = "Mr De Haviland")})
+try({font_add_google(name = "Marck Script", family = "Marck Script")})
+try({font_add_google(name = "Mr Bedfort", family = "Mr. Bedfort")})
 
 #Ruta de las fuentes
 font_paths("www/fonts")
@@ -60,14 +63,14 @@ try({
 })
 
 try({
-  font_paths("www/fonts/ARIAL.ttf")
-  font_paths("www/fonts/ARIALBD.ttf")
-  font_paths("www/fonts/ARIALBI.ttf")
-  font_paths("www/fonts/ARIALI.ttf")
-  font_add("Arial", regular="ARIAL.ttf",
-           bold = "ARIALBD.ttf",
-           italic =  "ARIALI.ttf",
-           bolditalic = "ARIALBI.ttf")
+  font_paths("www/fonts/ARIAL.TTF")
+  font_paths("www/fonts/ARIALBD.TTF")
+  font_paths("www/fonts/ARIALBI.TTF")
+  font_paths("www/fonts/ARIALI.TTF")
+  font_add("Arial", regular="ARIAL.TTF",
+           bold = "ARIALBD.TTF",
+           italic =  "ARIALI.TTF",
+           bolditalic = "ARIALBI.TTF")
 })
 
 try({
@@ -138,13 +141,13 @@ try({font_paths("www/fonts/Yekan.ttf")
   font_add("WeblogmaYekan", regular="www/fonts/Yekan.ttf")})
 
 try({
-  font_paths("www/fonts/ARIALN.ttf")
-  font_paths("www/fonts/ARIALNB.ttf")
-  font_paths("www/fonts/ARIALNI.ttf")
+  font_paths("www/fonts/ARIALN.TTF")
+  font_paths("www/fonts/ARIALNB.TTF")
+  font_paths("www/fonts/ARIALNI.TTF")
   font_paths("www/fonts/Arialnbi.ttf")
-  font_add("Arial Narrow", regular="ARIALN.ttf",
-           bold = "ARIALNB.ttf",
-           italic =  "ARIALNI.ttf",
+  font_add("Arial Narrow", regular="ARIALN.TTF",
+           bold = "ARIALNB.TTF",
+           italic =  "ARIALNI.TTF",
            bolditalic = "Arialnbi.ttf")
 })
 
@@ -574,8 +577,8 @@ try({font_paths("www/fonts/SFAlienEncountersSolid.ttf")
 try({font_paths("www/fonts/windows_command_prompt.ttf")
   font_add("Windows Command Prompt", regular="www/fonts/windows_command_prompt.ttf")})
 
-try({font_paths("www/fonts/BLADRMF.ttf")
-  font_add("Blade Runner Movie Font", regular="www/fonts/BLADRMF.ttf")})
+try({font_paths("www/fonts/BLADRMF.TTF")
+  font_add("Blade Runner Movie Font", regular="www/fonts/BLADRMF.TTF")})
 
 try({font_paths("www/fonts/xkcd.ttf")
   font_add("xkcd", regular="xkcd.ttf")})
@@ -843,4 +846,15 @@ theme_expanse <- function(base_family = "Protomolecule Light",
   
   ret
   
+}
+
+
+theme_xkcd <- function(){
+  theme(panel.grid.major = element_blank(),
+        axis.ticks = element_line(colour = "black"),
+        panel.background = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.key = element_blank(),
+        strip.background = element_blank(),
+        text = element_text(size = 16, family = "xkcd"))
 }
