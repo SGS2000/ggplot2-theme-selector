@@ -26,9 +26,9 @@ library(pacman) #Instalar paquetes
 
   #Cargar paquetes
 paquetes = c("ggplot2", sort(c(
-  "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
+  "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha", 
   "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute",
-  "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast",
+  "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast", "gglgbtq",
   "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", "ggshredR",
   "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools",
   "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon",
@@ -40,9 +40,9 @@ library(ggshredR)
 reset_theme_settings() #Evita que el paquete anterior haga cambios globales
 
 p_load(
-  "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
+  "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha", 
   "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute",
-  "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast",
+  "ggCyberPunk", "ggdark", "ggdecor", "ggexpanse", "gghighcontrast", "gglgbtq",
   "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr",
   "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools",
   "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon",
@@ -65,7 +65,6 @@ for (paquete in paquetes) {
 names(descripciones) = paquetes
 names(citas) = paquetes
 
-
   #Se excluyen funciones que no son temas
 excluir = c("register_theme_elements", "reset_theme_settings", 
             "theme_get", "theme_set", "theme_update", "theme_replace",
@@ -76,6 +75,7 @@ names(temas) = paquetes
 
   #Algunas funciones no contienen la palabra "theme" o usan otra sintaxis
 temas[["bbplot"]][1] = "bbc_style"
+temas[['gglgbtq']] = c( paste0("theme_lgbtq('", c(show_pride()$palettes) ,"')") )
 temas[['ggtech']] = c("theme_airbnb_fancy","theme_tech(theme='airbnb')",
                       "theme_tech(theme='etsy')","theme_tech(theme='facebook')",
                       "theme_tech(theme='google')","theme_tech(theme='twitter')",
@@ -96,22 +96,19 @@ temas[["wwplot"]] = c("wolves_theme")
   #Cargar fuentes
 source("fuentes.R")
 showtext_auto()
-
-#Fuentes para paquetes específicos
-funciones_tvthemes = list('theme_avatar(title.font = "Slayer",text.font = "Slayer")',
-                          'theme_brooklyn99(title.font = "Titillium Web",text.font = "Calibri Light")',
-                          'theme_hildaDay()',
-                          'theme_hildaDusk()',
-                          'theme_hildaNight()',
-                          'theme_parksAndRec(text.font = "Titillium Web",title.font = "Titillium Web Black")',
-                          'theme_parksAndRec_light(text.font = "Titillium Web",title.font = "Titillium Web Black")',
-                          'theme_parksAndRecLight(text.font = "Titillium Web",title.font = "Titillium Web Black")',
-                          'theme_rickAndMorty(title.font = "Get Schwifty",text.font = "Get Schwifty")',
-                          'theme_simpsons(title.font = "Akbar",text.font = "Akbar")',
-                          'theme_spongeBob(title.font = "Some Time Later",text.font = "Some Time Later")',
-                          'theme_theLastAirbender(title.font = "Slayer",text.font = "Slayer")'
-)
 names(funciones_tvthemes) = temas[["tvthemes"]]
+
+####################################
+#######Correcciones manuales########
+####################################
+
+source("correcciones.R")
+
+#################################
+#######Configurar paletas########
+#################################
+
+source("paletas.R",local = TRUE)
 
 #####################################
 ######Cargar gráficos de prueba######
@@ -120,9 +117,9 @@ grafico1 = get(load("www/muestra/grafico1.Rdata"))
 grafico2 = get(load("www/muestra/grafico2.Rdata"))
 grafico3 = get(load("www/muestra/grafico3.Rdata"))
 grafico4 = get(load("www/muestra/grafico4.Rdata"))
-muestras = list(grafico1, grafico2, grafico3, grafico4)
-nombres_muestra = c("Gráfico de dispersión", "Boxplot", "Gráfico de barras", "Histograma")
-names(muestras) = nombres_muestra
+grafico5 = get(load("www/muestra/grafico5.Rdata"))
+muestras = list(grafico1, grafico2, grafico3, grafico4, grafico5)
+names(muestras) = c("Gráfico de dispersión", "Boxplot", "Gráfico de barras", "Histograma", "Mapa de densidad")
 
 #####################################
 #######Construir la aplicación#######
@@ -146,7 +143,7 @@ ui <- fluidPage(
         pickerInput(
           inputId = "selectorGrafPrueba",
           label = "Archivos de muestra",
-          choices = nombres_muestra
+          choices = names(muestras)
         ),
         p(strong('Cargar gráfico (formato .Rdata)')),
         p(
@@ -179,7 +176,42 @@ ui <- fluidPage(
         h4("Cita del paquete"),
         textOutput("citaActual")
       ),
-      
+
+      #Paletas
+      tabPanel(
+        "Paletas",
+        h3("Seleccionar paletas de colores"),
+        p(
+          'Asegúrese de seleccionar una escala que corresponda con el tipo de variable de su gráfico (discreta o continua). De lo contrario, el gráfico no se mostrará. '
+        ),
+        pickerInput(
+          inputId = "selectorPaquetePaleta",
+          label = "Seleccione el paquete",
+          choices = sort(paquetesPaletas),
+          options = list(`live-search` = TRUE)
+        ),
+        p(strong("Descripción")),
+        textOutput("descActualPaleta"),
+        br(),
+        pickerInput(
+          inputId = "selectorPaletaFill",
+          label = "Seleccione una paleta (fill)",
+          choices = paletasFill$ggplot2
+        ),
+        p(strong("Descripción")),
+        textOutput("descActualPaletaFill"),
+        br(),
+        pickerInput(
+          inputId = "selectorPaletaColor",
+          label = "Seleccione una paleta (color)",
+          choices = paletasColor$ggplot2
+        ),
+        p(strong("Descripción")),
+        textOutput("descActualPaletaColor"),
+        br(),
+        h4("Cita del paquete"),
+        textOutput("citaActualPaleta")
+      ), 
       #Tamaño
       tabPanel(
         "Tamaño",
@@ -190,9 +222,9 @@ ui <- fluidPage(
           value = 400
         ),
         checkboxInput("checkboxDimensiones", label = "Usar valores por defecto", value = TRUE)
-      ),
+      )
     ),
-  ),
+  ), 
   # Panel principal
   mainPanel(uiOutput("grafico.ui")))
 )
@@ -222,8 +254,8 @@ server <- function(input, output, session) {
     
     #Cambiar funciones
     updatePickerInput(session, "selectorTema", choices = temas[[paqueteActual()]] )
-    if (paqueteActual() == "ggthemr" ) { #ggthemr
-      temaActual(paste0(temas[[paqueteActual()]][1]))
+    if (grepl("\\(", temas[[paqueteActual()]][1] ) |paqueteActual() == "ggthemr" ) { #ggthemr
+      temaActual(temas[[paqueteActual()]][1])
     } else if(paqueteActual() == "tvthemes" ){ #Aplicando fuentes a tvthemes
       temaActual(funciones_tvthemes[[temas[[paqueteActual()]][1]]])
     } else { #Caso general
@@ -258,7 +290,16 @@ server <- function(input, output, session) {
       try({
         descripcion = eval(
           parse(text = paste0(
-            "helpExtract(",str_remove(gsub("\\([^)]*\\)", "", temaActual()), "\\(\\)"),', section="Description", type = "m_text", package =', paqueteActual(), ")"
+            "helpExtract(",str_remove(gsub("\\([^)]*\\)", "", temaActual() ), "\\(\\)"),', section="Description", type = "m_text", package =', paqueteActual(), ")"
+          )))
+      })
+      output$descActualTema <- renderText({descripcion})
+    } else if(paqueteActual() %in% c("gglgbtq","ggtech")){
+      descripcion = "No disponible"
+      try({
+        descripcion = eval(
+          parse(text = paste0(
+            "helpExtract(",str_remove(gsub("\\([^)]*\\)", "", temaActual() ), "\\(\\)"),', section="Description", type = "m_text", package =', paqueteActual(), ")"
           )))
       })
       output$descActualTema <- renderText({descripcion})
@@ -267,18 +308,114 @@ server <- function(input, output, session) {
       output$descActualTema <- renderText({descripcion})
     }})
   
+  #Paquete seleccionado (Paletas)
+  paqueteActualPaleta <- reactiveVal()
+  
+  observeEvent(input$selectorPaquetePaleta, {
+    #Cambiar paquete
+    paqueteActualPaleta( gsub(" \\(.*\\)", "", input$selectorPaquetePaleta) ) #Elimina paréntesis
+    
+    #Cambiar descripción del paquete
+    output$citaActualPaleta <- renderText({citasPaletas[[paqueteActualPaleta()]]})
+    
+    #Cambiar cita del paquete
+    output$descActualPaleta <- renderText({descripcionesPaletas[[paqueteActualPaleta()]]})
+    
+    #Cambiar funciones
+    updatePickerInput(session, "selectorPaletaFill", choices = paletasFill[[input$selectorPaquetePaleta]] )
+    updatePickerInput(session, "selectorPaletaColor", choices = paletasColor[[input$selectorPaquetePaleta]] )
+    if( is.null(paletasFill[[paqueteActualPaleta()]]) ){
+      updatePickerInput(session, "selectorPaletaFill", choices = "Ninguna" )
+    }
+    if(is.null(paletasColor[[paqueteActualPaleta()]])){
+      updatePickerInput(session, "selectorPaletaColor", choices = "Ninguna" )
+    }
+    
+  })
+  
+  #Paletas seleccionadas
+  PaletaFillActual <- reactiveVal()
+  PaletaColorActual <- reactiveVal()
+  
+  observeEvent(input$selectorPaletaFill, {
+    
+    #Cambiar función
+    if(input$selectorPaletaFill=="Ninguna"){
+      PaletaFillActual(paste0(input$selectorPaletaFill,"()"))
+    } else if (grepl("\\(", input$selectorPaletaFill) & !paqueteActualPaleta() %in% paletas_manual) { #Sin paréntesis
+      PaletaFillActual(paste0(paqueteActualPaleta() ,"::",input$selectorPaletaFill))
+    } else if (paqueteActualPaleta() %in% paletas_manual) { #Paquetes añadidos manualmente
+      if (grepl("\\(", input$selectorPaletaFill)) {
+        PaletaFillActual(paste0(input$selectorPaletaFill))
+      } else{
+        PaletaFillActual(paste0(input$selectorPaletaFill, "()"))
+      }
+    } else{ #Caso general
+      PaletaFillActual(paste0(paqueteActualPaleta() ,"::",input$selectorPaletaFill,"()") )
+    }
+    
+    #Cambiar descripción
+    output$descActualPaletaFill <- renderText({"No disponible"})
+    
+    if(!PaletaFillActual() == "Ninguna()" & !grepl("\\(", input$selectorPaletaFill) ){
+      try({
+        descripcionFill = eval(parse(text = paste0( "helpExtract(", str_remove(gsub(".*:(.*)\\(.*\\)", "\\1", PaletaFillActual()), "\\(\\)") ,', section="Description", type = "m_text", package =', paqueteActualPaleta(), ")" ) ))
+        output$descActualPaletaFill <- renderText({descripcionFill})
+      })
+    } else if(!PaletaFillActual() == "Ninguna()" & !paqueteActualPaleta() %in% paletas_manual){
+      try({
+        descripcionFill = eval(parse(text = paste0( "helpExtract(", gsub(".*::|\\(.*\\)", "", PaletaFillActual()) ,', section="Description", type = "m_text", package =', paqueteActualPaleta(), ")" ) ))
+        output$descActualPaletaFill <- renderText({descripcionFill})
+      })
+    }
+    
+  })
+  
+  observeEvent(input$selectorPaletaColor, {
+    
+    #Cambiar función
+    if(input$selectorPaletaColor=="Ninguna"){
+      PaletaColorActual(paste0(input$selectorPaletaColor,"()"))
+    } else if (grepl("\\(", input$selectorPaletaColor) & !paqueteActualPaleta() %in% paletas_manual) { #Sin paréntesis
+      PaletaColorActual(paste0(paqueteActualPaleta() ,"::",input$selectorPaletaColor))
+    } else if (paqueteActualPaleta() %in% paletas_manual) { #Paquetes añadidos manualmente
+      if (grepl("\\(", input$selectorPaletaColor)) {
+        PaletaColorActual(paste0(input$selectorPaletaColor))
+      } else{
+        PaletaColorActual(paste0(input$selectorPaletaColor, "()"))
+      }
+    } else{ #Caso general
+      PaletaColorActual(paste0(paqueteActualPaleta() ,"::",input$selectorPaletaColor,"()") )
+    }
+    
+    #Cambiar descripción
+    output$descActualPaletaColor <- renderText({"No disponible"})
+    
+    if(!PaletaColorActual() == "Ninguna()" & !grepl("\\(", input$selectorPaletaColor) ){
+      try({
+        descripcionColor = eval(parse(text = paste0( "helpExtract(", str_remove(gsub(".*:(.*)\\(.*\\)", "\\1", PaletaColorActual()), "\\(\\)") ,', section="Description", type = "m_text", package =', paqueteActualPaleta(), ")" ) ))
+        output$descActualPaletaColor <- renderText({descripcionColor})
+      })
+    } else if(!PaletaColorActual() == "Ninguna()" & !paqueteActualPaleta() %in% paletas_manual){
+      
+      try({
+        descripcionColor = eval(parse(text = paste0( "helpExtract(", gsub(".*::|\\(.*\\)", "", PaletaColorActual()) ,', section="Description", type = "m_text", package =', paqueteActualPaleta(), ")" ) ))
+        output$descActualPaletaColor <- renderText({descripcionColor})
+      })
+    }
+  })
+  
   #Mostrar gráfico
-  output$mostrarGrafico <- renderPlot({ #Renderizar gráfico
-    ggthemr_reset() #Elimina cambios en el paquete ggthemr
-    options('ggplot2.discrete.colour' = NULL)
-    options('ggplot2.continuous.colour' = NULL)
+  output$mostrarGrafico <- renderPlot({  #Renderizar gráfico
+    resetear_defaults() #Valores predeterminados de ggplot2
+    
     if(paqueteActual() %in% c("ggexpanse","firatheme", "xkcd")){ #Temas corregidos
-      grafico() + eval(parse( text=paste0(temaActual()) ))
+      grafico() + eval(parse( text=paste0(temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     } else if( paqueteActual() == "ggthemr"){ #ggthemr usa una sintaxis distinta al resto
       ggthemr(temaActual())
-      grafico()
+      grafico() + eval(parse(text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     } else(
-      grafico() + eval(parse( text=paste0( paqueteActual() ,"::", temaActual()) ))
+      grafico() + eval(parse(text=paste0(paqueteActual() ,"::", temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     )
   })
   
