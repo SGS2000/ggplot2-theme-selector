@@ -47,6 +47,7 @@ try({font_add_google(name = "Bowlby One SC", family = "Bowlby One SC")})
 try({font_add_google(name = "Mr De Haviland", family = "Mr De Haviland")})
 try({font_add_google(name = "Marck Script", family = "Marck Script")})
 try({font_add_google(name = "Mr Bedfort", family = "Mr. Bedfort")})
+try({font_add_google(name = "Source Sans 3", family = "Source Sans 3")})
 
 #Ruta de las fuentes
 font_paths("www/fonts")

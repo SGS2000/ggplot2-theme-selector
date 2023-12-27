@@ -1,9 +1,12 @@
 #########################
 #####Cargar paquetes#####
 #########################
-paquetes_con_paletas = sort(c(paquetes, "scico", "viridis")) #Paquetes con paletas, sin temas
+paquetes_con_paletas = sort(c(paquetes, #Paquetes con paletas, sin temas
+                              "ggsci","RColorBrewer","scico", "viridis", 
+                              "wesanderson"
+                              )) 
 
-p_load("scico", "viridis")
+p_load("ggsci","RColorBrewer","scico", "viridis", "wesanderson")
 
 #Guardar paletas, descripciones y citas
 paletasFill = list()
@@ -40,7 +43,7 @@ paletasFill <- lapply(paletasFill, function(x) x[!x %in% excluir_pal])
 paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 
 #Se añaden o corrigen algunas paletas manualmente
-paletas_manual = c("artyfarty", "gglgbtq","randplot")
+paletas_manual = c("artyfarty", "gglgbtq","randplot", "RColorBrewer","wesanderson")
 
 paletas_artyfarty = c("flatty", "flatpaleta", "dg4", "few_light", "few_medium", 
                       "few_dark", "color_blind", "fancy", "pastel", "pastel2", 
@@ -66,11 +69,27 @@ paletasFill[["gglgbtq"]] = c(paste0("scale_fill_manual(values = palette_lgbtq('"
 paletasFill[["ggprism"]] = c(paste0("scale_fill_prism(palette = '", c(names(ggprism_data$fill_palettes)),"')") )
 paletasColor[["ggprism"]] = c(paste0("scale_color_prism(palette = '", c(names(ggprism_data$colour_palettes)),"')") )
 
+paletasFill[["ggsci"]] = sort(c(paletasFill[["ggsci"]], "scale_fill_d3('category20')", "scale_fill_d3('category20b')", "scale_fill_d3('category20c')",
+                                "scale_fill_igv('alternating')", "scale_fill_cosmic('hallmarks_dark')", "scale_fill_cosmic('signature_substitutions')",
+                                "scale_fill_uchicago('dark')", "scale_fill_uchicago('light')","scale_fill_flatui('flattastic')", "scale_fill_flatui('aussie')", 
+                                paste0("scale_fill_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", "cyan","teal", "green","light-green", 
+                                "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")
+                                ))
+paletasColor[["ggsci"]] = sort(c(paletasColor[["ggsci"]], "scale_color_d3('category20')", "scale_color_d3('category20b')", "scale_color_d3('category20c')",
+                                 "scale_color_igv('alternating')", "scale_color_cosmic('hallmarks_dark')", "scale_color_cosmic('signature_substitutions')",
+                                 "scale_color_uchicago('dark')", "scale_color_uchicago('light')","scale_color_flatui('flattastic')", 
+                                 "scale_color_flatui('aussie')", paste0("scale_color_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", 
+                                 "cyan","teal", "green","light-green", "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")
+                                 ))
+
 paletasFill[["ggtech"]] = c(paste0("scale_fill_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
 paletasColor[["ggtech"]] = c(paste0("scale_color_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
 
 paletasColor[["randplot"]] = c(paste0("scale_color_manual(values = ", c("RandCatPal", "RandGrayPal"), ")")) 
 paletasFill[["randplot"]] = c(paste0("scale_fill_manual(values = ", c("RandCatPal", "RandGrayPal"), ")")) 
+
+paletasColor[["RColorBrewer"]] = c(paste0("scale_color_brewer(palette = '", c(rownames(RColorBrewer::brewer.pal.info)), "')")) 
+paletasFill[["RColorBrewer"]] = c(paste0("scale_fill_brewer(palette = '", c(rownames(RColorBrewer::brewer.pal.info)), "')")) 
 
 paletasColor[["scico"]] = c(paste0("scale_color_scico(palette = '", c(scico_palette_names()), "')")) 
 paletasColor[["scico"]] = c(paletasColor[["scico"]], paste0("scale_color_scico_d(palette = '", c(scico_palette_names()), "')")) 
@@ -88,6 +107,9 @@ paletasColor[["viridis"]] = c(paste0("scale_color_viridis(option='", c(LETTERS[1
 paletasColor[["viridis"]] = c(paletasColor[["viridis"]], paste0("scale_color_viridis(option='", c(LETTERS[1:8]), "',"," discrete=T",")"))
 paletasFill[["viridis"]] = c(paste0("scale_fill_viridis(option='", c(LETTERS[1:8]), "')"))
 paletasFill[["viridis"]] = c(paletasFill[["viridis"]], paste0("scale_fill_viridis(option='", c(LETTERS[1:8]), "',"," discrete=T", ")"))
+
+paletasColor[["wesanderson"]] = c(paste0("scale_color_manual(values = wes_palette('", c(names(wesanderson::wes_palettes)), "'))")) 
+paletasFill[["wesanderson"]] = c(paste0("scale_fill_manual(values = wes_palette('", c(names(wesanderson::wes_palettes)), "'))")) 
 
 paletasColor[["wwplot"]] = c(paste0("scale_colour_wolves(palette = '", c("wooly_bully", "sir_jack"), "')")) 
 paletasFill[["wwplot"]] = c(paste0("scale_fill_wolves(palette = '", c("wooly_bully", "sir_jack"), "')"))
