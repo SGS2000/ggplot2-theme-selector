@@ -2,11 +2,13 @@
 #####Cargar paquetes#####
 #########################
 paquetes_con_paletas = sort(c(paquetes, #Paquetes con paletas, sin temas
-                              "ggsci","RColorBrewer","scico", "viridis", 
-                              "wesanderson"
-                              )) 
+                       "ButterflyColors","colorr", "ggsci", "MexBrewer", "palettetown",
+                       "RColorBrewer","scico", "viridis","wesanderson"
+                        )) 
 
-p_load("ggsci","RColorBrewer","scico", "viridis", "wesanderson")
+p_load("ButterflyColors","colorr","ggsci","MexBrewer","palettetown","RColorBrewer",
+       "scico", "viridis", "wesanderson"
+       )
 
 #Guardar paletas, descripciones y citas
 paletasFill = list()
@@ -43,7 +45,8 @@ paletasFill <- lapply(paletasFill, function(x) x[!x %in% excluir_pal])
 paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 
 #Se añaden o corrigen algunas paletas manualmente
-paletas_manual = c("artyfarty", "gglgbtq","randplot", "RColorBrewer","wesanderson")
+paletas_manual = c("artyfarty", "ButterflyColors","colorr","gglgbtq","randplot", 
+                   "RColorBrewer","wesanderson")
 
 paletas_artyfarty = c("flatty", "flatpaleta", "dg4", "few_light", "few_medium", 
                       "few_dark", "color_blind", "fancy", "pastel", "pastel2", 
@@ -52,6 +55,59 @@ paletas_artyfarty = c("flatty", "flatpaleta", "dg4", "few_light", "few_medium",
                       "pony", "dataroots")
 paletasColor[["artyfarty"]] = c(paste0("scale_color_manual(values = pal('", paletas_artyfarty, "'))"))
 paletasFill[["artyfarty"]] = c(paste0("scale_fill_manual(values = pal('", paletas_artyfarty, "'))"))
+
+paletasColor[["ButterflyColors"]] = c(paste0("scale_color_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))")) 
+paletasFill[["ButterflyColors"]] = c(paste0("scale_fill_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))")) 
+
+paletasColor[["colorr"]] = c(paste0("scale_color_manual(values = as.vector(epl.colors('", c("arsenal", "bournemouth", "burnley", "chelsea",
+                                                                                     "crystal_palace", "everton", "hull", "leicester", "liverpool", "man_city",
+                                                                                     "man_united", "middlesbrough", "southampton", "stoke_city", "sunderland",
+                                                                                     "swansea_city", "tottenham", "watford", "west_bromich_albion", "west_ham"), "')))"))
+paletasColor[["colorr"]] = c(paletasColor[["colorr"]],paste0("scale_color_manual(values = as.vector(mlb.colors('", c("diamondbacks", "braves", "orioles", "red_sox", "cubs",
+                                                                                                           "white_sox", "reds", "indians", "rockies", "tigers", "astros", "royals",
+                                                                                                           "angels", "dodgers", "marlins", "brewers", "twins", "mets", "yankees",
+                                                                                                           "athletics", "phillies", "pirates", "padres", "giants", "mariners",
+                                                                                                           "cardinals", "rays", "rangers", "blue_jays", "nationals"), "')))"))
+paletasColor[["colorr"]] = c(paletasColor[["colorr"]],paste0("scale_color_manual(values = as.vector(nba.colors('", c("hawks", "hornets", "mavs", "warriors", "clippers", "heat",
+                                                                                                           "pelicans", "magic", "blazers", "raptors", "celtics", "bulls", "nuggets",
+                                                                                                           "rockets", "lakers", "bucks", "knicks", "sixers", "kings", "jazz", "nets",
+                                                                                                           "cavs", "pistons", "pacers", "grizzlies", "wolves", "thunder", "suns",
+                                                                                                           "spurs", "wizards", "sonics"), "')))"))
+paletasColor[["colorr"]] = c(paletasColor[["colorr"]],paste0("scale_color_manual(values = as.vector(nfl.colors('", c("cardinals", "falcons", "ravens", "bills", "panthers",
+                                                                                                           "bears", "bengals", "browns", "cowboys", "broncos", "lions", "packers",
+                                                                                                           "texans", "colts", "jaguars", "chiefs", "chargers", "rams", "dolphins",
+                                                                                                           "vikings", "patriots", "saints", "giants", "jets", "raiders", "eagles",
+                                                                                                           "steelers", "niners", "seahawks", "buccaneers", "titans", "redskins"), "')))"))
+paletasColor[["colorr"]] = c(paletasColor[["colorr"]],paste0("scale_color_manual(values = as.vector(nhl.colors('", c("ducks", "coyotes", "bruins", "sabres", "flames",
+                                                                                                           "hurricanes", "blackhawks", "avalanche", "blue_jackets", "stars", "red_wings",
+                                                                                                           "oilers", "panthers", "kings", "wild", "canadiens", "predators", "devils",
+                                                                                                           "islanders", "rangers", "senators", "flyers", "penguins", "sharks", "blues",
+                                                                                                           "lightning", "maple_leafs", "canucks", "golden_knights", "capitals", "jets"), "')))"))
+
+paletasFill[["colorr"]] = c(paste0("scale_fill_manual(values = as.vector(epl.colors('", c("arsenal", "bournemouth", "burnley", "chelsea",
+                                                                                     "crystal_palace", "everton", "hull", "leicester", "liverpool", "man_city",
+                                                                                     "man_united", "middlesbrough", "southampton", "stoke_city", "sunderland",
+                                                                                     "swansea_city", "tottenham", "watford", "west_bromich_albion", "west_ham"), "')))"))
+paletasFill[["colorr"]] = c(paletasFill[["colorr"]],paste0("scale_fill_manual(values = as.vector(mlb.colors('", c("diamondbacks", "braves", "orioles", "red_sox", "cubs",
+                                                                                                           "white_sox", "reds", "indians", "rockies", "tigers", "astros", "royals",
+                                                                                                           "angels", "dodgers", "marlins", "brewers", "twins", "mets", "yankees",
+                                                                                                           "athletics", "phillies", "pirates", "padres", "giants", "mariners",
+                                                                                                           "cardinals", "rays", "rangers", "blue_jays", "nationals"), "')))"))
+paletasFill[["colorr"]] = c(paletasFill[["colorr"]],paste0("scale_fill_manual(values = as.vector(nba.colors('", c("hawks", "hornets", "mavs", "warriors", "clippers", "heat",
+                                                                                                           "pelicans", "magic", "blazers", "raptors", "celtics", "bulls", "nuggets",
+                                                                                                           "rockets", "lakers", "bucks", "knicks", "sixers", "kings", "jazz", "nets",
+                                                                                                           "cavs", "pistons", "pacers", "grizzlies", "wolves", "thunder", "suns",
+                                                                                                           "spurs", "wizards", "sonics"), "')))"))
+paletasFill[["colorr"]] = c(paletasFill[["colorr"]],paste0("scale_fill_manual(values = as.vector(nfl.colors('", c("cardinals", "falcons", "ravens", "bills", "panthers",
+                                                                                                           "bears", "bengals", "browns", "cowboys", "broncos", "lions", "packers",
+                                                                                                           "texans", "colts", "jaguars", "chiefs", "chargers", "rams", "dolphins",
+                                                                                                           "vikings", "patriots", "saints", "giants", "jets", "raiders", "eagles",
+                                                                                                           "steelers", "niners", "seahawks", "buccaneers", "titans", "redskins"), "')))"))
+paletasFill[["colorr"]] = c(paletasFill[["colorr"]],paste0("scale_fill_manual(values = as.vector(nhl.colors('", c("ducks", "coyotes", "bruins", "sabres", "flames",
+                                                                                                           "hurricanes", "blackhawks", "avalanche", "blue_jackets", "stars", "red_wings",
+                                                                                                           "oilers", "panthers", "kings", "wild", "canadiens", "predators", "devils",
+                                                                                                           "islanders", "rangers", "senators", "flyers", "penguins", "sharks", "blues",
+                                                                                                           "lightning", "maple_leafs", "canucks", "golden_knights", "capitals", "jets"), "')))"))
 
 paletasColor[["darknerdthemes"]] = c(paletasColor[["darknerdthemes"]], paste0("scale_color_nerd('", c("candy","nord frost","nord aurora","everforest"), "')"))
 paletasColor[["darknerdthemes"]] = c(paletasColor[["darknerdthemes"]], paste0("scale_color_nerd('", c("candy","nord frost","nord aurora","everforest"), "',"," discrete=F",")"))
@@ -84,6 +140,14 @@ paletasColor[["ggsci"]] = sort(c(paletasColor[["ggsci"]], "scale_color_d3('categ
 
 paletasFill[["ggtech"]] = c(paste0("scale_fill_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
 paletasColor[["ggtech"]] = c(paste0("scale_color_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
+
+paletasColor[["MexBrewer"]] = c(paste0("scale_color_mex_c(palette_name ='",names(MexBrewer::MexPalettes),"')"))
+paletasColor[["MexBrewer"]] = c(paletasColor[["MexBrewer"]], paste0("scale_color_mex_d(palette_name ='",names(MexBrewer::MexPalettes),"')"))
+paletasFill[["MexBrewer"]] = c(paste0("scale_fill_mex_c(palette_name ='",names(MexBrewer::MexPalettes),"')"))
+paletasFill[["MexBrewer"]] = c(paletasFill[["MexBrewer"]], paste0("scale_fill_mex_d(palette_name ='",names(MexBrewer::MexPalettes),"')"))
+
+paletasColor[["palettetown"]] = c(paste0("scale_color_poke(pokemon='",names(palettetown:::pokeColours),"')"))
+paletasFill[["palettetown"]] = c(paste0("scale_fill_poke(pokemon='",names(palettetown:::pokeColours),"')"))
 
 paletasColor[["randplot"]] = c(paste0("scale_color_manual(values = ", c("RandCatPal", "RandGrayPal"), ")")) 
 paletasFill[["randplot"]] = c(paste0("scale_fill_manual(values = ", c("RandCatPal", "RandGrayPal"), ")")) 
