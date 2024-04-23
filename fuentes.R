@@ -599,7 +599,12 @@ try({font_paths("www/fonts/Inter-ExtraBold.ttf")
 
 try({font_paths("www/fonts/Inter-Light.ttf")
   font_paths("www/fonts/Inter-LightItalic.ttf")
-  font_add("Inter Extra Bold", regular="Inter-Light.ttf",
+  font_add("Inter Light", regular="Inter-Light.ttf",
+           italic = "Inter-LightItalic.ttf")})
+
+try({font_paths("www/fonts/Inter-Light.ttf")
+  font_paths("www/fonts/Inter-LightItalic.ttf")
+  font_add("Inter-Light", regular="Inter-Light.ttf",
            italic = "Inter-LightItalic.ttf")})
 
 try({font_paths("www/fonts/Inter-Bold.ttf")
@@ -607,6 +612,22 @@ try({font_paths("www/fonts/Inter-Bold.ttf")
   font_add("Inter Bold", regular="Inter-Bold.ttf",
            italic = "Inter-BoldItalic.ttf",
            bold = "Inter-Bold.ttf")})
+
+try({font_paths("www/fonts/Inter-Bold.ttf")
+  font_paths("www/fonts/Inter-BoldItalic.ttf")
+  font_add("Inter-Bold", regular="Inter-Bold.ttf",
+           italic = "Inter-BoldItalic.ttf",
+           bold = "Inter-Bold.ttf")})
+
+try({font_paths("www/fonts/Inter-Medium.ttf")
+  font_paths("www/fonts/Inter-MediumItalic.ttf")
+  font_add("Inter Medium", regular="Inter-Medium.ttf",
+           italic = "Inter-MediumItalic.ttf")})
+
+try({font_paths("www/fonts/Inter-Medium.ttf")
+  font_paths("www/fonts/Inter-MediumItalic.ttf")
+  font_add("Inter-Medium", regular="Inter-Medium.ttf",
+           italic = "Inter-MediumItalic.ttf")})
 
 try({font_paths("www/fonts/vcr.ttf")
   font_add("VCR OSD Mono", regular="www/fonts/vcr.ttf")})
@@ -683,6 +704,11 @@ try({font_paths("www/fonts/Marianne-Regular.otf")
 
 try({font_paths("www/fonts/Marianne-Regular.otf")
   font_add("Marianne Light", regular="Marianne-Regular.otf")})
+
+try({font_paths("www/fonts/GoldmanSansCd_Bd.ttf")
+  font_paths("www/fonts/GoldmanSansCd_Rg.ttf")
+  font_add("Goldman Sans Condensed", regular="GoldmanSansCd_Rg.ttf",
+           bold = "GoldmanSansCd_Bd.ttf")})
 
 #Fuentes para paquetes específicos
 funciones_tvthemes = list('theme_avatar(title.font = "Slayer",text.font = "Slayer")',

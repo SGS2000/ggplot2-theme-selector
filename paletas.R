@@ -2,12 +2,13 @@
 #####Cargar paquetes#####
 #########################
 paquetes_con_paletas = sort(c(paquetes, #Paquetes con paletas, sin temas
-                       "ButterflyColors","colorr", "ggsci", "MexBrewer", "palettetown",
-                       "RColorBrewer","scico", "viridis","wesanderson"
+                       "ButterflyColors", "colorr", "cols4all", "ggGenshin", 
+                       "ggsci", "MexBrewer", "palettetown", "RColorBrewer",
+                       "scico", "viridis", "wesanderson"
                         )) 
 
-p_load("ButterflyColors","colorr","ggsci","MexBrewer","palettetown","RColorBrewer",
-       "scico", "viridis", "wesanderson"
+p_load("ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggsci", "MexBrewer", 
+       "palettetown", "RColorBrewer", "scico", "viridis", "wesanderson"
        )
 
 #Guardar paletas, descripciones y citas
@@ -234,6 +235,9 @@ paletasFill[["firatheme"]] = nueva_opcion(paletasFill[["firatheme"]], "(continuo
 
 paletasColor[["ggcute"]] = nueva_opcion(paletasColor[["ggcute"]], "(discrete=F)")
 paletasFill[["ggcute"]] = nueva_opcion(paletasFill[["ggcute"]], "(discrete=F)")
+
+paletasColor[["ggGenshin"]] = nueva_opcion(paletasColor[["ggGenshin"]], "(discrete=F)")
+paletasFill[["ggGenshin"]] = nueva_opcion(paletasFill[["ggGenshin"]], "(discrete=F)")
 
 paletasColor[["hjplottools"]] = nueva_opcion(paletasColor[["hjplottools"]], "(discrete=F)")
 paletasFill[["hjplottools"]] = nueva_opcion(paletasFill[["hjplottools"]], "(discrete=F)")

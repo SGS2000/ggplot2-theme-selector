@@ -236,7 +236,12 @@ server <- function(input, output, session) {
   
   observeEvent(input$selectorGraf, {
     req(input$selectorGraf)
-    grafico(get(load(input$selectorGraf$datapath)))
+    #Corrige `guides` si el gráfico es previo a la versión 3.5.0 de gplot2
+    plot_usuario = get(load(input$selectorGraf$datapath))
+    if(!"ggproto" %in% class(plot_usuario$guides)   ){
+      plot_usuario =  actualizar_plot(plot_usuario)
+    }
+    grafico(plot_usuario)
   })
   
   observeEvent(input$selectorGrafPrueba, {
@@ -407,8 +412,8 @@ server <- function(input, output, session) {
   #Mostrar gráfico
   output$mostrarGrafico <- renderPlot({  #Renderizar gráfico
     resetear_defaults() #Valores predeterminados de ggplot2
-    
-    if(paqueteActual() %in% c("ggexpanse","firatheme", "xkcd")){ #Temas corregidos
+
+    if(paqueteActual() %in% c("firatheme", "ggCyberPunk", "ggexpanse", "vapoRwave","xkcd")){ #Temas corregidos
       grafico() + eval(parse( text=paste0(temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     } else if( paqueteActual() == "ggthemr"){ #ggthemr usa una sintaxis distinta al resto
       ggthemr(temaActual())
@@ -417,7 +422,7 @@ server <- function(input, output, session) {
       grafico() + eval(parse(text=paste0(paqueteActual() ,"::", temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     )
   })
-  
+
   output$grafico.ui <- renderUI({ #Cambiar según dimensiones
     plotOutput("mostrarGrafico",
                width = ancho(),

@@ -5,32 +5,26 @@ theme_fira <- function(family = "Fira Sans") {
   ggplot2::`%+replace%`(
     ggplot2::theme_grey(base_size = 11.5, base_family = family),
     ggplot2::theme(
-      # add padding to the plot
       plot.margin = grid::unit(rep(0.5, 4), "cm"),
       
-      # remove the plot background and border
       plot.background = ggplot2::element_blank(),
       panel.background = ggplot2::element_blank(),
       panel.border = ggplot2::element_blank(),
       
-      # make the legend and strip background transparent
       legend.background = ggplot2::element_rect(fill = "transparent",
                                                 colour = NA),
       legend.key = ggplot2::element_rect(fill = "transparent",colour = NA),
       strip.background = ggplot2::element_rect(fill = "transparent",
                                                colour = NA),
       
-      # add light, dotted major grid lines only
       panel.grid.major = ggplot2::element_line(linetype = "dotted",
                                                colour = "#454545",
                                                linewidth = 0.3),
       panel.grid.minor = ggplot2::element_blank(),
       
-      # remove the axis tick marks and hide axis lines
       axis.ticks = ggplot2::element_blank(),
       axis.line = ggplot2::element_line(color = "#454545", size = 0.3),
       
-      # modify the bottom margins of the title and subtitle
       plot.title = ggplot2::element_text(size = 18, colour = "#454545",
                                          hjust = 0.5,
                                          margin = ggplot2::margin(b = 10)),
@@ -38,12 +32,10 @@ theme_fira <- function(family = "Fira Sans") {
                                             hjust = 0.5,
                                             margin = ggplot2::margin(b = 10)),
       
-      # add padding to the caption
       plot.caption = ggplot2::element_text(size = 10, colour = "#454545",
                                            hjust = 1,
                                            margin = ggplot2::margin(t = 15)),
       
-      # Adjust text size and axis title position
       axis.title = ggplot2::element_text(size = 13, colour = "#454545",
                                          hjust = 0.95),
       axis.text = ggplot2::element_text(size = 10, colour = "#212121"),
@@ -55,6 +47,92 @@ theme_fira <- function(family = "Fira Sans") {
                                                                   "pt"))
     )
   )
+}
+
+  #Paquete ggCyberPunk
+theme_cyberpunk <- function (
+    font = "Aldrich",
+    main.text.color = "#EE9537",
+    sub.text.color = "#EE9537",
+    base.size = 15,
+    plot.background.color = "#212946",
+    legend.position = "bottom",
+    panel.border.color = "#494F67",
+    panel.background = "#212946",
+    panel.grid.color = "#EE9537",
+    axis.text.color = "#EE9537",
+    axis.text.size = base.size * 0.6666667,
+    subtitle.size = base.size * 0.8,
+    legend.text = base.size * 0.8,
+    legend.title = base.size * 0.85,
+    axis.title.size = base.size * 0.8,
+    title.size = 15
+) {
+  
+  th <- ggplot2::theme_minimal ()
+  
+  th$plot.title=ggplot2::element_text(family=font,
+                                      size=title.size,
+                                      face="bold",
+                                      color=main.text.color,
+                                      hjust = 0,
+                                      margin = ggplot2::margin(9,0,9,0))
+  th$plot.title.position = "plot"
+  th$plot.subtitle=ggplot2::element_text(family=font,
+                                         size=subtitle.size,
+                                         face="bold",
+                                         color=main.text.color,
+                                         hjust = 0,
+                                         margin=ggplot2::margin(9,0,9,0))
+  th$legend.position = legend.position
+  th$legend.background=ggplot2::element_blank()
+  th$legend.key=ggplot2::element_blank()
+  th$legend.text=ggplot2::element_text(family=font,
+                                       size=legend.text,
+                                       color=main.text.color)
+  th$legend.title=ggplot2::element_text(family=font,
+                                        size=legend.title,
+                                        color=main.text.color)
+  
+  th$axis.title.x=ggplot2::element_text(family=font,
+                                        size=axis.title.size,
+                                        color=main.text.color)
+  th$axis.title.y=th$axis.title.x
+  
+  th$axis.text=ggplot2::element_text(family=font,
+                                     size=axis.text.size,
+                                     color=main.text.color)
+  
+  th$axis.text.x=ggplot2::element_text(margin=ggplot2::margin(5, b=10))
+  th$axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10))
+  th$axis.ticks=ggplot2::element_blank()
+  th$axis.line=ggplot2::element_blank()
+  
+  th$panel.grid.minor=ggplot2::element_blank()
+  th$panel.grid=ggplot2::element_line(linetype=3, color=panel.grid.color, size=0.2)
+  
+  th$panel.background = ggplot2::element_rect(
+    fill=panel.background,
+    colour = NA
+  )
+  th$plot.background = ggplot2::element_rect(
+    fill = plot.background.color,
+    colour = NA
+  )
+  th$panel.border = ggplot2::element_rect(
+    color = panel.border.color,
+    fill = NA,
+    linetype = "solid",
+    size = 0.75
+  )
+  th$plot.caption = ggplot2::element_text(color=main.text.color)
+  
+  th$strip.background = ggplot2::element_blank()
+  th$strip.text= ggplot2::element_text(colour = main.text.color,
+                                       size  = 12,
+                                       hjust = 0.5)
+  
+  return (th)
 }
 
   #Paquete ggexpanse
@@ -222,6 +300,245 @@ theme_xkcd <- function(){
         text = element_text(size = 16, family = "xkcd"))
 }
 
+  #Paquete vapoRwave
+floral_shoppe <- function(
+    font = "VCR OSD Mono",
+    main.text.color = "#6CFFB9",
+    sub.text.color = "#6CFFB9",
+    base.size = 15,
+    plot.background.color = "#FF819C",
+    legend.position = "right",
+    panel.border.color = "black",
+    panel.background = "black",
+    panel.grid.color = "#6CFFB9",
+    axis.text.color = "#6CFFB9",
+    axis.text.size = base.size * 0.6666667,
+    subtitle.size = base.size * 0.8,
+    legend.text = base.size * 0.8,
+    legend.title = base.size * 0.93,
+    axis.title.size = base.size * 0.8,
+    title.size = 15
+) {
+  
+  th <- ggplot2::theme_minimal()
+  
+  th$plot.title=ggplot2::element_text(family=font,
+                                      size=title.size,
+                                      face="bold",
+                                      color=main.text.color)
+  th$plot.subtitle=ggplot2::element_text(family=font,
+                                         size=subtitle.size,
+                                         face="bold",
+                                         color=main.text.color,
+                                         margin=ggplot2::margin(9,0,9,0))
+  th$legend.position = legend.position
+  th$legend.background=ggplot2::element_blank()
+  th$legend.key=ggplot2::element_blank()
+  th$legend.text=ggplot2::element_text(family=font,
+                                       size=legend.text,
+                                       color=main.text.color)
+  th$legend.title=ggplot2::element_text(family=font,
+                                        size=legend.title,
+                                        color=main.text.color)
+  
+  th$axis.title.x=ggplot2::element_text(family=font,
+                                        size=axis.title.size,
+                                        color=main.text.color)
+  th$axis.title.y=th$axis.title.x
+  
+  th$axis.text=ggplot2::element_text(family=font,
+                                     size=axis.text.size,
+                                     color=main.text.color)
+  
+  th$axis.text.x=ggplot2::element_text(margin=ggplot2::margin(5, b=10))
+  th$axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10))
+  th$axis.ticks=ggplot2::element_blank()
+  th$axis.line=ggplot2::element_blank()
+  
+  th$panel.grid.minor=ggplot2::element_blank()
+  th$panel.grid=ggplot2::element_line(linetype=3, color=panel.grid.color, size=0.2)
+  
+  th$panel.background = ggplot2::element_rect(
+    fill=panel.background,
+    colour = NA
+  )
+  th$plot.background = ggplot2::element_rect(
+    fill = plot.background.color,
+    colour = NA
+  )
+  th$panel.border = ggplot2::element_rect(
+    color = panel.border.color,
+    fill = NA,
+    linetype = "solid",
+    size = 0.75
+  )
+  th$plot.caption = ggplot2::element_text(color=main.text.color)
+  
+  th$strip.background = ggplot2::element_rect(fill=panel.background)
+  th$strip.text= ggplot2::element_text(colour = main.text.color,
+                                       size  = 12,
+                                       hjust = 0)
+  
+  return (th)
+  
+}
+
+jwz <- function(
+    font = "Windows Command Prompt",
+    main.text.color = "#02BAFF",
+    sub.text.color = "#00FF01",
+    base.size = 15,
+    plot.background.color = "black",
+    legend.position = "right",
+    panel.border.color = "black",
+    panel.background = "#014400",
+    panel.grid.color = "#00FF01",
+    axis.text.color = "#02BAFF",
+    axis.text.size = base.size * 0.6666667,
+    subtitle.size = base.size * 0.8,
+    legend.text = base.size * 0.8,
+    legend.title = base.size * 0.93,
+    axis.title.size = base.size * 0.8,
+    title.size = 15
+) {
+  
+  th <- ggplot2::theme_minimal ()
+  
+  th$plot.title=ggplot2::element_text(family=font,
+                                      size=title.size,
+                                      face="bold",
+                                      color=main.text.color)
+  th$plot.subtitle=ggplot2::element_text(family=font,
+                                         size=subtitle.size,
+                                         face="bold",
+                                         color=main.text.color,
+                                         margin=ggplot2::margin(9,0,9,0))
+  th$legend.position = legend.position
+  th$legend.background=ggplot2::element_blank()
+  th$legend.key=ggplot2::element_blank()
+  th$legend.text=ggplot2::element_text(family=font,
+                                       size=legend.text,
+                                       color=main.text.color)
+  th$legend.title=ggplot2::element_text(family=font,
+                                        size=legend.title,
+                                        color=main.text.color)
+  th$axis.text=ggplot2::element_text(family=font,
+                                     size=axis.text.size,
+                                     color=main.text.color)
+  
+  th$axis.text.x=ggplot2::element_text(margin=ggplot2::margin(5, b=10))
+  th$axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10))
+  th$axis.ticks=ggplot2::element_blank()
+  th$axis.line=ggplot2::element_blank()
+  
+  th$panel.grid.minor=ggplot2::element_blank()
+  th$panel.grid=ggplot2::element_line(linetype=3, color=panel.grid.color, size=0.2)
+  
+  th$panel.background = ggplot2::element_rect(
+    fill=panel.background,
+    colour = NA
+  )
+  th$plot.background = ggplot2::element_rect(
+    fill = plot.background.color,
+    colour = NA
+  )
+  th$panel.border = ggplot2::element_rect(
+    color = panel.border.color,
+    fill = NA,
+    linetype = "solid",
+    size = 0.75
+  )
+  th$plot.caption = ggplot2::element_text(color=main.text.color)
+  
+  th$strip.background = ggplot2::element_rect(fill=panel.background)
+  th$strip.text= ggplot2::element_text(colour = main.text.color,
+                                       size  = 12,
+                                       hjust = 0)
+  
+  return (th)
+}
+
+new_retro <- function(
+    font = "SF Alien Encounters",
+    main.text.color = "#FA5F70FF",
+    sub.text.color = "#FA5F70FF",
+    base.size = 15,
+    plot.background.color = "#0F0D1A",
+    legend.position = "right",
+    panel.border.color = "#494D72",
+    panel.background = "#0F0D1A",
+    panel.grid.color = "#FFB967",
+    axis.text.color = "#FA5F70FF",
+    axis.text.size = base.size * 0.6666667,
+    subtitle.size = base.size * 0.8,
+    legend.text = base.size * 0.8,
+    legend.title = base.size * 0.93,
+    axis.title.size = base.size * 0.8,
+    title.size = 15
+) {
+  
+  th <- ggplot2::theme_minimal ()
+  
+  th$plot.title=ggplot2::element_text(family=font,
+                                      size=title.size,
+                                      face="bold",
+                                      color=main.text.color)
+  th$plot.subtitle=ggplot2::element_text(family=font,
+                                         size=subtitle.size,
+                                         face="bold",
+                                         color=main.text.color,
+                                         margin=ggplot2::margin(9,0,9,0))
+  th$legend.position = legend.position
+  th$legend.background=ggplot2::element_blank()
+  th$legend.key=ggplot2::element_blank()
+  th$legend.text=ggplot2::element_text(family=font,
+                                       size=legend.text,
+                                       color=main.text.color)
+  th$legend.title=ggplot2::element_text(family=font,
+                                        size=legend.title,
+                                        color=main.text.color)
+  
+  th$axis.title.x=ggplot2::element_text(family=font,
+                                        size=axis.title.size,
+                                        color=main.text.color)
+  th$axis.title.y=th$axis.title.x
+  
+  th$axis.text=ggplot2::element_text(family=font,
+                                     size=axis.text.size,
+                                     color=main.text.color)
+  
+  th$axis.text.x=ggplot2::element_text(margin=ggplot2::margin(5, b=10))
+  th$axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10))
+  th$axis.ticks=ggplot2::element_blank()
+  th$axis.line=ggplot2::element_blank()
+  
+  th$panel.grid.minor=ggplot2::element_blank()
+  th$panel.grid=ggplot2::element_line(linetype=3, color=panel.grid.color, size=0.2)
+  
+  th$panel.background = ggplot2::element_rect(
+    fill=panel.background,
+    colour = NA
+  )
+  th$plot.background = ggplot2::element_rect(
+    fill = plot.background.color,
+    colour = NA
+  )
+  th$panel.border = ggplot2::element_rect(
+    color = panel.border.color,
+    fill = NA,
+    linetype = "solid",
+    size = 0.75
+  )
+  th$plot.caption = ggplot2::element_text(color=main.text.color)
+  
+  th$strip.background = ggplot2::element_rect(fill=panel.background)
+  th$strip.text= ggplot2::element_text(colour = main.text.color,
+                                       size  = 12,
+                                       hjust = 0)
+  
+  return (th)
+}
+
 
 ###Función para resetear ajustes predeterminados de ggplot####
 resetear_defaults = function(){
@@ -234,4 +551,129 @@ resetear_defaults = function(){
   for (estetica in c("point", "line", "area", "rect", "density", "bar", "col", "text", "curve") ) {
     ggplot2::update_geom_defaults(estetica, ggplot2:::default_aesthetics(estetica))
   }
+}
+
+###Actualizar gráficos hechos antes de la versión 3.5.0 de ggplot2
+library(rlang)
+library(plyr)
+
+compute_aesthetics = function(self, data, plot) {
+  aesthetics <- self$computed_mapping
+  
+  set <- names(aesthetics) %in% names(self$aes_params)
+  calculated <- ggplot2:::is_calculated_aes(aesthetics, warn = TRUE)
+  modifiers <- ggplot2:::is_scaled_aes(aesthetics)
+  
+  aesthetics <- aesthetics[!set & !calculated & !modifiers]
+  
+  if (!is.null(self$geom_params$group)) {
+    aesthetics[["group"]] <- self$aes_params$group
+  }
+  
+  env <- child_env(baseenv(), stage = stage)
+  evaled <- lapply(aesthetics, eval_tidy, data = data, env = env)
+  evaled <- compact(evaled)
+  
+  plot$scales$add_defaults(evaled, plot$plot_env)
+  
+  ggplot2:::warn_for_aes_extract_usage(aesthetics, data[setdiff(names(data), "PANEL")])
+  
+  nondata_cols <- ggplot2:::check_nondata_cols(evaled)
+  if (length(nondata_cols) > 0) {
+    issues <- paste0("{.code ", nondata_cols, " = ", as_label(aesthetics[[nondata_cols]]), "}")
+    names(issues) <- rep("x", length(issues))
+    cli::cli_abort(c(
+      "Aesthetics are not valid data columns.",
+      "x" = "The following aesthetics are invalid:",
+      issues,
+      "i" = "Did you mistype the name of a data column or forget to add {.fn after_stat}?"
+    ))
+  }
+  
+  n <- nrow(data)
+  aes_n <- lengths(evaled)
+  if (n == 0) {
+    if (length(evaled) == 0) {
+      n <- 0
+    } else {
+      n <- if (min(aes_n) == 0) 0L else max(aes_n)
+    }
+  }
+  if ((self$geom$check_constant_aes %||% TRUE)
+      && length(aes_n) > 0 && all(aes_n == 1) && n > 1) {
+    cli::cli_warn(c(
+      "All aesthetics have length 1, but the data has {n} rows.",
+      i = "Please consider using {.fn annotate} or provide this layer \\
+        with data containing a single row."
+    ), call = self$constructor)
+  }
+  ggplot2:::check_aesthetics(evaled, n)
+  
+  if (empty(data) && n > 0) {
+    evaled$PANEL <- 1
+  } else {
+    evaled$PANEL <- data$PANEL
+  }
+  evaled <- lapply(evaled, unname)
+  evaled <- ggplot2:::as_gg_data_frame(evaled)
+  evaled <- ggplot2:::add_group(evaled)
+  evaled
+}
+
+map_statistic = function(self, data, plot) {
+  if (empty(data)) return(data_frame0())
+  
+  data <- ggplot2:::rename_aes(data)
+  
+  aesthetics <- self$computed_mapping
+  aesthetics <- defaults(aesthetics, self$stat$default_aes)
+  aesthetics <- compact(aesthetics)
+  
+  new <- ggplot2:::strip_dots(aesthetics[ggplot2:::is_calculated_aes(aesthetics) | ggplot2:::is_staged_aes(aesthetics)])
+  if (length(new) == 0) return(data)
+  
+  data_orig <- plot$scales$backtransform_df(data)
+  
+  env <- child_env(baseenv(), stat = stat, after_stat = after_stat)
+  stage_mask <- child_env(emptyenv(), stage = ggplot2:::stage_calculated)
+  mask <- new_data_mask(as_environment(data_orig, stage_mask), stage_mask)
+  mask$.data <- as_data_pronoun(mask)
+  
+  new <- ggplot2:::substitute_aes(new)
+  stat_data <- lapply(new, eval_tidy, mask, env)
+  
+  nondata_stat_cols <- ggplot2:::check_nondata_cols(stat_data)
+  if (length(nondata_stat_cols) > 0) {
+    issues <- paste0("{.code ", nondata_stat_cols, " = ", as_label(aesthetics[[nondata_stat_cols]]), "}")
+    names(issues) <- rep("x", length(issues))
+    cli::cli_abort(c(
+      "Aesthetics must be valid computed stats.",
+      "x" = "The following aesthetics are invalid:",
+      issues,
+      "i" = "Did you map your stat in the wrong layer?"
+    ))
+  }
+  
+  names(stat_data) <- names(new)
+  stat_data <- ggplot2:::data_frame0(!!!compact(stat_data))
+  
+  plot$scales$add_defaults(stat_data, plot$plot_env)
+
+  if (self$stat$retransform) {
+    stat_data <- plot$scales$transform_df(stat_data)
+  }
+  
+  ggplot2:::cunion(stat_data, data)
+}
+
+actualizar_plot <- function(grafico) {
+  for (layer in 1:length(grafico$layers)) {#Para cada capa
+    #Actualiza las funciones
+    grafico$layers[[layer]]$compute_aesthetics = compute_aesthetics
+    grafico$layers[[layer]]$map_statistic = map_statistic
+  }
+  #Añade guides
+  grafico$guides = ggplot2:::Guides
+  #Devuelve el gráfico actualizado
+  return(grafico)
 }
