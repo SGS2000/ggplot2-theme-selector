@@ -3,12 +3,14 @@
 #########################
 paquetes_con_paletas = sort(c(paquetes, #Paquetes con paletas, sin temas
                        "ButterflyColors", "colorr", "cols4all", "ggGenshin", 
-                       "ggsci", "MexBrewer", "palettetown", "RColorBrewer",
-                       "scico", "viridis", "wesanderson"
+                       "ggokabeito", "ggsci", "harrypotter" ,"MexBrewer", 
+                       "palettetown", "RColorBrewer", "severance","scico", 
+                       "viridis", "wesanderson"
                         )) 
 
-p_load("ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggsci", "MexBrewer", 
-       "palettetown", "RColorBrewer", "scico", "viridis", "wesanderson"
+p_load("ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", 
+       "ggsci", "harrypotter", "MexBrewer", "palettetown", "RColorBrewer", 
+       "severance","scico", "viridis", "wesanderson"
        )
 
 #Guardar paletas, descripciones y citas
@@ -47,7 +49,7 @@ paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 
 #Se añaden o corrigen algunas paletas manualmente
 paletas_manual = c("artyfarty", "ButterflyColors","colorr","gglgbtq","randplot", 
-                   "RColorBrewer","wesanderson")
+                   "RColorBrewer","severance","wesanderson")
 
 paletas_artyfarty = c("flatty", "flatpaleta", "dg4", "few_light", "few_medium", 
                       "few_dark", "color_blind", "fancy", "pastel", "pastel2", 
@@ -142,6 +144,11 @@ paletasColor[["ggsci"]] = sort(c(paletasColor[["ggsci"]], "scale_color_d3('categ
 paletasFill[["ggtech"]] = c(paste0("scale_fill_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
 paletasColor[["ggtech"]] = c(paste0("scale_color_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
 
+paletasColor[["harrypotter"]] = c(paste0("scale_color_hp(option ='",names(harrypotter::hp_palettes),"')"))
+paletasColor[["harrypotter"]] = c(paletasColor[["harrypotter"]], paste0("scale_color_hp_d(option ='",names(harrypotter::hp_palettes),"')"))
+paletasFill[["harrypotter"]] = c(paste0("scale_fill_hp(option ='",names(harrypotter::hp_palettes),"')"))
+paletasFill[["harrypotter"]] = c(paletasFill[["harrypotter"]], paste0("scale_fill_hp_d(option ='",names(harrypotter::hp_palettes),"')"))
+
 paletasColor[["MexBrewer"]] = c(paste0("scale_color_mex_c(palette_name ='",names(MexBrewer::MexPalettes),"')"))
 paletasColor[["MexBrewer"]] = c(paletasColor[["MexBrewer"]], paste0("scale_color_mex_d(palette_name ='",names(MexBrewer::MexPalettes),"')"))
 paletasFill[["MexBrewer"]] = c(paste0("scale_fill_mex_c(palette_name ='",names(MexBrewer::MexPalettes),"')"))
@@ -160,6 +167,9 @@ paletasColor[["scico"]] = c(paste0("scale_color_scico(palette = '", c(scico_pale
 paletasColor[["scico"]] = c(paletasColor[["scico"]], paste0("scale_color_scico_d(palette = '", c(scico_palette_names()), "')")) 
 paletasFill[["scico"]] = c(paste0("scale_fill_scico(palette = '", c(scico_palette_names()), "')")) 
 paletasFill[["scico"]] = c(paletasFill[["scico"]], paste0("scale_fill_scico_d(palette = '", c(scico_palette_names()), "')"))
+
+paletasColor[["severance"]] = c(paste0("scale_color_manual(values = severance_palette('", c(names(severance::severance_palettes)), "'))")) 
+paletasFill[["severance"]] = c(paste0("scale_fill_manual(values = severance_palette('", c(names(severance::severance_palettes)), "'))")) 
 
 paletasFill[["sfthemes"]] = c(paletasFill[["sfthemes"]][!paletasFill[["sfthemes"]] %in% c("scale_fill_macos_light")], "scale_fill_macos_light(order='contrast')")
 paletasColor[["sfthemes"]] = c(eval(bquote(lsf.str( paste0("package:","sfthemes"), pattern = "scale_colour"))))
