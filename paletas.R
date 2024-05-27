@@ -3,14 +3,16 @@
 #########################
 paquetes_con_paletas = sort(c(paquetes, #Paquetes con paletas, sin temas
                        "ButterflyColors", "colorr", "cols4all", "ggGenshin", 
-                       "ggokabeito", "ggsci", "harrypotter" ,"MexBrewer", 
-                       "palettetown", "RColorBrewer", "severance","scico", 
+                       "ggokabeito", "ggRtsy","ggsci", "harrypotter", 
+                       "MexBrewer", "NatParksPalettes", "palettetown", 
+                       "RColorBrewer", "severance", "scico", "tayloRswift", 
                        "viridis", "wesanderson"
                         )) 
 
-p_load("ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", 
-       "ggsci", "harrypotter", "MexBrewer", "palettetown", "RColorBrewer", 
-       "severance","scico", "viridis", "wesanderson"
+p_load("ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito",
+       "ggRtsy", "ggsci", "harrypotter", "MexBrewer", "NatParksPalettes", 
+       "palettetown", "RColorBrewer", "severance", "scico", "tayloRswift", 
+       "viridis", "wesanderson"
        )
 
 #Guardar paletas, descripciones y citas
@@ -128,6 +130,11 @@ paletasFill[["gglgbtq"]] = c(paste0("scale_fill_manual(values = palette_lgbtq('"
 paletasFill[["ggprism"]] = c(paste0("scale_fill_prism(palette = '", c(names(ggprism_data$fill_palettes)),"')") )
 paletasColor[["ggprism"]] = c(paste0("scale_color_prism(palette = '", c(names(ggprism_data$colour_palettes)),"')") )
 
+paletasFill[["ggRtsy"]] = c(paste0("scale_fill_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"')") )
+paletasFill[["ggRtsy"]] = c(paletasFill[["ggRtsy"]], paste0("scale_fill_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"', discrete=F)") )
+paletasColor[["ggRtsy"]] = c(paste0("scale_color_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"')") )
+paletasColor[["ggRtsy"]] = c(paletasColor[["ggRtsy"]], paste0("scale_color_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"', discrete=F)") )
+
 paletasFill[["ggsci"]] = sort(c(paletasFill[["ggsci"]], "scale_fill_d3('category20')", "scale_fill_d3('category20b')", "scale_fill_d3('category20c')",
                                 "scale_fill_igv('alternating')", "scale_fill_cosmic('hallmarks_dark')", "scale_fill_cosmic('signature_substitutions')",
                                 "scale_fill_uchicago('dark')", "scale_fill_uchicago('light')","scale_fill_flatui('flattastic')", "scale_fill_flatui('aussie')", 
@@ -154,6 +161,11 @@ paletasColor[["MexBrewer"]] = c(paletasColor[["MexBrewer"]], paste0("scale_color
 paletasFill[["MexBrewer"]] = c(paste0("scale_fill_mex_c(palette_name ='",names(MexBrewer::MexPalettes),"')"))
 paletasFill[["MexBrewer"]] = c(paletasFill[["MexBrewer"]], paste0("scale_fill_mex_d(palette_name ='",names(MexBrewer::MexPalettes),"')"))
 
+paletasColor[["NatParksPalettes"]] = c(paste0("scale_color_natparks_c(name ='",names(NatParksPalettes::NatParksPalettes),"')"))
+paletasColor[["NatParksPalettes"]] = c(paletasColor[["NatParksPalettes"]], paste0("scale_color_natparks_d(name ='",names(NatParksPalettes::NatParksPalettes),"')"))
+paletasFill[["NatParksPalettes"]] = c(paste0("scale_fill_natparks_c(name ='",names(NatParksPalettes::NatParksPalettes),"')"))
+paletasFill[["NatParksPalettes"]] = c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(name ='",names(NatParksPalettes::NatParksPalettes),"')"))
+
 paletasColor[["palettetown"]] = c(paste0("scale_color_poke(pokemon='",names(palettetown:::pokeColours),"')"))
 paletasFill[["palettetown"]] = c(paste0("scale_fill_poke(pokemon='",names(palettetown:::pokeColours),"')"))
 
@@ -173,6 +185,11 @@ paletasFill[["severance"]] = c(paste0("scale_fill_manual(values = severance_pale
 
 paletasFill[["sfthemes"]] = c(paletasFill[["sfthemes"]][!paletasFill[["sfthemes"]] %in% c("scale_fill_macos_light")], "scale_fill_macos_light(order='contrast')")
 paletasColor[["sfthemes"]] = c(eval(bquote(lsf.str( paste0("package:","sfthemes"), pattern = "scale_colour"))))
+
+paletasFill[["tayloRswift"]] = c(paste0("scale_fill_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"')") )
+paletasFill[["tayloRswift"]] = c(paletasFill[["tayloRswift"]], paste0("scale_fill_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"', discrete=F)") )
+paletasColor[["tayloRswift"]] = c(paste0("scale_color_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"')") )
+paletasColor[["tayloRswift"]] = c(paletasColor[["tayloRswift"]], paste0("scale_color_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"', discrete=F)") )
 
 paletasColor[["vapoRwave"]][1] = "scale_color_avanti()()"
 paletasColor[["vapoRwave"]][2] = "scale_color_cool()()"
@@ -230,7 +247,6 @@ paletasFill[["ggthemes (tableau discreto)"]] = c(paste0("scale_fill_tableau(pale
 paletasFill[["ggthemes (tableau continuo)"]] = c(paste0("scale_fill_continuous_tableau(palette = '", c(names(ggthemes_data$tableau$`color-palettes`$`ordered-sequential`)) ,"')"))
 paletasFill[["ggthemes (tableau continuo)"]] = c(paletasFill[["ggthemes (tableau continuo)"]],
                                                   paste0("scale_fill_gradient2_tableau(palette = '", c(names(ggthemes_data$tableau$`color-palettes`$`ordered-diverging`)) ,"')"))
-
 
 #Se añaden opciones discretas / continuas
 nueva_opcion = function(lista_paletas, nuevo_texto){
