@@ -4,15 +4,15 @@
 paquetes_con_paletas = sort(c(paquetes, #Paquetes con paletas, sin temas
                        "ButterflyColors", "colorr", "cols4all", "ggGenshin", 
                        "ggokabeito", "ggRtsy","ggsci", "harrypotter", 
-                       "MexBrewer", "NatParksPalettes", "palettetown", 
-                       "RColorBrewer", "severance", "scico", "tayloRswift", 
-                       "viridis", "wesanderson"
+                       "MexBrewer", "NatParksPalettes", "palettetown", "pilot",
+                       "RColorBrewer", "scico", "severance", "sjPlot", 
+                       "soilpalettes", "tayloRswift", "viridis", "wesanderson"
                         )) 
 
 p_load("ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito",
        "ggRtsy", "ggsci", "harrypotter", "MexBrewer", "NatParksPalettes", 
-       "palettetown", "RColorBrewer", "severance", "scico", "tayloRswift", 
-       "viridis", "wesanderson"
+       "palettetown", "pilot", "RColorBrewer", "scico", "severance", "sjPlot",
+       "soilpalettes", "tayloRswift", "viridis", "wesanderson"
        )
 
 #Guardar paletas, descripciones y citas
@@ -50,8 +50,9 @@ paletasFill <- lapply(paletasFill, function(x) x[!x %in% excluir_pal])
 paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 
 #Se añaden o corrigen algunas paletas manualmente
-paletas_manual = c("artyfarty", "ButterflyColors","colorr","gglgbtq","randplot", 
-                   "RColorBrewer","severance","wesanderson")
+paletas_manual = c("artyfarty", "ButterflyColors", "colorr", "gglgbtq", 
+                   "randplot", "RColorBrewer", "severance", "soilpalettes",
+                   "wesanderson")
 
 paletas_artyfarty = c("flatty", "flatpaleta", "dg4", "few_light", "few_medium", 
                       "few_dark", "color_blind", "fancy", "pastel", "pastel2", 
@@ -186,6 +187,15 @@ paletasFill[["severance"]] = c(paste0("scale_fill_manual(values = severance_pale
 paletasFill[["sfthemes"]] = c(paletasFill[["sfthemes"]][!paletasFill[["sfthemes"]] %in% c("scale_fill_macos_light")], "scale_fill_macos_light(order='contrast')")
 paletasColor[["sfthemes"]] = c(eval(bquote(lsf.str( paste0("package:","sfthemes"), pattern = "scale_colour"))))
 
+paletasColor[["sjPlot"]] = c(paste0("scale_color_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "')")) 
+paletasColor[["sjPlot"]] = c(paletasColor[["sjPlot"]],paste0("scale_color_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "', discrete=F)")) 
+
+paletasFill[["sjPlot"]] = c(paste0("scale_fill_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "')")) 
+paletasFill[["sjPlot"]] = c(paletasFill[["sjPlot"]],paste0("scale_fill_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "', discrete=F)")) 
+
+paletasColor[["soilpalettes"]] = c(paste0("scale_color_manual(values = soil_palette('", c(names(soilpalettes::soil_palettes)), "', 5))")) 
+paletasFill[["soilpalettes"]] = c(paste0("scale_fill_manual(values = soil_palette('", c(names(soilpalettes::soil_palettes)), "', 5))")) 
+
 paletasFill[["tayloRswift"]] = c(paste0("scale_fill_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"')") )
 paletasFill[["tayloRswift"]] = c(paletasFill[["tayloRswift"]], paste0("scale_fill_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"', discrete=F)") )
 paletasColor[["tayloRswift"]] = c(paste0("scale_color_taylor(palette = '",  c(names(tayloRswift::swift_palettes)),"')") )
@@ -267,6 +277,9 @@ paletasFill[["ggGenshin"]] = nueva_opcion(paletasFill[["ggGenshin"]], "(discrete
 
 paletasColor[["hjplottools"]] = nueva_opcion(paletasColor[["hjplottools"]], "(discrete=F)")
 paletasFill[["hjplottools"]] = nueva_opcion(paletasFill[["hjplottools"]], "(discrete=F)")
+
+paletasColor[["pilot"]] = nueva_opcion(paletasColor[["pilot"]], "(discrete=F)")
+paletasFill[["pilot"]] = nueva_opcion(paletasFill[["pilot"]], "(discrete=F)")
 
 paletasColor[["tvthemes"]] = nueva_opcion(paletasColor[["tvthemes"]], "(type='continuous')")
 paletasFill[["tvthemes"]] = nueva_opcion(paletasFill[["tvthemes"]], "(type='continuous')")

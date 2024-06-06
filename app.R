@@ -31,9 +31,9 @@ paquetes = c("ggplot2", sort(c(
   "ggCyberPunk", "ggdark",  "ggdecor","gghdx","ggexpanse", "gghighcontrast", 
   "gglgbtq","ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr", 
   "ggshredR","ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", 
-  "hjplottools","hrbrthemes", "industRial", "jmvcore", "lato", "randplot", 
-  "Rokemon","sfthemes", "ThemePark","tvthemes", "urbnthemes", "vapoRwave", 
-  "visibly", "wwplot", "xkcd"
+  "hjplottools","hrbrthemes", "industRial", "jmvcore", "lato", "pilot",
+  "randplot", "Rokemon","sfthemes", "sjPlot", "ThemePark","tvthemes", 
+  "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
 )))
 
 library(ggshredR)
@@ -45,8 +45,9 @@ p_load(
   "ggCyberPunk", "ggdark", "ggdecor","gghdx", "ggexpanse", "gghighcontrast", 
   "gglgbtq","ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubr",
   "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools",
-  "hrbrthemes", "industRial", "jmvcore", "lato", "randplot", "Rokemon","sfthemes", 
-  "ThemePark", "tvthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+  "hrbrthemes", "industRial", "jmvcore", "lato", "pilot", "randplot", 
+  "Rokemon","sfthemes", "sjPlot", "ThemePark", "tvthemes", "vapoRwave", 
+  "visibly", "wwplot", "xkcd"
 )
 
   #Guardar temas, descripciones y citas
