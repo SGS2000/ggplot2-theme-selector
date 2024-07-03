@@ -58,9 +58,9 @@ for (paquete in paquetes) {
   #Se guardan las descripciones de los paquetes
   descripciones <- append(descripciones, packageDescription(paquete, fields = 'Description') )
   #Se buscan todas los funciones con la palabra "theme"
-  temas <- append(temas,list(eval(bquote(lsf.str( paste0("package:",paquete), pattern = "theme_")))))
+  temas <- append(temas, list(eval(bquote(lsf.str( paste0("package:", paquete), pattern = "theme_")))))
   #Se guardan citas en formato APA
-  suppressWarnings(invisible(capture.output( citas <- append(citas, apa_citation(paquete)) ) ))
+  suppressWarnings(invisible(capture.output(citas <- append(citas, apa_citation(paquete)))))
 }
 names(descripciones) = paquetes
 names(citas) = paquetes
@@ -264,7 +264,7 @@ server <- function(input, output, session) {
     } else if(paqueteActual() == "tvthemes" ){ #Aplicando fuentes a tvthemes
       temaActual(funciones_tvthemes[[temas[[paqueteActual()]][1]]])
     } else { #Caso general
-      temaActual(paste0(temas[[paqueteActual()]][1],"()"))
+      temaActual(paste0(temas[[paqueteActual()]][1], "()"))
     }
     
     #Cambiar cita
@@ -284,7 +284,7 @@ server <- function(input, output, session) {
     } else if(paqueteActual() == "tvthemes" ){ #Aplicando fuentes a tvthemes
       temaActual(funciones_tvthemes[[input$selectorTema]])
     } else { #Caso general
-      temaActual(paste0(input$selectorTema,"()"))
+      temaActual(paste0(input$selectorTema, "()"))
     }
   })
   
@@ -346,9 +346,9 @@ server <- function(input, output, session) {
     
     #Cambiar función
     if(input$selectorPaletaFill=="Ninguna"){
-      PaletaFillActual(paste0(input$selectorPaletaFill,"()"))
+      PaletaFillActual(paste0(input$selectorPaletaFill, "()"))
     } else if (grepl("\\(", input$selectorPaletaFill) & !paqueteActualPaleta() %in% paletas_manual) { #Sin paréntesis
-      PaletaFillActual(paste0(paqueteActualPaleta() ,"::",input$selectorPaletaFill))
+      PaletaFillActual(paste0(paqueteActualPaleta() , "::", input$selectorPaletaFill))
     } else if (paqueteActualPaleta() %in% paletas_manual) { #Paquetes añadidos manualmente
       if (grepl("\\(", input$selectorPaletaFill)) {
         PaletaFillActual(paste0(input$selectorPaletaFill))
@@ -356,7 +356,7 @@ server <- function(input, output, session) {
         PaletaFillActual(paste0(input$selectorPaletaFill, "()"))
       }
     } else{ #Caso general
-      PaletaFillActual(paste0(paqueteActualPaleta() ,"::",input$selectorPaletaFill,"()") )
+      PaletaFillActual(paste0(paqueteActualPaleta() , "::", input$selectorPaletaFill, "()") )
     }
     
     #Cambiar descripción
@@ -414,13 +414,13 @@ server <- function(input, output, session) {
   output$mostrarGrafico <- renderPlot({  #Renderizar gráfico
     resetear_defaults() #Valores predeterminados de ggplot2
 
-    if(paqueteActual() %in% c("firatheme", "ggCyberPunk", "ggexpanse", "vapoRwave","xkcd")){ #Temas corregidos
+    if(paqueteActual() %in% c("firatheme", "ggCyberPunk", "ggexpanse", "vapoRwave", "xkcd")){ #Temas corregidos
       grafico() + eval(parse( text=paste0(temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     } else if( paqueteActual() == "ggthemr"){ #ggthemr usa una sintaxis distinta al resto
       ggthemr(temaActual())
       grafico() + eval(parse(text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     } else(
-      grafico() + eval(parse(text=paste0(paqueteActual() ,"::", temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
+      grafico() + eval(parse(text=paste0(paqueteActual(), "::", temaActual()) )) + eval(parse( text=paste0(PaletaColorActual()) )) + eval(parse( text=paste0(PaletaFillActual()) ))
     )
   })
 
@@ -444,10 +444,10 @@ server <- function(input, output, session) {
       enable("alturaSelector")
       enable("anchoSelector")
       observeEvent(input$alturaSelector, {
-        altura(paste0(as.character(input$alturaSelector),"px"))
+        altura(paste0(as.character(input$alturaSelector), "px"))
       })
       observeEvent(input$anchoSelector, {
-        ancho(paste0(as.character(input$anchoSelector),"px"))
+        ancho(paste0(as.character(input$anchoSelector), "px"))
       })
     }
   })

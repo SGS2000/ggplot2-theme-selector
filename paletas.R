@@ -125,8 +125,8 @@ paletasFill[["ggCyberPunk"]] = c( paste0( "scale_fill_cyberpunk(palette ='", c("
 paletasColor[["ggCyberPunk"]] = c(paletasColor[["ggCyberPunk"]], paste0( "scale_color_cyberpunk(palette ='", c("main","cotton candy","zune", "laser sword") , "',discrete = F)" ) )
 paletasFill[["ggCyberPunk"]] = c(paletasFill[["ggCyberPunk"]], paste0( "scale_fill_cyberpunk(palette ='", c("main","cotton candy","zune", "laser sword") , "',discrete = F)" ) )
 
-paletasColor[["gglgbtq"]] = c(paste0("scale_color_manual(values = palette_lgbtq('", c(show_pride()$palettes), "'))"))  
-paletasFill[["gglgbtq"]] = c(paste0("scale_fill_manual(values = palette_lgbtq('", c(show_pride()$palettes), "'))")) 
+paletasColor[["gglgbtq"]] = c(paste0("scale_color_lgbtq('", c(show_pride()$palettes), "')"))  
+paletasFill[["gglgbtq"]] = c(paste0("scale_fill_lgbtq('", c(show_pride()$palettes), "')")) 
 
 paletasFill[["ggprism"]] = c(paste0("scale_fill_prism(palette = '", c(names(ggprism_data$fill_palettes)),"')") )
 paletasColor[["ggprism"]] = c(paste0("scale_color_prism(palette = '", c(names(ggprism_data$colour_palettes)),"')") )
@@ -135,19 +135,6 @@ paletasFill[["ggRtsy"]] = c(paste0("scale_fill_gogh(palette = '", c(names(ggRtsy
 paletasFill[["ggRtsy"]] = c(paletasFill[["ggRtsy"]], paste0("scale_fill_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"', discrete=F)") )
 paletasColor[["ggRtsy"]] = c(paste0("scale_color_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"')") )
 paletasColor[["ggRtsy"]] = c(paletasColor[["ggRtsy"]], paste0("scale_color_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)),"', discrete=F)") )
-
-paletasFill[["ggsci"]] = sort(c(paletasFill[["ggsci"]], "scale_fill_d3('category20')", "scale_fill_d3('category20b')", "scale_fill_d3('category20c')",
-                                "scale_fill_igv('alternating')", "scale_fill_cosmic('hallmarks_dark')", "scale_fill_cosmic('signature_substitutions')",
-                                "scale_fill_uchicago('dark')", "scale_fill_uchicago('light')","scale_fill_flatui('flattastic')", "scale_fill_flatui('aussie')", 
-                                paste0("scale_fill_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", "cyan","teal", "green","light-green", 
-                                "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")
-                                ))
-paletasColor[["ggsci"]] = sort(c(paletasColor[["ggsci"]], "scale_color_d3('category20')", "scale_color_d3('category20b')", "scale_color_d3('category20c')",
-                                 "scale_color_igv('alternating')", "scale_color_cosmic('hallmarks_dark')", "scale_color_cosmic('signature_substitutions')",
-                                 "scale_color_uchicago('dark')", "scale_color_uchicago('light')","scale_color_flatui('flattastic')", 
-                                 "scale_color_flatui('aussie')", paste0("scale_color_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", 
-                                 "cyan","teal", "green","light-green", "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")
-                                 ))
 
 paletasFill[["ggtech"]] = c(paste0("scale_fill_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
 paletasColor[["ggtech"]] = c(paste0("scale_color_tech(theme = '", c("airbnb", "facebook", "google", "etsy", "twitter", "X23andme"),"')") )
@@ -219,14 +206,14 @@ paletasColor[["wwplot"]] = c(paletasColor[["wwplot"]],paste0("scale_colour_wolve
 paletasFill[["wwplot"]] = c(paletasFill[["wwplot"]],paste0("scale_fill_wolves(palette = '", c("wooly_bully", "sir_jack"), "', discrete=F)")) 
 
 #Se divide el paquete ggthemes para mejorar la visualización
-paletasColor[["ggthemes"]] = paletasColor[["ggthemes"]][!paletasColor[["ggthemes"]] %in% c("scale_color_canva","scale_color_excel_new",
+paletasColor[["ggthemes"]] = paletasColor[["ggthemes"]][!paletasColor[["ggthemes"]] %in% c("scale_color_canva", "scale_color_excel_new",
                                                                                            "scale_color_tableau", "scale_color_gradient2_tableau",
-                                                                                           "scale_color_gradient_tableau","scale_color_continuous_tableau",
+                                                                                           "scale_color_gradient_tableau", "scale_color_continuous_tableau",
                                                                                            "scale_color_few", "scale_color_hc", "scale_color_stata", "scale_color_wsj"
                                                                                            )]
-paletasFill[["ggthemes"]] = paletasFill[["ggthemes"]][!paletasFill[["ggthemes"]] %in% c("scale_fill_canva","scale_fill_excel_new",
-                                                                                           "scale_fill_tableau", "scale_fill_gradient2_tableau",
-                                                                                           "scale_fill_gradient_tableau","scale_fill_continuous_tableau",
+paletasFill[["ggthemes"]] = paletasFill[["ggthemes"]][!paletasFill[["ggthemes"]] %in% c("scale_fill_canva", "scale_fill_excel_new",
+                                                                                        "scale_fill_tableau", "scale_fill_gradient2_tableau",
+                                                                                        "scale_fill_gradient_tableau", "scale_fill_continuous_tableau",
                                                                                         "scale_fill_few", "scale_fill_hc", "scale_fill_stata", "scale_fill_wsj"
                                                                                         )]
 
@@ -257,6 +244,35 @@ paletasFill[["ggthemes (tableau discreto)"]] = c(paste0("scale_fill_tableau(pale
 paletasFill[["ggthemes (tableau continuo)"]] = c(paste0("scale_fill_continuous_tableau(palette = '", c(names(ggthemes_data$tableau$`color-palettes`$`ordered-sequential`)) ,"')"))
 paletasFill[["ggthemes (tableau continuo)"]] = c(paletasFill[["ggthemes (tableau continuo)"]],
                                                   paste0("scale_fill_gradient2_tableau(palette = '", c(names(ggthemes_data$tableau$`color-palettes`$`ordered-diverging`)) ,"')"))
+
+#Se divide el paquete ggsci para mejorar la visualización
+paletasFill[["ggsci"]] = sort(c(paletasFill[["ggsci"]][!paletasFill[["ggsci"]] %in% c("scale_fill_bs5", "scale_fill_material", "scale_fill_tw3")], 
+                                "scale_fill_d3('category20')", "scale_fill_d3('category20b')", "scale_fill_d3('category20c')",
+                                "scale_fill_igv('alternating')", "scale_fill_cosmic('hallmarks_dark')", "scale_fill_cosmic('signature_substitutions')",
+                                "scale_fill_uchicago('dark')", "scale_fill_uchicago('light')","scale_fill_flatui('flattastic')", "scale_fill_flatui('aussie')"))
+paletasColor[["ggsci"]] = sort(c(paletasColor[["ggsci"]][!paletasColor[["ggsci"]] %in% c("scale_color_bs5", "scale_color_material", "scale_color_tw3")], 
+                                 "scale_color_d3('category20')", "scale_color_d3('category20b')", "scale_color_d3('category20c')",
+                                 "scale_color_igv('alternating')", "scale_color_cosmic('hallmarks_dark')", "scale_color_cosmic('signature_substitutions')",
+                                 "scale_color_uchicago('dark')", "scale_color_uchicago('light')","scale_color_flatui('flattastic')", 
+                                 "scale_color_flatui('aussie')"))
+
+
+paletasColor[["ggsci (Bootstrap 5)"]] = sort(c(paste0("scale_color_bs5('", c("blue", "indigo", "purple", "pink", "red", "orange", "yellow", "green",
+                                                                            "teal", "cyan", "gray"),"')") ))
+paletasFill[["ggsci (Bootstrap 5)"]] = sort(c(paste0("scale_fill_bs5('", c("blue", "indigo", "purple", "pink", "red", "orange", "yellow", "green",
+                                                                              "teal", "cyan", "gray"),"')") ))
+
+paletasFill[["ggsci (Material Design)"]] = sort(c(paste0("scale_fill_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", "cyan","teal", "green","light-green", 
+                                                                  "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")))
+paletasColor[["ggsci (Material Design)"]] = sort(c(paste0("scale_color_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", 
+                                                                    "cyan","teal", "green","light-green", "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")))
+
+paletasColor[["ggsci (Tailwind)"]] = sort(c(paste0("scale_color_tw3('", c("slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber",
+                                                                             "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo",
+                                                                             "violet", "purple", "fuchsia", "pink", "rose"),"')") ))
+paletasFill[["ggsci (Tailwind)"]] = sort(c(paste0("scale_fill_tw3('", c("slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber",
+                                                                           "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo",
+                                                                           "violet", "purple", "fuchsia", "pink", "rose"),"')") ))
 
 #Se añaden opciones discretas / continuas
 nueva_opcion = function(lista_paletas, nuevo_texto){
