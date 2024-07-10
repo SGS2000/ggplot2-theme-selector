@@ -6,51 +6,51 @@ theme_fira <- function(family = "Fira Sans") {
     ggplot2::theme_grey(base_size = 11.5, base_family = family),
     ggplot2::theme(
       plot.margin = grid::unit(rep(0.5, 4), "cm"),
-      
+
       plot.background = ggplot2::element_blank(),
       panel.background = ggplot2::element_blank(),
       panel.border = ggplot2::element_blank(),
-      
+
       legend.background = ggplot2::element_rect(fill = "transparent",
                                                 colour = NA),
-      legend.key = ggplot2::element_rect(fill = "transparent",colour = NA),
+      legend.key = ggplot2::element_rect(fill = "transparent", colour = NA),
       strip.background = ggplot2::element_rect(fill = "transparent",
                                                colour = NA),
-      
+
       panel.grid.major = ggplot2::element_line(linetype = "dotted",
                                                colour = "#454545",
                                                linewidth = 0.3),
       panel.grid.minor = ggplot2::element_blank(),
-      
+
       axis.ticks = ggplot2::element_blank(),
       axis.line = ggplot2::element_line(color = "#454545", size = 0.3),
-      
+
       plot.title = ggplot2::element_text(size = 18, colour = "#454545",
                                          hjust = 0.5,
                                          margin = ggplot2::margin(b = 10)),
       plot.subtitle = ggplot2::element_text(size = 12, colour = "#454545",
                                             hjust = 0.5,
                                             margin = ggplot2::margin(b = 10)),
-      
+
       plot.caption = ggplot2::element_text(size = 10, colour = "#454545",
                                            hjust = 1,
                                            margin = ggplot2::margin(t = 15)),
-      
+
       axis.title = ggplot2::element_text(size = 13, colour = "#454545",
                                          hjust = 0.95),
       axis.text = ggplot2::element_text(size = 10, colour = "#212121"),
       legend.title = ggplot2::element_text(size = 12, colour = "#454545"),
       legend.text = ggplot2::element_text(size = 10, colour = "#454545"),
-      strip.text = ggplot2::element_text(size = 12, colour = "#454545", 
-                                         margin = ggplot2::margin(10, 10, 
-                                                                  10, 10, 
+      strip.text = ggplot2::element_text(size = 12, colour = "#454545",
+                                         margin = ggplot2::margin(10, 10,
+                                                                  10, 10,
                                                                   "pt"))
     )
   )
 }
 
   #Paquete ggCyberPunk
-theme_cyberpunk <- function (
+theme_cyberpunk <- function(
     font = "Aldrich",
     main.text.color = "#EE9537",
     sub.text.color = "#EE9537",
@@ -68,7 +68,7 @@ theme_cyberpunk <- function (
     axis.title.size = base.size * 0.8,
     title.size = 15
 ) {
-  
+
   th <- ggplot2::theme_minimal ()
   
   th$plot.title=ggplot2::element_text(family=font,
@@ -539,16 +539,16 @@ new_retro <- function(
   return (th)
 }
 
+### Función para resetear ajustes predeterminados de ggplot####
+resetear_defaults <- function() {
+  # Elimina cambios hechos por el paquete ggthemr
+  ggthemr_reset()
+  options("ggplot2.discrete.colour" = NULL)
+  options("ggplot2.continuous.colour" = NULL)
 
-###Función para resetear ajustes predeterminados de ggplot####
-resetear_defaults = function(){
-    #Elimina cambios hechos por el paquete ggthemr
-  ggthemr_reset() 
-  options('ggplot2.discrete.colour' = NULL)
-  options('ggplot2.continuous.colour' = NULL)
-  
-    #Elimina cambios hechos por el paquete delgosha
-  for (estetica in c("point", "line", "area", "rect", "density", "bar", "col", "text", "curve") ) {
+  # Elimina cambios hechos por el paquete delgosha
+  for (estetica in c("point", "line", "area", "rect", "density", "bar", "col",
+                     "text", "curve")) {
     ggplot2::update_geom_defaults(estetica, ggplot2:::default_aesthetics(estetica))
   }
 }
@@ -557,27 +557,27 @@ resetear_defaults = function(){
 library(rlang)
 library(plyr)
 
-compute_aesthetics = function(self, data, plot) {
+compute_aesthetics <- function(self, data, plot) {
   aesthetics <- self$computed_mapping
-  
+
   set <- names(aesthetics) %in% names(self$aes_params)
   calculated <- ggplot2:::is_calculated_aes(aesthetics, warn = TRUE)
   modifiers <- ggplot2:::is_scaled_aes(aesthetics)
-  
+
   aesthetics <- aesthetics[!set & !calculated & !modifiers]
-  
+
   if (!is.null(self$geom_params$group)) {
     aesthetics[["group"]] <- self$aes_params$group
   }
-  
+
   env <- child_env(baseenv(), stage = stage)
   evaled <- lapply(aesthetics, eval_tidy, data = data, env = env)
   evaled <- compact(evaled)
-  
+
   plot$scales$add_defaults(evaled, plot$plot_env)
-  
+
   ggplot2:::warn_for_aes_extract_usage(aesthetics, data[setdiff(names(data), "PANEL")])
-  
+
   nondata_cols <- ggplot2:::check_nondata_cols(evaled)
   if (length(nondata_cols) > 0) {
     issues <- paste0("{.code ", nondata_cols, " = ", as_label(aesthetics[[nondata_cols]]), "}")
@@ -589,7 +589,7 @@ compute_aesthetics = function(self, data, plot) {
       "i" = "Did you mistype the name of a data column or forget to add {.fn after_stat}?"
     ))
   }
-  
+
   n <- nrow(data)
   aes_n <- lengths(evaled)
   if (n == 0) {
@@ -608,7 +608,7 @@ compute_aesthetics = function(self, data, plot) {
     ), call = self$constructor)
   }
   ggplot2:::check_aesthetics(evaled, n)
-  
+
   if (empty(data) && n > 0) {
     evaled$PANEL <- 1
   } else {
@@ -620,20 +620,20 @@ compute_aesthetics = function(self, data, plot) {
   evaled
 }
 
-map_statistic = function(self, data, plot) {
+map_statistic <- function(self, data, plot) {
   if (empty(data)) return(data_frame0())
-  
+
   data <- ggplot2:::rename_aes(data)
-  
+
   aesthetics <- self$computed_mapping
   aesthetics <- defaults(aesthetics, self$stat$default_aes)
   aesthetics <- compact(aesthetics)
-  
+
   new <- ggplot2:::strip_dots(aesthetics[ggplot2:::is_calculated_aes(aesthetics) | ggplot2:::is_staged_aes(aesthetics)])
   if (length(new) == 0) return(data)
-  
+
   data_orig <- plot$scales$backtransform_df(data)
-  
+
   env <- child_env(baseenv(), stat = stat, after_stat = after_stat)
   stage_mask <- child_env(emptyenv(), stage = ggplot2:::stage_calculated)
   mask <- new_data_mask(as_environment(data_orig, stage_mask), stage_mask)
@@ -653,27 +653,27 @@ map_statistic = function(self, data, plot) {
       "i" = "Did you map your stat in the wrong layer?"
     ))
   }
-  
+
   names(stat_data) <- names(new)
   stat_data <- ggplot2:::data_frame0(!!!compact(stat_data))
-  
+
   plot$scales$add_defaults(stat_data, plot$plot_env)
 
   if (self$stat$retransform) {
     stat_data <- plot$scales$transform_df(stat_data)
   }
-  
+
   ggplot2:::cunion(stat_data, data)
 }
 
 actualizar_plot <- function(grafico) {
   for (layer in 1:length(grafico$layers)) {#Para cada capa
     #Actualiza las funciones
-    grafico$layers[[layer]]$compute_aesthetics = compute_aesthetics
-    grafico$layers[[layer]]$map_statistic = map_statistic
+    grafico$layers[[layer]]$compute_aesthetics <- compute_aesthetics
+    grafico$layers[[layer]]$map_statistic <- map_statistic
   }
   #Añade guides
-  grafico$guides = ggplot2:::Guides
+  grafico$guides <- ggplot2:::Guides
   #Devuelve el gráfico actualizado
   return(grafico)
 }
