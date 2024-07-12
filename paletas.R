@@ -5,16 +5,18 @@ paquetes_con_paletas <- sort(c(paquetes,
   # Paquetes con paletas, sin temas
   "ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", "ggRtsy",
   "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer", "MexBrewer",
-  "MoMAColors", "NatParksPalettes", "palettetown", "peRReo", "pilot",
-  "PNWColors", "PrettyCols", "RColorBrewer", "scico", "severance", "sjPlot",
-  "soilpalettes", "tayloRswift", "viridis", "wesanderson"))
+  "MoMAColors", "NatParksPalettes", "palettetown", "Paris2024Colours", "peRReo",
+  "pilot", "PNWColors", "PrettyCols", "RColorBrewer", "Rdune", "scico",
+  "severance", "sjPlot", "soilpalettes", "tayloRswift", "viridis",
+  "wesanderson"))
 
 p_load(
   "ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", "ggRtsy",
   "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer", "MexBrewer",
-  "MoMAColors", "NatParksPalettes", "palettetown", "peRReo", "pilot",
-  "PNWColors", "PrettyCols", "RColorBrewer", "scico", "severance", "sjPlot",
-  "soilpalettes", "tayloRswift", "viridis", "wesanderson")
+  "MoMAColors", "NatParksPalettes", "palettetown", "Paris2024Colours", "peRReo",
+  "pilot", "PNWColors", "PrettyCols", "RColorBrewer", "Rdune", "scico",
+  "severance", "sjPlot", "soilpalettes", "tayloRswift", "viridis",
+  "wesanderson")
 
 #Guardar paletas, descripciones y citas
 paletasFill <- list()
@@ -178,6 +180,11 @@ paletasColor[["NatParksPalettes"]] <- c(paletasColor[["NatParksPalettes"]], past
 paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(name ='", names(NatParksPalettes::NatParksPalettes), "')"))
 paletasFill[["NatParksPalettes"]] <- c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(name ='", names(NatParksPalettes::NatParksPalettes), "')"))
 
+paletasColor[["Paris2024Colours"]] <- c(paste0("scale_color_paris2024_c(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasColor[["Paris2024Colours"]] <- c(paletasColor[["Paris2024Colours"]], paste0("scale_color_paris2024_d(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasFill[["Paris2024Colours"]] <- c(paste0("scale_fill_paris2024_c(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasFill[["Paris2024Colours"]] <- c(paletasFill[["Paris2024Colours"]], paste0("scale_fill_paris2024_d(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
+
 paletasColor[["palettetown"]] <- c(paste0("scale_color_poke(pokemon='", names(palettetown:::pokeColours), "')"))
 paletasFill[["palettetown"]] <- c(paste0("scale_fill_poke(pokemon='", names(palettetown:::pokeColours), "')"))
 
@@ -203,6 +210,11 @@ paletasFill[["randplot"]] <- c(paste0("scale_fill_manual(values = ", c("RandCatP
 
 paletasColor[["RColorBrewer"]] <- c(paste0("scale_color_brewer(palette = '", c(rownames(RColorBrewer::brewer.pal.info)), "')"))
 paletasFill[["RColorBrewer"]] <- c(paste0("scale_fill_brewer(palette = '", c(rownames(RColorBrewer::brewer.pal.info)), "')"))
+
+paletasColor[["Rdune"]] <- c(paste0("scale_color_dune_c(name ='", names(Rdune::dune_palettes), "')"))
+paletasColor[["Rdune"]] <- c(paletasColor[["Rdune"]], paste0("scale_color_dune_d(name ='", names(Rdune::dune_palettes), "')"))
+paletasFill[["Rdune"]] <- c(paste0("scale_fill_dune_c(name ='", names(Rdune::dune_palettes), "')"))
+paletasFill[["Rdune"]] <- c(paletasFill[["Rdune"]], paste0("scale_fill_dune_d(name ='", names(Rdune::dune_palettes), "')"))
 
 paletasColor[["scico"]] <- c(paste0("scale_color_scico(palette = '", c(scico_palette_names()), "')"))
 paletasColor[["scico"]] <- c(paletasColor[["scico"]], paste0("scale_color_scico_d(palette = '", c(scico_palette_names()), "')"))
