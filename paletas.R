@@ -1,22 +1,25 @@
 #########################
 #####Cargar paquetes#####
 #########################
-paquetes_con_paletas <- sort(c(paquetes,
+paquetes_con_paletas <- sort(c(
+  paquetes,
   # Paquetes con paletas, sin temas
   "ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", "ggRtsy",
   "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer", "MexBrewer",
   "MoMAColors", "NatParksPalettes", "palettetown", "Paris2024Colours", "peRReo",
-  "pilot", "PNWColors", "PrettyCols", "RColorBrewer", "Rdune", "scico",
-  "severance", "sjPlot", "soilpalettes", "tayloRswift", "viridis",
-  "wesanderson"))
+  "pilot", "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune",
+  "scico", "severance", "sjPlot", "soilpalettes", "tayloRswift", "unicol",
+  "viridis", "wesanderson"
+))
 
 p_load(
   "ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", "ggRtsy",
   "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer", "MexBrewer",
   "MoMAColors", "NatParksPalettes", "palettetown", "Paris2024Colours", "peRReo",
-  "pilot", "PNWColors", "PrettyCols", "RColorBrewer", "Rdune", "scico",
-  "severance", "sjPlot", "soilpalettes", "tayloRswift", "viridis",
-  "wesanderson")
+  "pilot", "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune",
+  "scico", "severance", "sjPlot", "soilpalettes", "tayloRswift", "unicol",
+  "viridis", "wesanderson"
+)
 
 #Guardar paletas, descripciones y citas
 paletasFill <- list()
@@ -54,9 +57,10 @@ paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 
 #Se añaden o corrigen algunas paletas manualmente
 paletas_manual <- c(
-  "artyfarty", "ButterflyColors", "colorr", "gglgbtq", "LaCroixColoR", "peRReo",
-  "PNWColors", "randplot", "RColorBrewer", "severance", "soilpalettes",
-  "wesanderson")
+  "artyfarty", "ButterflyColors", "colorr", "gglgbtq", "ggpubfigs",
+  "LaCroixColoR", "peRReo", "PNWColors", "randplot", "RColorBrewer",
+  "severance", "soilpalettes", "unicol", "wesanderson"
+  )
 
 paletas_artyfarty <- c(
   "flatty", "flatpaleta", "dg4", "few_light", "few_medium", "few_dark",
@@ -140,6 +144,11 @@ paletasFill[["gglgbtq"]] <- c(paste0("scale_fill_lgbtq('", c(show_pride()$palett
 paletasFill[["ggprism"]] <- c(paste0("scale_fill_prism(palette = '", c(names(ggprism_data$fill_palettes)), "')"))
 paletasColor[["ggprism"]] <- c(paste0("scale_color_prism(palette = '", c(names(ggprism_data$colour_palettes)), "')"))
 
+paletasColor[["ggpubfigs"]] <- c(paste0("scale_color_gradientn(colors = friendly_pal('", c(names(ggpubfigs::friendly_pals)), "', type = 'continuous'))"))
+paletasColor[["ggpubfigs"]] <- c(paletasColor[["ggpubfigs"]], paste0("scale_color_manual(values = friendly_pal('", c(names(ggpubfigs::friendly_pals)), "', type = 'discrete'))"))
+paletasFill[["ggpubfigs"]] <- c(paste0("scale_fill_gradientn(colors = friendly_pal('", c(names(ggpubfigs::friendly_pals)), "', type = 'continuous'))"))
+paletasFill[["ggpubfigs"]] <- c(paletasFill[["ggpubfigs"]], paste0("scale_fill_manual(values = friendly_pal('", c(names(ggpubfigs::friendly_pals)), "', type = 'discrete'))"))
+
 paletasFill[["ggRtsy"]] <- c(paste0("scale_fill_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)), "')"))
 paletasFill[["ggRtsy"]] <- c(paletasFill[["ggRtsy"]], paste0("scale_fill_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)), "', discrete=F)"))
 paletasColor[["ggRtsy"]] <- c(paste0("scale_color_gogh(palette = '", c(names(ggRtsy::gogh_palettes_pop)), "')"))
@@ -160,30 +169,30 @@ paletasFill[["LaCroixColoR"]] <- c(paste0("scale_fill_gradientn(colors = lacroix
 paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], paste0("scale_fill_manual(values = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes)-1])), "', type = 'discrete'))"))
 paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], "scale_fill_manual(values = lacroix_palette(type = 'paired'))")
 
-paletasColor[["MetBrewer"]] <- c(paste0("scale_color_met_c(name ='", names(MetBrewer::MetPalettes), "')"))
-paletasColor[["MetBrewer"]] <- c(paletasColor[["MetBrewer"]], paste0("scale_color_met_d(name ='", names(MetBrewer::MetPalettes), "')"))
-paletasFill[["MetBrewer"]] <- c(paste0("scale_fill_met_c(name ='", names(MetBrewer::MetPalettes), "')"))
-paletasFill[["MetBrewer"]] <- c(paletasFill[["MetBrewer"]], paste0("scale_fill_met_d(name ='", names(MetBrewer::MetPalettes), "')"))
+paletasColor[["MetBrewer"]] <- c(paste0("scale_color_met_c(palette ='", names(MetBrewer::MetPalettes), "')"))
+paletasColor[["MetBrewer"]] <- c(paletasColor[["MetBrewer"]], paste0("scale_color_met_d(palette ='", names(MetBrewer::MetPalettes), "')"))
+paletasFill[["MetBrewer"]] <- c(paste0("scale_fill_met_c(palette ='", names(MetBrewer::MetPalettes), "')"))
+paletasFill[["MetBrewer"]] <- c(paletasFill[["MetBrewer"]], paste0("scale_fill_met_d(palette ='", names(MetBrewer::MetPalettes), "')"))
 
-paletasColor[["MexBrewer"]] <- c(paste0("scale_color_mex_c(palette_name ='", names(MexBrewer::MexPalettes), "')"))
-paletasColor[["MexBrewer"]] <- c(paletasColor[["MexBrewer"]], paste0("scale_color_mex_d(palette_name ='", names(MexBrewer::MexPalettes), "')"))
-paletasFill[["MexBrewer"]] <- c(paste0("scale_fill_mex_c(palette_name ='", names(MexBrewer::MexPalettes), "')"))
-paletasFill[["MexBrewer"]] <- c(paletasFill[["MexBrewer"]], paste0("scale_fill_mex_d(palette_name ='", names(MexBrewer::MexPalettes), "')"))
+paletasColor[["MexBrewer"]] <- c(paste0("scale_color_mex_c(palette_palette ='", names(MexBrewer::MexPalettes), "')"))
+paletasColor[["MexBrewer"]] <- c(paletasColor[["MexBrewer"]], paste0("scale_color_mex_d(palette_palette ='", names(MexBrewer::MexPalettes), "')"))
+paletasFill[["MexBrewer"]] <- c(paste0("scale_fill_mex_c(palette_palette ='", names(MexBrewer::MexPalettes), "')"))
+paletasFill[["MexBrewer"]] <- c(paletasFill[["MexBrewer"]], paste0("scale_fill_mex_d(palette_palette ='", names(MexBrewer::MexPalettes), "')"))
 
-paletasColor[["MoMAColors"]] <- c(paste0("scale_color_moma_c(palette_name ='", names(MoMAColors::MoMAPalettes), "')"))
-paletasColor[["MoMAColors"]] <- c(paletasColor[["MoMAColors"]], paste0("scale_color_moma_d(palette_name ='", names(MoMAColors::MoMAPalettes), "')"))
-paletasFill[["MoMAColors"]] <- c(paste0("scale_fill_moma_c(palette_name ='", names(MoMAColors::MoMAPalettes), "')"))
-paletasFill[["MoMAColors"]] <- c(paletasFill[["MoMAColors"]], paste0("scale_fill_moma_d(palette_name ='", names(MoMAColors::MoMAPalettes), "')"))
+paletasColor[["MoMAColors"]] <- c(paste0("scale_color_moma_c(palette_palette ='", names(MoMAColors::MoMAPalettes), "')"))
+paletasColor[["MoMAColors"]] <- c(paletasColor[["MoMAColors"]], paste0("scale_color_moma_d(palette_palette ='", names(MoMAColors::MoMAPalettes), "')"))
+paletasFill[["MoMAColors"]] <- c(paste0("scale_fill_moma_c(palette_palette ='", names(MoMAColors::MoMAPalettes), "')"))
+paletasFill[["MoMAColors"]] <- c(paletasFill[["MoMAColors"]], paste0("scale_fill_moma_d(palette_palette ='", names(MoMAColors::MoMAPalettes), "')"))
 
-paletasColor[["NatParksPalettes"]] <- c(paste0("scale_color_natparks_c(name ='", names(NatParksPalettes::NatParksPalettes), "')"))
-paletasColor[["NatParksPalettes"]] <- c(paletasColor[["NatParksPalettes"]], paste0("scale_color_natparks_d(name ='", names(NatParksPalettes::NatParksPalettes), "')"))
-paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(name ='", names(NatParksPalettes::NatParksPalettes), "')"))
-paletasFill[["NatParksPalettes"]] <- c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(name ='", names(NatParksPalettes::NatParksPalettes), "')"))
+paletasColor[["NatParksPalettes"]] <- c(paste0("scale_color_natparks_c(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
+paletasColor[["NatParksPalettes"]] <- c(paletasColor[["NatParksPalettes"]], paste0("scale_color_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
+paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
+paletasFill[["NatParksPalettes"]] <- c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 
-paletasColor[["Paris2024Colours"]] <- c(paste0("scale_color_paris2024_c(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
-paletasColor[["Paris2024Colours"]] <- c(paletasColor[["Paris2024Colours"]], paste0("scale_color_paris2024_d(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
-paletasFill[["Paris2024Colours"]] <- c(paste0("scale_fill_paris2024_c(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
-paletasFill[["Paris2024Colours"]] <- c(paletasFill[["Paris2024Colours"]], paste0("scale_fill_paris2024_d(name ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasColor[["Paris2024Colours"]] <- c(paste0("scale_color_paris2024_c(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasColor[["Paris2024Colours"]] <- c(paletasColor[["Paris2024Colours"]], paste0("scale_color_paris2024_d(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasFill[["Paris2024Colours"]] <- c(paste0("scale_fill_paris2024_c(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
+paletasFill[["Paris2024Colours"]] <- c(paletasFill[["Paris2024Colours"]], paste0("scale_fill_paris2024_d(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
 
 paletasColor[["palettetown"]] <- c(paste0("scale_color_poke(pokemon='", names(palettetown:::pokeColours), "')"))
 paletasFill[["palettetown"]] <- c(paste0("scale_fill_poke(pokemon='", names(palettetown:::pokeColours), "')"))
@@ -208,13 +217,18 @@ paletasFill[["PrettyCols"]] <- c(paletasFill[["PrettyCols"]], paste0("scale_fill
 paletasColor[["randplot"]] <- c(paste0("scale_color_manual(values = ", c("RandCatPal", "RandGrayPal"), ")"))
 paletasFill[["randplot"]] <- c(paste0("scale_fill_manual(values = ", c("RandCatPal", "RandGrayPal"), ")"))
 
+paletasColor[["rcartocolor"]] <- c(paste0("scale_color_carto_c(palette ='", c(rcartocolor::cartocolors$Name), "')"))
+paletasColor[["rcartocolor"]] <- c(paletasColor[["rcartocolor"]], paste0("scale_color_carto_d(palette ='", c(rcartocolor::cartocolors$Name), "')"))
+paletasFill[["rcartocolor"]] <- c(paste0("scale_fill_carto_c(palette ='", c(rcartocolor::cartocolors$Name), "')"))
+paletasFill[["rcartocolor"]] <- c(paletasFill[["rcartocolor"]], paste0("scale_fill_carto_d(palette ='", c(rcartocolor::cartocolors$Name), "')"))
+
 paletasColor[["RColorBrewer"]] <- c(paste0("scale_color_brewer(palette = '", c(rownames(RColorBrewer::brewer.pal.info)), "')"))
 paletasFill[["RColorBrewer"]] <- c(paste0("scale_fill_brewer(palette = '", c(rownames(RColorBrewer::brewer.pal.info)), "')"))
 
-paletasColor[["Rdune"]] <- c(paste0("scale_color_dune_c(name ='", names(Rdune::dune_palettes), "')"))
-paletasColor[["Rdune"]] <- c(paletasColor[["Rdune"]], paste0("scale_color_dune_d(name ='", names(Rdune::dune_palettes), "')"))
-paletasFill[["Rdune"]] <- c(paste0("scale_fill_dune_c(name ='", names(Rdune::dune_palettes), "')"))
-paletasFill[["Rdune"]] <- c(paletasFill[["Rdune"]], paste0("scale_fill_dune_d(name ='", names(Rdune::dune_palettes), "')"))
+paletasColor[["Rdune"]] <- c(paste0("scale_color_dune_c(palette ='", names(Rdune::dune_palettes), "')"))
+paletasColor[["Rdune"]] <- c(paletasColor[["Rdune"]], paste0("scale_color_dune_d(palette ='", names(Rdune::dune_palettes), "')"))
+paletasFill[["Rdune"]] <- c(paste0("scale_fill_dune_c(palette ='", names(Rdune::dune_palettes), "')"))
+paletasFill[["Rdune"]] <- c(paletasFill[["Rdune"]], paste0("scale_fill_dune_d(palette ='", names(Rdune::dune_palettes), "')"))
 
 paletasColor[["scico"]] <- c(paste0("scale_color_scico(palette = '", c(scico_palette_names()), "')"))
 paletasColor[["scico"]] <- c(paletasColor[["scico"]], paste0("scale_color_scico_d(palette = '", c(scico_palette_names()), "')"))
@@ -240,6 +254,11 @@ paletasFill[["tayloRswift"]] <- c(paste0("scale_fill_taylor(palette = '", c(name
 paletasFill[["tayloRswift"]] <- c(paletasFill[["tayloRswift"]], paste0("scale_fill_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "', discrete=F)"))
 paletasColor[["tayloRswift"]] <- c(paste0("scale_color_taylor(palette = '",  c(names(tayloRswift::swift_palettes)), "')"))
 paletasColor[["tayloRswift"]] <- c(paletasColor[["tayloRswift"]], paste0("scale_color_taylor(palette = '", c(names(tayloRswift::swift_palettes)),"', discrete=F)"))
+
+paletasColor[["unicol"]] <- c(paste0("scale_color_manual(values = unname(unicol::", c(unicol::unicol_data$pal), "))"))
+paletasColor[["unicol"]] <- c(paletasColor[["unicol"]], paste0("scale_color_gradientn(colors = c(unicol::", c(unicol::unicol_data$pal), "))"))
+paletasFill[["unicol"]] <- c(paste0("scale_fill_manual(values = unname(unicol::", c(unicol::unicol_data$pal), "))"))
+paletasFill[["unicol"]] <- c(paletasFill[["unicol"]], paste0("scale_fill_gradientn(colors = c(unicol::", c(unicol::unicol_data$pal), "))"))
 
 paletasColor[["vapoRwave"]][1] <- "scale_color_avanti()()"
 paletasColor[["vapoRwave"]][2] <- "scale_color_cool()()"
