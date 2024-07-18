@@ -73,10 +73,14 @@ paletas_pretty_div <- c(
   "PurplePinks", "TealGreens", "PurpleYellows", "RedBlues")
 
 paletasColor[["artyfarty"]] <- c(paste0("scale_color_manual(values = pal('", paletas_artyfarty, "'))"))
+paletasColor[["artyfarty"]] <- c(paletasColor[["artyfarty"]], paste0("scale_color_gradientn(colours = pal('", paletas_artyfarty, "'))"))
 paletasFill[["artyfarty"]] <- c(paste0("scale_fill_manual(values = pal('", paletas_artyfarty, "'))"))
+paletasFill[["artyfarty"]] <- c(paletasFill[["artyfarty"]], paste0("scale_fill_gradientn(colours = pal('", paletas_artyfarty, "'))"))
 
 paletasColor[["ButterflyColors"]] <- c(paste0("scale_color_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))")) 
+paletasColor[["ButterflyColors"]] <- c(paletasColor[["ButterflyColors"]], paste0("scale_color_gradientn(colours = butterfly_palettes(specie='", c(names(butterfly_species)), "'))")) 
 paletasFill[["ButterflyColors"]] <- c(paste0("scale_fill_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))"))
+paletasFill[["ButterflyColors"]] <- c(paletasFill[["ButterflyColors"]], paste0("scale_fill_gradientn(colours = butterfly_palettes(specie='", c(names(butterfly_species)), "'))"))
 
 paletasColor[["colorr"]] <- c(paste0("scale_color_manual(values = as.vector(epl.colors('", c("arsenal", "bournemouth", "burnley", "chelsea",
                                                                                      "crystal_palace", "everton", "hull", "leicester", "liverpool", "man_city",
@@ -215,7 +219,9 @@ paletasFill[["PrettyCols"]] <- c(paletasFill[["PrettyCols"]], paste0("scale_fill
 paletasFill[["PrettyCols"]] <- c(paletasFill[["PrettyCols"]], paste0("scale_fill_pretty_div(palette ='", paletas_pretty_div, "')"))
 
 paletasColor[["randplot"]] <- c(paste0("scale_color_manual(values = ", c("RandCatPal", "RandGrayPal"), ")"))
+paletasColor[["randplot"]] <- c(paletasColor[["randplot"]], paste0("scale_color_gradientn(colours = ", c("RandCatPal", "RandGrayPal"), ")"))
 paletasFill[["randplot"]] <- c(paste0("scale_fill_manual(values = ", c("RandCatPal", "RandGrayPal"), ")"))
+paletasFill[["randplot"]] <- c(paletasFill[["randplot"]], paste0("scale_fill_gradientn(colours = ", c("RandCatPal", "RandGrayPal"), ")"))
 
 paletasColor[["rcartocolor"]] <- c(paste0("scale_color_carto_c(palette ='", c(rcartocolor::cartocolors$Name), "')"))
 paletasColor[["rcartocolor"]] <- c(paletasColor[["rcartocolor"]], paste0("scale_color_carto_d(palette ='", c(rcartocolor::cartocolors$Name), "')"))
@@ -236,7 +242,9 @@ paletasFill[["scico"]] <- c(paste0("scale_fill_scico(palette = '", c(scico_palet
 paletasFill[["scico"]] <- c(paletasFill[["scico"]], paste0("scale_fill_scico_d(palette = '", c(scico_palette_names()), "')"))
 
 paletasColor[["severance"]] <- c(paste0("scale_color_manual(values = severance_palette('", c(names(severance::severance_palettes)), "'))"))
+paletasColor[["severance"]] <- c(paletasColor[["severance"]], paste0("scale_color_gradientn(colours = severance_palette('", c(names(severance::severance_palettes)), "'))"))
 paletasFill[["severance"]] <- c(paste0("scale_fill_manual(values = severance_palette('", c(names(severance::severance_palettes)), "'))"))
+paletasFill[["severance"]] <- c(paletasFill[["severance"]], paste0("scale_fill_gradientn(colours = severance_palette('", c(names(severance::severance_palettes)), "'))"))
 
 paletasFill[["sfthemes"]] <- c(paletasFill[["sfthemes"]][!paletasFill[["sfthemes"]] %in% c("scale_fill_macos_light")], "scale_fill_macos_light(order='contrast')")
 paletasColor[["sfthemes"]] <- c(eval(bquote(lsf.str(paste0("package:", "sfthemes"), pattern = "scale_colour"))))
@@ -248,7 +256,9 @@ paletasFill[["sjPlot"]] <- c(paste0("scale_fill_sjplot('", str_replace(unique(sj
 paletasFill[["sjPlot"]] <- c(paletasFill[["sjPlot"]], paste0("scale_fill_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "', discrete=F)"))
 
 paletasColor[["soilpalettes"]] <- c(paste0("scale_color_manual(values = soil_palette('", c(names(soilpalettes::soil_palettes)), "', 5))"))
+paletasColor[["soilpalettes"]] <- c(paletasColor[["soilpalettes"]], paste0("scale_color_gradientn(colours = soil_palette('", c(names(soilpalettes::soil_palettes)), "', 5))"))
 paletasFill[["soilpalettes"]] <- c(paste0("scale_fill_manual(values = soil_palette('", c(names(soilpalettes::soil_palettes)), "', 5))"))
+paletasFill[["soilpalettes"]] <- c(paletasFill[["soilpalettes"]], paste0("scale_fill_gradientn(colours = soil_palette('", c(names(soilpalettes::soil_palettes)), "', 5))"))
 
 paletasFill[["tayloRswift"]] <- c(paste0("scale_fill_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "')"))
 paletasFill[["tayloRswift"]] <- c(paletasFill[["tayloRswift"]], paste0("scale_fill_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "', discrete=F)"))
@@ -270,7 +280,9 @@ paletasFill[["viridis"]] <- c(paste0("scale_fill_viridis(option='", c(LETTERS[1:
 paletasFill[["viridis"]] <- c(paletasFill[["viridis"]], paste0("scale_fill_viridis(option='", c(LETTERS[1:8]), "',", " discrete=T", ")"))
 
 paletasColor[["wesanderson"]] <- c(paste0("scale_color_manual(values = wes_palette('", c(names(wesanderson::wes_palettes)), "'))"))
+paletasColor[["wesanderson"]] <- c(paletasColor[["wesanderson"]], paste0("scale_color_gradientn(colours = wes_palette('", c(names(wesanderson::wes_palettes)), "'))"))
 paletasFill[["wesanderson"]] <- c(paste0("scale_fill_manual(values = wes_palette('", c(names(wesanderson::wes_palettes)), "'))"))
+paletasFill[["wesanderson"]] <- c(paletasFill[["wesanderson"]], paste0("scale_fill_gradientn(colours = wes_palette('", c(names(wesanderson::wes_palettes)), "'))"))
 
 paletasColor[["wwplot"]] <- c(paste0("scale_colour_wolves(palette = '", c("wooly_bully", "sir_jack"), "')"))
 paletasFill[["wwplot"]] <- c(paste0("scale_fill_wolves(palette = '", c("wooly_bully", "sir_jack"), "')"))
