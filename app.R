@@ -130,6 +130,7 @@ names(muestras) <- c("Gráfico de dispersión", "Boxplot", "Gráfico de barras",
 ui <- fluidPage(
   theme = shinytheme("yeti"),
   useShinyjs(), #Aplicar JS
+  useBusyIndicators(), # Indicadores de carga
 
   #Titulo
   titlePanel("Selector de temas para ggplot2"),
