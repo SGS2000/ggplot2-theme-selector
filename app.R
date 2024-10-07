@@ -1,7 +1,7 @@
 ##########################
 #######Configuración######
 ##########################
-Sys.setlocale("LC_ALL", 'es_ES.UTF-8')
+Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 
 ########################
 #######Librerias########
@@ -32,8 +32,9 @@ paquetes <- c("ggplot2", sort(c(
   "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubfigs",
   "ggpubr", "ggshredR", "ggtech", "ggthemepark", "ggthemes", "ggthemr",
   "gouvdown", "hjplottools", "hrbrthemes", "industRial", "jmvcore", "lato",
-  "pilot", "randplot", "Rokemon", "sfthemes", "sjPlot", "ThemePark", "tvthemes",
-  "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+  "pilot", "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot",
+  "ThemePark", "tvthemes", "unhcrthemes", "urbnthemes", "vapoRwave", "visibly",
+  "wwplot", "xkcd"
 )))
 
 library(ggshredR)
@@ -46,8 +47,8 @@ p_load(
   "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism",  "ggpubfigs",
   "ggpubr", "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown",
   "hjplottools", "hrbrthemes", "industRial", "jmvcore", "lato", "pilot",
-  "randplot", "Rokemon", "sfthemes", "sjPlot", "ThemePark", "tvthemes",
-  "vapoRwave", "visibly", "wwplot", "xkcd"
+  "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot", "ThemePark",
+  "tvthemes", "unhcrthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
 )
 
   #Guardar temas, descripciones y citas
@@ -56,7 +57,7 @@ temas <- list()
 citas <- list()
 for (paquete in paquetes) {
   #Se guardan las descripciones de los paquetes
-  descripciones <- append(descripciones, packageDescription(paquete, fields = 'Description'))
+  descripciones <- append(descripciones, packageDescription(paquete, fields = "Description"))
   #Se buscan todas los funciones con la palabra "theme"
   temas <- append(temas, list(eval(bquote(lsf.str(paste0("package:", paquete), pattern = "theme_")))))
   #Se guardan citas en formato APA

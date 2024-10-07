@@ -31,7 +31,7 @@ for (paquete in paquetes_con_paletas) {
   paletasFill <- append(paletasFill, list(eval(bquote(lsf.str(paste0("package:", paquete), pattern = "scale_fill")))))
   paletasColor <- append(paletasColor, list(eval(bquote(lsf.str(paste0("package:", paquete), pattern = "scale_color")))))
   #Se guardan las descripciones de los paquetes
-  descripcionesPaletas <- append(descripcionesPaletas, packageDescription(paquete, fields = 'Description'))
+  descripcionesPaletas <- append(descripcionesPaletas, packageDescription(paquete, fields = "Description"))
   #Se guardan citas en formato APA
   suppressWarnings(invisible(capture.output(citasPaletas <- append(citasPaletas, apa_citation(paquete)))))
 }
@@ -142,7 +142,7 @@ paletasFill[["ggCyberPunk"]] <- c(paste0("scale_fill_cyberpunk(palette ='", c("m
 paletasColor[["ggCyberPunk"]] <- c(paletasColor[["ggCyberPunk"]], paste0("scale_color_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "',discrete = F)"))
 paletasFill[["ggCyberPunk"]] <- c(paletasFill[["ggCyberPunk"]], paste0("scale_fill_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "',discrete = F)"))
 
-paletasColor[["gglgbtq"]] <- c(paste0("scale_color_lgbtq('", c(show_pride()$palettes), "')")) 
+paletasColor[["gglgbtq"]] <- c(paste0("scale_color_lgbtq('", c(show_pride()$palettes), "')"))
 paletasFill[["gglgbtq"]] <- c(paste0("scale_fill_lgbtq('", c(show_pride()$palettes), "')"))
 
 paletasFill[["ggprism"]] <- c(paste0("scale_fill_prism(palette = '", c(names(ggprism_data$fill_palettes)), "')"))
@@ -166,11 +166,11 @@ paletasColor[["harrypotter"]] <- c(paletasColor[["harrypotter"]], paste0("scale_
 paletasFill[["harrypotter"]] <- c(paste0("scale_fill_hp(option ='", names(harrypotter::hp_palettes), "')"))
 paletasFill[["harrypotter"]] <- c(paletasFill[["harrypotter"]], paste0("scale_fill_hp_d(option ='", names(harrypotter::hp_palettes), "')"))
 
-paletasColor[["LaCroixColoR"]] <- c(paste0("scale_color_gradientn(colors = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes)-1])), "', type = 'continuous'))"))
-paletasColor[["LaCroixColoR"]] <- c(paletasColor[["LaCroixColoR"]], paste0("scale_color_manual(values = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes)-1])), "', type = 'discrete'))"))
+paletasColor[["LaCroixColoR"]] <- c(paste0("scale_color_gradientn(colors = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes) - 1])), "', type = 'continuous'))"))
+paletasColor[["LaCroixColoR"]] <- c(paletasColor[["LaCroixColoR"]], paste0("scale_color_manual(values = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes) - 1])), "', type = 'discrete'))"))
 paletasColor[["LaCroixColoR"]] <- c(paletasColor[["LaCroixColoR"]], "scale_color_manual(values = lacroix_palette(type = 'paired'))")
-paletasFill[["LaCroixColoR"]] <- c(paste0("scale_fill_gradientn(colors = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes)-1])), "', type = 'continuous'))"))
-paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], paste0("scale_fill_manual(values = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes)-1])), "', type = 'discrete'))"))
+paletasFill[["LaCroixColoR"]] <- c(paste0("scale_fill_gradientn(colors = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes) - 1])), "', type = 'continuous'))"))
+paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], paste0("scale_fill_manual(values = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes) - 1])), "', type = 'discrete'))"))
 paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], "scale_fill_manual(values = lacroix_palette(type = 'paired'))")
 
 paletasColor[["MetBrewer"]] <- c(paste0("scale_color_met_c(palette ='", names(MetBrewer::MetPalettes), "')"))
@@ -236,10 +236,47 @@ paletasColor[["Rdune"]] <- c(paletasColor[["Rdune"]], paste0("scale_color_dune_d
 paletasFill[["Rdune"]] <- c(paste0("scale_fill_dune_c(palette ='", names(Rdune::dune_palettes), "')"))
 paletasFill[["Rdune"]] <- c(paletasFill[["Rdune"]], paste0("scale_fill_dune_d(palette ='", names(Rdune::dune_palettes), "')"))
 
+paletasColor[["RSSthemes"]] <- c(paste0("scale_color_rss_c(palette ='", names(RSSthemes::RSSPalettes), "')"))
+paletasColor[["RSSthemes"]] <- c(paletasColor[["RSSthemes"]], paste0("scale_color_rss_d(palette ='", names(RSSthemes::RSSPalettes), "')"))
+paletasFill[["RSSthemes"]] <- c(paste0("scale_fill_rss_c(palette ='", names(RSSthemes::RSSPalettes), "')"))
+paletasFill[["RSSthemes"]] <- c(paletasFill[["RSSthemes"]], paste0("scale_fill_rss_d(palette ='", names(RSSthemes::RSSPalettes), "')"))
+
 paletasColor[["scico"]] <- c(paste0("scale_color_scico(palette = '", c(scico_palette_names()), "')"))
 paletasColor[["scico"]] <- c(paletasColor[["scico"]], paste0("scale_color_scico_d(palette = '", c(scico_palette_names()), "')"))
 paletasFill[["scico"]] <- c(paste0("scale_fill_scico(palette = '", c(scico_palette_names()), "')"))
 paletasFill[["scico"]] <- c(paletasFill[["scico"]], paste0("scale_fill_scico_d(palette = '", c(scico_palette_names()), "')"))
+
+paletasColor[["see"]] <- c(paste0("scale_color_bluebrown_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_bluebrown_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_flat_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_flat_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_material_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_material_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_metro_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_metro_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_oi(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_pizza_c(palette = '", c("margherita", "margherita_crust", "diavola", "diavola_crust"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_pizza_d(palette = '", c("margherita", "margherita_crust", "diavola", "diavola_crust"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_see_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_see_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_social_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasColor[["see"]] <- c(paletasColor[["see"]], paste0("scale_color_social_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paste0("scale_fill_bluebrown_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_bluebrown_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_flat_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_flat_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_material_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_material_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_metro_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_metro_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_oi(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_pizza_c(palette = '", c("margherita", "margherita_crust", "diavola", "diavola_crust"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_pizza_d(palette = '", c("margherita", "margherita_crust", "diavola", "diavola_crust"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_see_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_see_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_social_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_social_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
+
 
 paletasColor[["severance"]] <- c(paste0("scale_color_manual(values = severance_palette('", c(names(severance::severance_palettes)), "'))"))
 paletasColor[["severance"]] <- c(paletasColor[["severance"]], paste0("scale_color_gradientn(colours = severance_palette('", c(names(severance::severance_palettes)), "'))"))
@@ -250,7 +287,7 @@ paletasFill[["sfthemes"]] <- c(paletasFill[["sfthemes"]][!paletasFill[["sfthemes
 paletasColor[["sfthemes"]] <- c(eval(bquote(lsf.str(paste0("package:", "sfthemes"), pattern = "scale_colour"))))
 
 paletasColor[["sjPlot"]] <- c(paste0("scale_color_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "')"))
-paletasColor[["sjPlot"]] <- c(paletasColor[["sjPlot"]],paste0("scale_color_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "', discrete=F)"))
+paletasColor[["sjPlot"]] <- c(paletasColor[["sjPlot"]], paste0("scale_color_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "', discrete=F)"))
 
 paletasFill[["sjPlot"]] <- c(paste0("scale_fill_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "')"))
 paletasFill[["sjPlot"]] <- c(paletasFill[["sjPlot"]], paste0("scale_fill_sjplot('", str_replace(unique(sjPlot::show_sjplot_pals()$data$key), "t.c", "t c"), "', discrete=F)"))
@@ -263,7 +300,7 @@ paletasFill[["soilpalettes"]] <- c(paletasFill[["soilpalettes"]], paste0("scale_
 paletasFill[["tayloRswift"]] <- c(paste0("scale_fill_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "')"))
 paletasFill[["tayloRswift"]] <- c(paletasFill[["tayloRswift"]], paste0("scale_fill_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "', discrete=F)"))
 paletasColor[["tayloRswift"]] <- c(paste0("scale_color_taylor(palette = '",  c(names(tayloRswift::swift_palettes)), "')"))
-paletasColor[["tayloRswift"]] <- c(paletasColor[["tayloRswift"]], paste0("scale_color_taylor(palette = '", c(names(tayloRswift::swift_palettes)),"', discrete=F)"))
+paletasColor[["tayloRswift"]] <- c(paletasColor[["tayloRswift"]], paste0("scale_color_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "', discrete=F)"))
 
 paletasColor[["unicol"]] <- c(paste0("scale_color_manual(values = unname(unicol::", c(unicol::unicol_data$pal), "))"))
 paletasColor[["unicol"]] <- c(paletasColor[["unicol"]], paste0("scale_color_gradientn(colors = c(unicol::", c(unicol::unicol_data$pal), "))"))
@@ -301,15 +338,15 @@ paletasFill[["ggthemes"]] <- paletasFill[["ggthemes"]][!paletasFill[["ggthemes"]
                                                                                         "scale_fill_few", "scale_fill_hc", "scale_fill_stata", "scale_fill_wsj"
                                                                                         )]
 
-paletasColor[["ggthemes"]] <- sort(c(paletasColor[["ggthemes"]], paste0("scale_color_few(palette = '", c("Light", "Medium", "Dark") ,"')"),
-                                    paste0( "scale_color_hc(palette = '", c("default","darkunica"), "')"),
-                                    paste0( "scale_color_stata(scheme = '", c(names(ggthemes_data$stata$colors$schemes)), "')"),
-                                    paste0( "scale_color_wsj(palette = '", c(names(ggthemes_data$wsj$palettes)), "')")
+paletasColor[["ggthemes"]] <- sort(c(paletasColor[["ggthemes"]], paste0("scale_color_few(palette = '", c("Light", "Medium", "Dark"), "')"),
+                                    paste0("scale_color_hc(palette = '", c("default", "darkunica"), "')"),
+                                    paste0("scale_color_stata(scheme = '", c(names(ggthemes_data$stata$colors$schemes)), "')"),
+                                    paste0("scale_color_wsj(palette = '", c(names(ggthemes_data$wsj$palettes)), "')")
                                     ))
 paletasFill[["ggthemes"]] <- sort(c(paletasFill[["ggthemes"]], paste0("scale_fill_few(palette = '", c("Light", "Medium", "Dark"), "')"),
-                                    paste0( "scale_fill_hc(palette = '", c("default","darkunica"), "')"),
-                                   paste0( "scale_fill_stata(scheme = '", c(names(ggthemes_data$stata$colors$schemes)),"')"),
-                                    paste0( "scale_fill_wsj(palette = '", c(names(ggthemes_data$wsj$palettes)),"')")
+                                    paste0("scale_fill_hc(palette = '", c("default", "darkunica"), "')"),
+                                   paste0("scale_fill_stata(scheme = '", c(names(ggthemes_data$stata$colors$schemes)), "')"),
+                                    paste0("scale_fill_wsj(palette = '", c(names(ggthemes_data$wsj$palettes)), "')")
                                     ))
 
 
@@ -330,7 +367,7 @@ paletasFill[["ggthemes (tableau continuo)"]] <- c(paletasFill[["ggthemes (tablea
                                                   paste0("scale_fill_gradient2_tableau(palette = '", c(names(ggthemes_data$tableau$`color-palettes`$`ordered-diverging`)), "')"))
 
 #Se divide el paquete ggsci para mejorar la visualización
-paletasFill[["ggsci"]] <- sort(c(paletasFill[["ggsci"]][!paletasFill[["ggsci"]] %in% c("scale_fill_bs5", "scale_fill_material", "scale_fill_tw3")], 
+paletasFill[["ggsci"]] <- sort(c(paletasFill[["ggsci"]][!paletasFill[["ggsci"]] %in% c("scale_fill_bs5", "scale_fill_material", "scale_fill_tw3")],
                                 "scale_fill_d3('category20')", "scale_fill_d3('category20b')", "scale_fill_d3('category20c')",
                                 "scale_fill_igv('alternating')", "scale_fill_cosmic('hallmarks_dark')", "scale_fill_cosmic('signature_substitutions')",
                                 "scale_fill_uchicago('dark')", "scale_fill_uchicago('light')", "scale_fill_flatui('flattastic')", "scale_fill_flatui('aussie')"))
@@ -346,10 +383,10 @@ paletasColor[["ggsci (Bootstrap 5)"]] <- sort(c(paste0("scale_color_bs5('", c("b
 paletasFill[["ggsci (Bootstrap 5)"]] <- sort(c(paste0("scale_fill_bs5('", c("blue", "indigo", "purple", "pink", "red", "orange", "yellow", "green",
                                                                               "teal", "cyan", "gray"), "')")))
 
-paletasFill[["ggsci (Material Design)"]] <- sort(c(paste0("scale_fill_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", "cyan","teal", "green","light-green", 
-                                                                  "lime","yellow", "amber","orange", "deep-orange","brown", "grey","blue-grey"),"')")))
-paletasColor[["ggsci (Material Design)"]] <- sort(c(paste0("scale_color_material('", c("pink","purple", "deep-purple","indigo", "blue","light-blue", 
-                                                                    "cyan", "teal", "green", "light-green", "lime","yellow", "amber", "orange", "deep-orange", "brown", "grey", "blue-grey"), "')")))
+paletasFill[["ggsci (Material Design)"]] <- sort(c(paste0("scale_fill_material('", c("pink", "purple", "deep-purple", "indigo", "blue", "light-blue", "cyan", "teal", "green", "light-green",
+                                                                  "lime", "yellow", "amber", "orange", "deep-orange", "brown", "grey", "blue-grey"), "')")))
+paletasColor[["ggsci (Material Design)"]] <- sort(c(paste0("scale_color_material('", c("pink", "purple", "deep-purple", "indigo", "blue", "light-blue",
+                                                                    "cyan", "teal", "green", "light-green", "lime", "yellow", "amber", "orange", "deep-orange", "brown", "grey", "blue-grey"), "')")))
 
 paletasColor[["ggsci (Tailwind)"]] <- sort(c(paste0("scale_color_tw3('", c("slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber",
                                                                             "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo",
