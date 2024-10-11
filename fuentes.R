@@ -48,6 +48,9 @@ try({font_add_google(name = "Mr De Haviland", family = "Mr De Haviland")})
 try({font_add_google(name = "Marck Script", family = "Marck Script")})
 try({font_add_google(name = "Mr Bedfort", family = "Mr. Bedfort")})
 try({font_add_google(name = "Source Sans 3", family = "Source Sans 3")})
+try({font_add_google(name = "Open Sans", family = "Open Sans")})
+try({font_add_google(name = "Crimson Pro", family = "Crimson Pro")})
+try({font_add_google(name = "Merriweather", family = "Merriweather")})
 
 #Ruta de las fuentes
 font_paths("www/fonts")
@@ -712,15 +715,15 @@ try({font_paths("www/fonts/GoldmanSansCd_Bd.ttf")
            bold = "GoldmanSansCd_Bd.ttf")})
 
 #Fuentes para paquetes específicos
-funciones_tvthemes <- list('theme_avatar(title.font = "Slayer",text.font = "Slayer")',
-                          'theme_brooklyn99(title.font = "Titillium Web",text.font = "Calibri Light")',
-                          'theme_hildaDay()',
-                          'theme_hildaDusk()',
-                          'theme_hildaNight()',
-                          'theme_parksAndRec(text.font = "Titillium Web",title.font = "Titillium Web Black")',
-                          'theme_parksAndRec_light(text.font = "Titillium Web",title.font = "Titillium Web Black")',
-                          'theme_parksAndRecLight(text.font = "Titillium Web",title.font = "Titillium Web Black")',
-                          'theme_rickAndMorty(title.font = "Get Schwifty",text.font = "Get Schwifty")',
-                          'theme_simpsons(title.font = "Akbar",text.font = "Akbar")',
-                          'theme_spongeBob(title.font = "Some Time Later",text.font = "Some Time Later")',
-                          'theme_theLastAirbender(title.font = "Slayer",text.font = "Slayer")')
+funciones_tvthemes <- list("theme_avatar(title.font = 'Slayer', text.font = 'Slayer')",
+                          "theme_brooklyn99(title.font = 'Titillium Web', text.font = 'Calibri Light')",
+                          "theme_hildaDay()",
+                          "theme_hildaDusk()",
+                          "theme_hildaNight()",
+                          "theme_parksAndRec(text.font = 'Titillium Web', title.font = 'Titillium Web Black')",
+                          "theme_parksAndRec_light(text.font = 'Titillium Web', title.font = 'Titillium Web Black')",
+                          "theme_parksAndRecLight(text.font = 'Titillium Web', title.font = 'Titillium Web Black')",
+                          "theme_rickAndMorty(title.font = 'Get Schwifty', text.font = 'Get Schwifty')",
+                          "theme_simpsons(title.font = 'Akbar', text.font = 'Akbar')",
+                          "theme_spongeBob(title.font = 'Some Time Later', text.font = 'Some Time Later')",
+                          "theme_theLastAirbender(title.font = 'Slayer', text.font = 'Slayer')")

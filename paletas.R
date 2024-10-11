@@ -4,21 +4,21 @@
 paquetes_con_paletas <- sort(c(
   paquetes,
   # Paquetes con paletas, sin temas
-  "ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", "ggRtsy",
-  "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer", "MexBrewer",
-  "MoMAColors", "NatParksPalettes", "palettetown", "Paris2024Colours", "peRReo",
-  "pilot", "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune",
-  "scico", "severance", "sjPlot", "soilpalettes", "tayloRswift", "unicol",
-  "viridis", "wesanderson"
+  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "ggGenshin",
+  "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer",
+  "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
+  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
+  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
+  "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
 ))
 
 p_load(
-  "ButterflyColors", "colorr", "cols4all", "ggGenshin", "ggokabeito", "ggRtsy",
-  "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer", "MexBrewer",
-  "MoMAColors", "NatParksPalettes", "palettetown", "Paris2024Colours", "peRReo",
-  "pilot", "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune",
-  "scico", "severance", "sjPlot", "soilpalettes", "tayloRswift", "unicol",
-  "viridis", "wesanderson"
+  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "ggGenshin",
+  "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer",
+  "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
+  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
+  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
+  "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
 )
 
 #Guardar paletas, descripciones y citas
@@ -60,7 +60,7 @@ paletas_manual <- c(
   "artyfarty", "ButterflyColors", "colorr", "gglgbtq", "ggpubfigs",
   "LaCroixColoR", "peRReo", "PNWColors", "randplot", "RColorBrewer",
   "severance", "soilpalettes", "unicol", "wesanderson"
-  )
+)
 
 paletas_artyfarty <- c(
   "flatty", "flatpaleta", "dg4", "few_light", "few_medium", "few_dark",
@@ -77,8 +77,13 @@ paletasColor[["artyfarty"]] <- c(paletasColor[["artyfarty"]], paste0("scale_colo
 paletasFill[["artyfarty"]] <- c(paste0("scale_fill_manual(values = pal('", paletas_artyfarty, "'))"))
 paletasFill[["artyfarty"]] <- c(paletasFill[["artyfarty"]], paste0("scale_fill_gradientn(colours = pal('", paletas_artyfarty, "'))"))
 
-paletasColor[["ButterflyColors"]] <- c(paste0("scale_color_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))")) 
-paletasColor[["ButterflyColors"]] <- c(paletasColor[["ButterflyColors"]], paste0("scale_color_gradientn(colours = butterfly_palettes(specie='", c(names(butterfly_species)), "'))")) 
+paletasColor[["AcademicThemes"]] <- c(paste0("scale_colour_academic_c(palette_name ='", AcademicThemes::academic_colour_palette_names(), "')"))
+paletasColor[["AcademicThemes"]] <- c(paletasColor[["AcademicThemes"]], paste0("scale_colour_academic_d(palette_name ='", AcademicThemes::academic_colour_palette_names(), "')"))
+paletasFill[["AcademicThemes"]] <- c(paste0("scale_fill_academic_c(palette_name ='", AcademicThemes::academic_colour_palette_names(), "')"))
+paletasFill[["AcademicThemes"]] <- c(paletasFill[["AcademicThemes"]], paste0("scale_fill_academic_d(palette_name ='", AcademicThemes::academic_colour_palette_names(), "')"))
+
+paletasColor[["ButterflyColors"]] <- c(paste0("scale_color_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))"))
+paletasColor[["ButterflyColors"]] <- c(paletasColor[["ButterflyColors"]], paste0("scale_color_gradientn(colours = butterfly_palettes(specie='", c(names(butterfly_species)), "'))"))
 paletasFill[["ButterflyColors"]] <- c(paste0("scale_fill_manual(values = butterfly_palettes(specie='", c(names(butterfly_species)), "'))"))
 paletasFill[["ButterflyColors"]] <- c(paletasFill[["ButterflyColors"]], paste0("scale_fill_gradientn(colours = butterfly_palettes(specie='", c(names(butterfly_species)), "'))"))
 
@@ -217,6 +222,11 @@ paletasColor[["PrettyCols"]] <- c(paletasColor[["PrettyCols"]], paste0("scale_co
 paletasFill[["PrettyCols"]] <- c(paste0("scale_fill_pretty_c(palette ='", names(PrettyCols::PrettyColsPalettes), "')"))
 paletasFill[["PrettyCols"]] <- c(paletasFill[["PrettyCols"]], paste0("scale_fill_pretty_d(palette ='", names(PrettyCols::PrettyColsPalettes), "')"))
 paletasFill[["PrettyCols"]] <- c(paletasFill[["PrettyCols"]], paste0("scale_fill_pretty_div(palette ='", paletas_pretty_div, "')"))
+
+paletasColor[["profiplots"]] <- c(paste0("scale_color_profinit_c(palette ='", c(profiplots::profinit_pal.pals()), "')"))
+paletasColor[["profiplots"]] <- c(paletasColor[["profiplots"]], paste0("scale_color_profinit_d(palette ='", c(profiplots::profinit_pal.pals()), "')"))
+paletasFill[["profiplots"]] <- c(paste0("scale_fill_profinit_c(palette ='", c(profiplots::profinit_pal.pals()), "')"))
+paletasFill[["profiplots"]] <- c(paletasFill[["profiplots"]], paste0("scale_fill_profinit_d(palette ='", c(profiplots::profinit_pal.pals()), "')"))
 
 paletasColor[["randplot"]] <- c(paste0("scale_color_manual(values = ", c("RandCatPal", "RandGrayPal"), ")"))
 paletasColor[["randplot"]] <- c(paletasColor[["randplot"]], paste0("scale_color_gradientn(colours = ", c("RandCatPal", "RandGrayPal"), ")"))

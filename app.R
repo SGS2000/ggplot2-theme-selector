@@ -32,9 +32,9 @@ paquetes <- c("ggplot2", sort(c(
   "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubfigs",
   "ggpubr", "ggshredR", "ggtech", "ggthemepark", "ggthemes", "ggthemr",
   "gouvdown", "hjplottools", "hrbrthemes", "industRial", "jmvcore", "lato",
-  "pilot", "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot",
-  "ThemePark", "tvthemes", "unhcrthemes", "urbnthemes", "vapoRwave", "visibly",
-  "wwplot", "xkcd"
+  "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes", "see", "sfthemes",
+  "sjPlot", "stevethemes", "ThemePark", "tvthemes", "unhcrthemes", "urbnthemes",
+  "vapoRwave", "visibly", "wwplot", "xkcd"
 )))
 
 library(ggshredR)
@@ -47,8 +47,9 @@ p_load(
   "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism",  "ggpubfigs",
   "ggpubr", "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown",
   "hjplottools", "hrbrthemes", "industRial", "jmvcore", "lato", "pilot",
-  "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot", "ThemePark",
-  "tvthemes", "unhcrthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+  "profiplots", "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot",
+  "stevethemes", "ThemePark", "tvthemes", "unhcrthemes", "vapoRwave", "visibly",
+  "wwplot", "xkcd"
 )
 
   #Guardar temas, descripciones y citas
@@ -87,6 +88,9 @@ temas[["ggthemr"]] <- c("flat", "flat dark", "dust", "light", "earth", "fresh",
                         "greyscale", "sky", "solarized", "grass", "sea",
                         "camouflage")
 temas[["hjplottools"]] <- c("hj_theme")
+temas[["stevethemes"]] <- c(temas[["stevethemes"]], "theme_steve('ms')",
+                            "theme_steve('fira')", "theme_steve('generic')",
+                            "theme_steve('merri')")
 temas[["vapoRwave"]] <- c("floral_shoppe", "new_retro", "jwz")
 temas[["visibly"]] <- c("theme_clean", "theme_trueMinimal")
 temas[["wwplot"]] <- c("wolves_theme")
@@ -148,9 +152,9 @@ ui <- fluidPage(
           label = "Archivos de muestra",
           choices = names(muestras)
         ),
-        p(strong('Cargar gráfico (formato .Rdata)')),
+        p(strong("Cargar gráfico (formato .Rdata)")),
         p(
-          'Guarde su objeto ggplot2 con la función "save()" y luego navegue hasta él para cargarlo.'
+          "Guarde su objeto ggplot2 con la función 'save()' y luego navegue hasta él para cargarlo."
         ),
         fileInput("selectorGraf", label = ""),
       ),
@@ -185,7 +189,7 @@ ui <- fluidPage(
         "Paletas",
         h3("Seleccionar paletas de colores"),
         p(
-          'Asegúrese de seleccionar una escala que corresponda con el tipo de variable de su gráfico (discreta o continua). De lo contrario, el gráfico no se mostrará. '
+          "Asegúrese de seleccionar una escala que corresponda con el tipo de variable de su gráfico (discreta o continua). De lo contrario, el gráfico no se mostrará."
         ),
         pickerInput(
           inputId = "selectorPaquetePaleta",
