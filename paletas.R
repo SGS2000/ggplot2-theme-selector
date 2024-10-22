@@ -4,18 +4,18 @@
 paquetes_con_paletas <- sort(c(
   paquetes,
   # Paquetes con paletas, sin temas
-  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "ggGenshin",
-  "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer",
-  "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
+  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
+  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR",
+  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
   "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
   "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
   "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
 ))
 
 p_load(
-  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "ggGenshin",
-  "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR", "MetBrewer",
-  "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
+  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
+  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR",
+  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
   "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
   "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
   "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
@@ -141,6 +141,11 @@ paletasColor[["darknerdthemes"]] <- c(paletasColor[["darknerdthemes"]], paste0("
 paletasColor[["darknerdthemes"]] <- c(paletasColor[["darknerdthemes"]], paste0("scale_color_nerd('", c("candy", "nord frost", "nord aurora", "everforest"), "',", " discrete=F", ")"))
 paletasFill[["darknerdthemes"]] <- c(paletasFill[["darknerdthemes"]], paste0("scale_fill_nerd('", c("candy", "nord frost", "nord aurora", "everforest"), "')"))
 paletasFill[["darknerdthemes"]] <- c(paletasFill[["darknerdthemes"]], paste0("scale_fill_nerd('", c("candy", "nord frost", "nord aurora", "everforest"), "',", " discrete=F", ")"))
+
+paletasColor[["DOYPAColors"]] <- c(paste0("scale_color_doypa('", names(DOYPAColors:::doypa_pals), "')"))
+paletasColor[["DOYPAColors"]] <- c(paletasColor[["DOYPAColors"]], c(paste0("scale_color_doypa('", names(DOYPAColors:::doypa_pals), "', discrete = TRUE)")))
+paletasFill[["DOYPAColors"]] <- c(paste0("scale_fill_doypa('", names(DOYPAColors:::doypa_pals), "')"))
+paletasFill[["DOYPAColors"]] <- c(paletasFill[["DOYPAColors"]], c(paste0("scale_fill_doypa('", names(DOYPAColors:::doypa_pals), "', discrete = TRUE)")))
 
 paletasColor[["ggCyberPunk"]] <- c(paste0("scale_color_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "')"))
 paletasFill[["ggCyberPunk"]] <- c(paste0("scale_fill_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "')"))
