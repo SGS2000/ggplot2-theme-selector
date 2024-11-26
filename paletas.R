@@ -6,19 +6,19 @@ paquetes_con_paletas <- sort(c(
   # Paquetes con paletas, sin temas
   "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
   "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR",
-  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
-  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
-  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
-  "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
+  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "pals",
+  "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
+  "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
+  "sjPlot", "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
 ))
 
 p_load(
   "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
   "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR",
-  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "palettetown",
-  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
-  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
-  "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
+  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "pals",
+  "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
+  "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
+  "sjPlot", "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
 )
 
 #Guardar paletas, descripciones y citas
@@ -58,7 +58,7 @@ paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 #Se añaden o corrigen algunas paletas manualmente
 paletas_manual <- c(
   "artyfarty", "ButterflyColors", "colorr", "gglgbtq", "ggpubfigs",
-  "LaCroixColoR", "peRReo", "PNWColors", "randplot", "RColorBrewer",
+  "LaCroixColoR", "pals", "peRReo", "PNWColors", "randplot", "RColorBrewer",
   "severance", "soilpalettes", "unicol", "wesanderson"
 )
 
@@ -203,13 +203,17 @@ paletasColor[["NatParksPalettes"]] <- c(paletasColor[["NatParksPalettes"]], past
 paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 paletasFill[["NatParksPalettes"]] <- c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 
+paletasColor[["palettetown"]] <- c(paste0("scale_color_poke(pokemon='", names(palettetown:::pokeColours), "')"))
+paletasFill[["palettetown"]] <- c(paste0("scale_fill_poke(pokemon='", names(palettetown:::pokeColours), "')"))
+
+pals_d <- dplyr::filter(pals::pals.maxcolors(), is_finite == TRUE)$palette
+paletasColor[["pals"]] <- c(paste0("scale_color_manual(values = pals::", pals_d, "())"))
+paletasFill[["pals"]] <- c(paste0("scale_fill_manual(values = pals::", pals_d, "())"))
+
 paletasColor[["Paris2024Colours"]] <- c(paste0("scale_color_paris2024_c(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
 paletasColor[["Paris2024Colours"]] <- c(paletasColor[["Paris2024Colours"]], paste0("scale_color_paris2024_d(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
 paletasFill[["Paris2024Colours"]] <- c(paste0("scale_fill_paris2024_c(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
 paletasFill[["Paris2024Colours"]] <- c(paletasFill[["Paris2024Colours"]], paste0("scale_fill_paris2024_d(palette ='", names(Paris2024Colours::paris2024_palettes), "')"))
-
-paletasColor[["palettetown"]] <- c(paste0("scale_color_poke(pokemon='", names(palettetown:::pokeColours), "')"))
-paletasFill[["palettetown"]] <- c(paste0("scale_fill_poke(pokemon='", names(palettetown:::pokeColours), "')"))
 
 paletasColor[["peRReo"]] <- c(paste0("scale_color_gradientn(colors = latin_palette('", c(names(peRReo::latin_palettes)), "', type = 'continuous'))"))
 paletasColor[["peRReo"]] <- c(paletasColor[["peRReo"]], paste0("scale_color_manual(values = latin_palette('", c(names(peRReo::latin_palettes)), "', type = 'discrete'))"))
@@ -291,7 +295,6 @@ paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_see_c(palette
 paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_see_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
 paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_social_c(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
 paletasFill[["see"]] <- c(paletasFill[["see"]], paste0("scale_fill_social_d(palette = '", c("full", "ice", "rainbow", "complement", "contrast", "light", "black_first", "full_original", "black_first_original"), "')"))
-
 
 paletasColor[["severance"]] <- c(paste0("scale_color_manual(values = severance_palette('", c(names(severance::severance_palettes)), "'))"))
 paletasColor[["severance"]] <- c(paletasColor[["severance"]], paste0("scale_color_gradientn(colours = severance_palette('", c(names(severance::severance_palettes)), "'))"))
