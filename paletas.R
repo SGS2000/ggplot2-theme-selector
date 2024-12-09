@@ -9,7 +9,8 @@ paquetes_con_paletas <- sort(c(
   "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "pals",
   "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
   "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
-  "sjPlot", "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
+  "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol",
+  "viridis", "wesanderson"
 ))
 
 p_load(
@@ -18,7 +19,8 @@ p_load(
   "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "pals",
   "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
   "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
-  "sjPlot", "soilpalettes", "tayloRswift", "unicol", "viridis", "wesanderson"
+  "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol",
+  "viridis", "wesanderson"
 )
 
 #Guardar paletas, descripciones y citas
@@ -67,6 +69,16 @@ paletas_artyfarty <- c(
   "color_blind", "fancy", "pastel", "pastel2", "ashes", "monokai", "flat",
   "five38", "beach", "retro", "ft", "economist", "bain", "d3js", "google",
   "xmen", "pony", "dataroots")
+
+paletas_tintin <- c("Tintin in the Land of the Soviets", "Tintin in the Congo",
+  "Tintin in America", "Cigars of the Pharaoh", "The Blue Lotus",
+  "The Broken Ear", "The Black Island", "king_ottokars_sceptre",
+  "The Crab with the Golden Claws", "The Shooting Star",
+  "The Secret of the Unicorn", "red_rackhams_treasure",
+  "The Seven Crystal Balls", "Prisoners of the Sun", "Land of Black Gold",
+  "Destination Moon", "Explorers on the Moon", "The Calculus Affair",
+  "The Red Sea Sharks", "Tintin in Tibet", "The Castafiore Emerald",
+  "Flight 714 to Sydney", "Tintin and the Picaros")
 
 paletas_pretty_div <- c(
   "PurpleGreens", "PinkGreens", "TangerineBlues", "PurpleTangerines",
@@ -319,6 +331,20 @@ paletasFill[["tayloRswift"]] <- c(paste0("scale_fill_taylor(palette = '", c(name
 paletasFill[["tayloRswift"]] <- c(paletasFill[["tayloRswift"]], paste0("scale_fill_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "', discrete=F)"))
 paletasColor[["tayloRswift"]] <- c(paste0("scale_color_taylor(palette = '",  c(names(tayloRswift::swift_palettes)), "')"))
 paletasColor[["tayloRswift"]] <- c(paletasColor[["tayloRswift"]], paste0("scale_color_taylor(palette = '", c(names(tayloRswift::swift_palettes)), "', discrete=F)"))
+
+paletasColor[["tintin"]] <- c(paste0("scale_colour_tintin_c(option ='", c(paletas_tintin), "')"))
+paletasColor[["tintin"]] <- c(paletasColor[["tintin"]], paste0("scale_colour_tintin_d(option ='", c(paletas_tintin), "')"))
+paletasFill[["tintin"]] <- c(paste0("scale_fill_tintin_c(option ='", c(paletas_tintin), "')"))
+paletasFill[["tintin"]] <- c(paletasFill[["tintin"]], paste0("scale_fill_tintin_d(option ='", c(paletas_tintin), "')"))
+
+paletasFill[["trekcolors"]] <- c(paste0("scale_fill_trek(palette = '", c(trekcolors::trek_pal()), "')"))
+paletasFill[["trekcolors"]] <- c(paletasFill[["trekcolors"]], paste0("scale_fill_lcars(palette = '", c(names(trekcolors::lcars_pals())), "')"))
+paletasFill[["trekcolors"]] <- c(paletasFill[["trekcolors"]], paste0("scale_fill_trek(palette = '", c(trekcolors::trek_pal()), "', discrete=F)"))
+paletasFill[["trekcolors"]] <- c(paletasFill[["trekcolors"]], paste0("scale_fill_lcars(palette = '", c(names(trekcolors::lcars_pals())), "', discrete=F)"))
+paletasColor[["trekcolors"]] <- c(paste0("scale_color_trek(palette = '", c(trekcolors::trek_pal()), "')"))
+paletasColor[["trekcolors"]] <- c(paletasColor[["trekcolors"]], paste0("scale_color_lcars(palette = '", c(names(trekcolors::lcars_pals())), "')"))
+paletasColor[["trekcolors"]] <- c(paletasColor[["trekcolors"]], paste0("scale_color_trek(palette = '", c(trekcolors::trek_pal()), "', discrete=F)"))
+paletasColor[["trekcolors"]] <- c(paletasColor[["trekcolors"]], paste0("scale_color_lcars(palette = '", c(names(trekcolors::lcars_pals())), "', discrete=F)"))
 
 paletasColor[["unicol"]] <- c(paste0("scale_color_manual(values = unname(unicol::", c(unicol::unicol_data$pal), "))"))
 paletasColor[["unicol"]] <- c(paletasColor[["unicol"]], paste0("scale_color_gradientn(colors = c(unicol::", c(unicol::unicol_data$pal), "))"))
