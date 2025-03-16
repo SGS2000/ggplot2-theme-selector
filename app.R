@@ -4,7 +4,7 @@
 Sys.setlocale("LC_ALL", "es_ES.UTF-8")
 
 ########################
-#######Librerias########
+#######Librerías########
 ########################
   #Construir app
 library(shiny)
@@ -27,14 +27,14 @@ library(pacman) #Instalar paquetes
   #Cargar paquetes
 paquetes <- c("ggplot2", sort(c(
   "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
-  "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute",
-  "ggCyberPunk", "ggdark",  "ggdecor", "gghdx", "ggexpanse", "gghighcontrast",
-  "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism", "ggpubfigs",
-  "ggpubr", "ggshredR", "ggtech", "ggthemepark", "ggthemes", "ggthemr",
-  "gouvdown", "hjplottools", "hrbrthemes", "industRial", "jmvcore", "lato",
-  "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes", "see", "sfthemes",
-  "sjPlot", "stevethemes", "ThemePark", "tvthemes", "unhcrthemes", "urbnthemes",
-  "vapoRwave", "visibly", "wwplot", "xkcd"
+  "eafithemer", "envalysis", "ewenthemes", "firatheme", "fontHind", "fontMPlus",
+  "ggcute", "ggCyberPunk", "ggdark",  "ggdecor", "gghdx", "ggexpanse",
+  "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological",
+  "ggprism", "ggpubfigs", "ggpubr", "ggshredR", "ggtech", "ggthemepark",
+  "ggthemes", "ggthemr", "gouvdown", "hjplottools", "hrbrthemes", "industRial",
+  "jmvcore", "lato", "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes",
+  "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark", "tvthemes",
+  "unhcrthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
 )))
 
 library(ggshredR)
@@ -42,14 +42,14 @@ reset_theme_settings() #Evita que el paquete anterior haga cambios globales
 
 p_load(
   "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
-  "eafithemer", "ewenthemes", "firatheme", "fontHind", "fontMPlus", "ggcute",
-  "ggCyberPunk", "ggdark", "ggdecor", "gghdx", "ggexpanse", "gghighcontrast",
-  "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological", "ggprism",  "ggpubfigs",
-  "ggpubr", "ggtech", "ggthemepark", "ggthemes", "ggthemr", "gouvdown",
-  "hjplottools", "hrbrthemes", "industRial", "jmvcore", "lato", "pilot",
-  "profiplots", "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot",
-  "stevethemes", "ThemePark", "tvthemes", "unhcrthemes", "vapoRwave", "visibly",
-  "wwplot", "xkcd"
+  "eafithemer", "envalysis", "ewenthemes", "firatheme", "fontHind", "fontMPlus",
+  "ggcute", "ggCyberPunk", "ggdark", "ggdecor", "gghdx", "ggexpanse",
+  "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological",
+  "ggprism",  "ggpubfigs", "ggpubr", "ggtech", "ggthemepark", "ggthemes",
+  "ggthemr", "gouvdown", "hjplottools", "hrbrthemes", "industRial", "jmvcore",
+  "lato", "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes", "see",
+  "sfthemes", "sjPlot", "stevethemes", "ThemePark", "tvthemes", "unhcrthemes",
+  "vapoRwave", "visibly", "wwplot", "xkcd"
 )
 
   #Guardar temas, descripciones y citas
