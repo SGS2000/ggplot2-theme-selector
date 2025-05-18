@@ -27,14 +27,15 @@ library(pacman) #Instalar paquetes
   #Cargar paquetes
 paquetes <- c("ggplot2", sort(c(
   "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
-  "eafithemer", "envalysis", "ewenthemes", "firatheme", "fontHind", "fontMPlus",
-  "ggcute", "ggCyberPunk", "ggdark",  "ggdecor", "gghdx", "ggexpanse",
-  "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological",
-  "ggprism", "ggpubfigs", "ggpubr", "ggshredR", "ggtech", "ggthemepark",
-  "ggthemes", "ggthemr", "gouvdown", "hjplottools", "hrbrthemes", "industRial",
-  "jmvcore", "lato", "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes",
-  "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark", "tvthemes",
-  "unhcrthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+  "eafithemer", "envalysis", "ewenthemes", "firatheme", "flexoki", "fontHind",
+  "fontMPlus", "ggcute", "ggCyberPunk", "ggdark",  "ggdecor", "gghdx",
+  "ggexpanse", "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc",
+  "ggpomological", "ggprism", "ggpubfigs", "ggpubr", "ggshredR", "ggtech",
+  "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", "hrbrthemes",
+  "industRial", "jmvcore", "lato", "pilot", "profiplots", "randplot", "Rokemon",
+  "RSSthemes", "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark",
+  "tvthemes", "unhcrthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot",
+  "xkcd"
 )))
 
 library(ggshredR)
@@ -42,14 +43,14 @@ reset_theme_settings() #Evita que el paquete anterior haga cambios globales
 
 p_load(
   "add2ggplot", "artyfarty", "bbplot", "cowplot", "darknerdthemes", "delgosha",
-  "eafithemer", "envalysis", "ewenthemes", "firatheme", "fontHind", "fontMPlus",
-  "ggcute", "ggCyberPunk", "ggdark", "ggdecor", "gghdx", "ggexpanse",
-  "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc", "ggpomological",
-  "ggprism",  "ggpubfigs", "ggpubr", "ggtech", "ggthemepark", "ggthemes",
-  "ggthemr", "gouvdown", "hjplottools", "hrbrthemes", "industRial", "jmvcore",
-  "lato", "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes", "see",
-  "sfthemes", "sjPlot", "stevethemes", "ThemePark", "tvthemes", "unhcrthemes",
-  "vapoRwave", "visibly", "wwplot", "xkcd"
+  "eafithemer", "envalysis", "ewenthemes", "firatheme", "flexoki", "fontHind",
+  "fontMPlus", "ggcute", "ggCyberPunk", "ggdark", "ggdecor", "gghdx",
+  "ggexpanse", "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc",
+  "ggpomological", "ggprism", "ggpubfigs", "ggpubr", "ggtech", "ggthemepark",
+  "ggthemes", "ggthemr", "gouvdown", "hjplottools", "hrbrthemes", "industRial",
+  "jmvcore", "lato", "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes",
+  "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark", "tvthemes",
+  "unhcrthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
 )
 
   #Guardar temas, descripciones y citas
@@ -71,7 +72,7 @@ names(citas) <- paquetes
 excluir <- c(
   "register_theme_elements", "reset_theme_settings", "theme_get", "theme_set",
   "theme_update", "theme_replace", "invert_theme_elements", "theme_test",
-  "gg_supports_theme_attribute")
+  "gg_supports_theme_attribute", "is_theme_element")
 
 temas <- lapply(temas, function(x) x[!x %in% excluir])
 names(temas) <- paquetes
@@ -419,7 +420,7 @@ observeEvent(input$selectorPaletaFill, {
   output$mostrarGrafico <- renderPlot({  #Renderizar gráfico
     resetear_defaults() #Valores predeterminados de ggplot2
 
-    if(paqueteActual() %in% c("firatheme", "ggCyberPunk", "ggexpanse", "vapoRwave", "xkcd")){ #Temas corregidos
+    if (paqueteActual() %in% c("firatheme", "ggCyberPunk", "ggexpanse", "vapoRwave", "xkcd")) { #Temas corregidos
       grafico() + eval(parse(text = paste0(temaActual()))) + eval(parse(text = paste0(PaletaColorActual()))) + eval(parse(text = paste0(PaletaFillActual())))
     } else if (paqueteActual() == "ggthemr") { #ggthemr usa una sintaxis distinta al resto
       ggthemr(temaActual())

@@ -5,22 +5,22 @@ paquetes_con_paletas <- sort(c(
   paquetes,
   # Paquetes con paletas, sin temas
   "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
-  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR",
-  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "pals",
-  "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
-  "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
-  "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol",
-  "viridis", "wesanderson"
+  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "khroma",
+  "LaCroixColoR", "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes",
+  "okcolors", "pals", "palettetown", "Paris2024Colours", "peRReo", "pilot",
+  "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico",
+  "severance", "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors",
+  "unicol", "viridis", "wesanderson"
 ))
 
 p_load(
   "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
-  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "LaCroixColoR",
-  "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes", "pals",
-  "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
-  "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
-  "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol",
-  "viridis", "wesanderson"
+  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "khroma",
+  "LaCroixColoR", "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes",
+  "okcolors", "pals", "palettetown", "Paris2024Colours", "peRReo", "pilot",
+  "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico",
+  "severance", "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors",
+  "unicol", "viridis", "wesanderson"
 )
 
 #Guardar paletas, descripciones y citas
@@ -159,6 +159,13 @@ paletasColor[["DOYPAColors"]] <- c(paletasColor[["DOYPAColors"]], c(paste0("scal
 paletasFill[["DOYPAColors"]] <- c(paste0("scale_fill_doypa('", names(DOYPAColors:::doypa_pals), "')"))
 paletasFill[["DOYPAColors"]] <- c(paletasFill[["DOYPAColors"]], c(paste0("scale_fill_doypa('", names(DOYPAColors:::doypa_pals), "', discrete = TRUE)")))
 
+paletasColor[["flexoki"]] <- c(paste0("scale_color_flexoki_b(palette ='", names(flexoki), "')"))
+paletasColor[["flexoki"]] <- c(paletasColor[["flexoki"]], paste0("scale_color_flexoki_c(palette ='", names(flexoki), "')"))
+paletasColor[["flexoki"]] <- c(paletasColor[["flexoki"]], paste0("scale_color_flexoki_d(palette ='", names(flexoki), "')"))
+paletasFill[["flexoki"]] <- c(paste0("scale_fill_flexoki_b(palette ='", names(flexoki), "')"))
+paletasFill[["flexoki"]] <- c(paletasFill[["flexoki"]], paste0("scale_fill_flexoki_c(palette ='", names(flexoki), "')"))
+paletasFill[["flexoki"]] <- c(paletasFill[["flexoki"]], paste0("scale_fill_flexoki_d(palette ='", names(flexoki), "')"))
+
 paletasColor[["ggCyberPunk"]] <- c(paste0("scale_color_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "')"))
 paletasFill[["ggCyberPunk"]] <- c(paste0("scale_fill_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "')"))
 paletasColor[["ggCyberPunk"]] <- c(paletasColor[["ggCyberPunk"]], paste0("scale_color_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "',discrete = F)"))
@@ -214,6 +221,11 @@ paletasColor[["NatParksPalettes"]] <- c(paste0("scale_color_natparks_c(palette =
 paletasColor[["NatParksPalettes"]] <- c(paletasColor[["NatParksPalettes"]], paste0("scale_color_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 paletasFill[["NatParksPalettes"]] <- c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
+
+paletasColor[["okcolors"]] <- c(paste0("scale_color_okcolors(palette ='", c(okcolors:::valid_palettes()), "')"))
+paletasColor[["okcolors"]] <- c(paletasColor[["okcolors"]], paste0("scale_color_okcolors(palette ='", c(okcolors:::valid_palettes()), "', discrete = FALSE)"))
+paletasFill[["okcolors"]] <- c(paste0("scale_fill_okcolors(palette ='", okcolors:::valid_palettes(), "')"))
+paletasFill[["okcolors"]] <- c(paletasFill[["okcolors"]], paste0("scale_fill_okcolors(palette ='", okcolors:::valid_palettes(), "', discrete = FALSE)"))
 
 paletasColor[["palettetown"]] <- c(paste0("scale_color_poke(pokemon='", names(palettetown:::pokeColours), "')"))
 paletasFill[["palettetown"]] <- c(paste0("scale_fill_poke(pokemon='", names(palettetown:::pokeColours), "')"))
