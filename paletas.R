@@ -5,22 +5,24 @@ paquetes_con_paletas <- sort(c(
   paquetes,
   # Paquetes con paletas, sin temas
   "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
-  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "khroma",
-  "LaCroixColoR", "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes",
-  "okcolors", "pals", "palettetown", "Paris2024Colours", "peRReo", "pilot",
-  "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico",
-  "severance", "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors",
-  "unicol", "viridis", "wesanderson"
+  "gameR", "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter",
+  "khroma", "LaCroixColoR", "lepidochroma", "MetBrewer", "MexBrewer",
+  "MoMAColors", "NatParksPalettes", "okcolors", "pals", "palettetown",
+  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
+  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
+  "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol", "viridis",
+  "wesanderson"
 ))
 
 p_load(
   "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
-  "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter", "khroma",
-  "LaCroixColoR", "MetBrewer", "MexBrewer", "MoMAColors", "NatParksPalettes",
-  "okcolors", "pals", "palettetown", "Paris2024Colours", "peRReo", "pilot",
-  "PNWColors", "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico",
-  "severance", "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors",
-  "unicol", "viridis", "wesanderson"
+  "gameR", "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter",
+  "khroma", "LaCroixColoR", "lepidochroma", "MetBrewer", "MexBrewer",
+  "MoMAColors", "NatParksPalettes", "okcolors", "pals", "palettetown",
+  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
+  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
+  "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol", "viridis",
+  "wesanderson"
 )
 
 #Guardar paletas, descripciones y citas
@@ -59,9 +61,9 @@ paletasColor <- lapply(paletasColor, function(x) x[!x %in% excluir_pal])
 
 #Se añaden o corrigen algunas paletas manualmente
 paletas_manual <- c(
-  "artyfarty", "ButterflyColors", "colorr", "gglgbtq", "ggpubfigs",
-  "LaCroixColoR", "pals", "peRReo", "PNWColors", "randplot", "RColorBrewer",
-  "severance", "soilpalettes", "unicol", "wesanderson"
+  "artyfarty", "ButterflyColors", "colorr", "gameR", "gglgbtq", "ggpubfigs",
+  "LaCroixColoR", "lepidochroma", "pals", "peRReo", "PNWColors", "randplot",
+  "RColorBrewer", "severance", "soilpalettes", "unicol", "wesanderson"
 )
 
 paletas_artyfarty <- c(
@@ -166,6 +168,11 @@ paletasFill[["flexoki"]] <- c(paste0("scale_fill_flexoki_b(palette ='", names(fl
 paletasFill[["flexoki"]] <- c(paletasFill[["flexoki"]], paste0("scale_fill_flexoki_c(palette ='", names(flexoki), "')"))
 paletasFill[["flexoki"]] <- c(paletasFill[["flexoki"]], paste0("scale_fill_flexoki_d(palette ='", names(flexoki), "')"))
 
+paletasColor[["gameR"]] <- c(paste0("scale_color_manual(values = gameR_cols('", c(gameR::gameR_cols()), "'))"))
+paletasColor[["gameR"]] <- c(paletasColor[["gameR"]], paste0("scale_color_gradientn(colors = gameR_cols('", c(gameR::gameR_cols()), "'))"))
+paletasFill[["gameR"]] <- c(paste0("scale_fill_manual(values = gameR_cols('", c(gameR::gameR_cols()), "'))"))
+paletasFill[["gameR"]] <- c(paletasFill[["gameR"]], paste0("scale_fill_gradientn(colors = gameR_cols('", c(gameR::gameR_cols()), "'))"))
+
 paletasColor[["ggCyberPunk"]] <- c(paste0("scale_color_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "')"))
 paletasFill[["ggCyberPunk"]] <- c(paste0("scale_fill_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "')"))
 paletasColor[["ggCyberPunk"]] <- c(paletasColor[["ggCyberPunk"]], paste0("scale_color_cyberpunk(palette ='", c("main", "cotton candy", "zune", "laser sword"), "',discrete = F)"))
@@ -201,6 +208,11 @@ paletasColor[["LaCroixColoR"]] <- c(paletasColor[["LaCroixColoR"]], "scale_color
 paletasFill[["LaCroixColoR"]] <- c(paste0("scale_fill_gradientn(colors = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes) - 1])), "', type = 'continuous'))"))
 paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], paste0("scale_fill_manual(values = lacroix_palette('", c(names(LaCroixColoR::lacroix_palettes[1:length(lacroix_palettes) - 1])), "', type = 'discrete'))"))
 paletasFill[["LaCroixColoR"]] <- c(paletasFill[["LaCroixColoR"]], "scale_fill_manual(values = lacroix_palette(type = 'paired'))")
+
+paletasColor[["lepidochroma"]] <- c(paste0("scale_color_manual(values = lepidochroma('", c(lepidochroma::lepidochroma_palettes()$name), "'))"))
+paletasColor[["lepidochroma"]] <- c(paletasColor[["lepidochroma"]], paste0("scale_color_gradientn(colors = lepidochroma('", c(lepidochroma::lepidochroma_palettes()$name), "'))"))
+paletasFill[["lepidochroma"]] <- c(paste0("scale_fill_manual(values = lepidochroma('", c(lepidochroma::lepidochroma_palettes()$name), "'))"))
+paletasFill[["lepidochroma"]] <- c(paletasFill[["lepidochroma"]], paste0("scale_fill_gradientn(colors = lepidochroma('", c(lepidochroma::lepidochroma_palettes()$name), "'))"))
 
 paletasColor[["MetBrewer"]] <- c(paste0("scale_color_met_c(palette ='", names(MetBrewer::MetPalettes), "')"))
 paletasColor[["MetBrewer"]] <- c(paletasColor[["MetBrewer"]], paste0("scale_color_met_d(palette ='", names(MetBrewer::MetPalettes), "')"))
