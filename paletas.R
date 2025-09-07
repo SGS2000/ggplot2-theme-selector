@@ -4,25 +4,25 @@
 paquetes_con_paletas <- sort(c(
   paquetes,
   # Paquetes con paletas, sin temas
-  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
-  "gameR", "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter",
-  "khroma", "LaCroixColoR", "lepidochroma", "MetBrewer", "MexBrewer",
-  "MoMAColors", "NatParksPalettes", "okcolors", "pals", "palettetown",
-  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
-  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
-  "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol", "viridis",
-  "wesanderson"
+  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "crayons",
+  "DOYPAColors", "gameR", "ggGenshin", "ggokabeito", "ggRtsy", "ggsci",
+  "harrypotter", "khroma", "LaCroixColoR", "lepidochroma", "MetBrewer",
+  "MexBrewer", "MoMAColors", "NatParksPalettes", "okcolors", "pals",
+  "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
+  "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
+  "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol",
+  "viridis", "wesanderson"
 ))
 
 p_load(
-  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "DOYPAColors",
-  "gameR", "ggGenshin", "ggokabeito", "ggRtsy", "ggsci", "harrypotter",
-  "khroma", "LaCroixColoR", "lepidochroma", "MetBrewer", "MexBrewer",
-  "MoMAColors", "NatParksPalettes", "okcolors", "pals", "palettetown",
-  "Paris2024Colours", "peRReo", "pilot", "PNWColors", "PrettyCols",
-  "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance", "sjPlot",
-  "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol", "viridis",
-  "wesanderson"
+  "AcademicThemes", "ButterflyColors", "colorr", "cols4all", "crayons",
+  "DOYPAColors", "gameR", "ggGenshin", "ggokabeito", "ggRtsy", "ggsci",
+  "harrypotter", "khroma", "LaCroixColoR", "lepidochroma", "MetBrewer",
+  "MexBrewer", "MoMAColors", "NatParksPalettes", "okcolors", "pals",
+  "palettetown", "Paris2024Colours", "peRReo", "pilot", "PNWColors",
+  "PrettyCols", "rcartocolor", "RColorBrewer", "Rdune", "scico", "severance",
+  "sjPlot", "soilpalettes", "tayloRswift", "tintin", "trekcolors", "unicol",
+  "viridis", "wesanderson"
 )
 
 #Guardar paletas, descripciones y citas
@@ -150,6 +150,9 @@ paletasFill[["colorr"]] <- c(paletasFill[["colorr"]], paste0("scale_fill_manual(
                                                                                                            "oilers", "panthers", "kings", "wild", "canadiens", "predators", "devils",
                                                                                                            "islanders", "rangers", "senators", "flyers", "penguins", "sharks", "blues",
                                                                                                            "lightning", "maple_leafs", "canucks", "golden_knights", "capitals", "jets"), "')))"))
+
+paletasColor[["crayons"]] <- c(paste0("scale_color_crayons(palette = '", names(crayons::crayons), "')"))
+paletasFill[["crayons"]] <- c(paste0("scale_fill_crayons(palette = '", names(crayons::crayons), "')"))
 
 paletasColor[["darknerdthemes"]] <- c(paletasColor[["darknerdthemes"]], paste0("scale_color_nerd('", c("candy", "nord frost", "nord aurora", "everforest"), "')"))
 paletasColor[["darknerdthemes"]] <- c(paletasColor[["darknerdthemes"]], paste0("scale_color_nerd('", c("candy", "nord frost", "nord aurora", "everforest"), "',", " discrete=F", ")"))
