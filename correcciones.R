@@ -1,3 +1,17 @@
+### Función para resetear ajustes predeterminados de ggplot####
+resetear_defaults <- function() {
+  # Elimina cambios hechos por el paquete ggthemr
+  ggthemr_reset()
+  options("ggplot2.discrete.colour" = NULL)
+  options("ggplot2.continuous.colour" = NULL)
+  
+  # Elimina cambios hechos por el paquete delgosha
+  for (estetica in c("point", "line", "area", "rect", "density", "bar", "col",
+                     "text", "curve")) {
+    ggplot2::update_geom_defaults(estetica, NULL)
+  }
+}
+
 ###Corregir temas####
 
   #Paquete firatheme
@@ -537,143 +551,4 @@ new_retro <- function(
                                        hjust = 0)
   
   return (th)
-}
-
-### Función para resetear ajustes predeterminados de ggplot####
-resetear_defaults <- function() {
-  # Elimina cambios hechos por el paquete ggthemr
-  ggthemr_reset()
-  options("ggplot2.discrete.colour" = NULL)
-  options("ggplot2.continuous.colour" = NULL)
-
-  # Elimina cambios hechos por el paquete delgosha
-  for (estetica in c("point", "line", "area", "rect", "density", "bar", "col",
-                     "text", "curve")) {
-    ggplot2::update_geom_defaults(estetica, ggplot2:::default_aesthetics(estetica))
-  }
-}
-
-###Actualizar gráficos hechos antes de la versión 3.5.0 de ggplot2
-library(rlang)
-library(plyr)
-
-compute_aesthetics <- function(self, data, plot) {
-  aesthetics <- self$computed_mapping
-
-  set <- names(aesthetics) %in% names(self$aes_params)
-  calculated <- ggplot2:::is_calculated_aes(aesthetics, warn = TRUE)
-  modifiers <- ggplot2:::is_scaled_aes(aesthetics)
-
-  aesthetics <- aesthetics[!set & !calculated & !modifiers]
-
-  if (!is.null(self$geom_params$group)) {
-    aesthetics[["group"]] <- self$aes_params$group
-  }
-
-  env <- child_env(baseenv(), stage = stage)
-  evaled <- lapply(aesthetics, eval_tidy, data = data, env = env)
-  evaled <- compact(evaled)
-
-  plot$scales$add_defaults(evaled, plot$plot_env)
-
-  ggplot2:::warn_for_aes_extract_usage(aesthetics, data[setdiff(names(data), "PANEL")])
-
-  nondata_cols <- ggplot2:::check_nondata_cols(evaled)
-  if (length(nondata_cols) > 0) {
-    issues <- paste0("{.code ", nondata_cols, " = ", as_label(aesthetics[[nondata_cols]]), "}")
-    names(issues) <- rep("x", length(issues))
-    cli::cli_abort(c(
-      "Aesthetics are not valid data columns.",
-      "x" = "The following aesthetics are invalid:",
-      issues,
-      "i" = "Did you mistype the name of a data column or forget to add {.fn after_stat}?"
-    ))
-  }
-
-  n <- nrow(data)
-  aes_n <- lengths(evaled)
-  if (n == 0) {
-    if (length(evaled) == 0) {
-      n <- 0
-    } else {
-      n <- if (min(aes_n) == 0) 0L else max(aes_n)
-    }
-  }
-  if ((self$geom$check_constant_aes %||% TRUE)
-      && length(aes_n) > 0 && all(aes_n == 1) && n > 1) {
-    cli::cli_warn(c(
-      "All aesthetics have length 1, but the data has {n} rows.",
-      i = "Please consider using {.fn annotate} or provide this layer \\
-        with data containing a single row."
-    ), call = self$constructor)
-  }
-  ggplot2:::check_aesthetics(evaled, n)
-
-  if (empty(data) && n > 0) {
-    evaled$PANEL <- 1
-  } else {
-    evaled$PANEL <- data$PANEL
-  }
-  evaled <- lapply(evaled, unname)
-  evaled <- ggplot2:::as_gg_data_frame(evaled)
-  evaled <- ggplot2:::add_group(evaled)
-  evaled
-}
-
-map_statistic <- function(self, data, plot) {
-  if (empty(data)) return(data_frame0())
-
-  data <- ggplot2:::rename_aes(data)
-
-  aesthetics <- self$computed_mapping
-  aesthetics <- defaults(aesthetics, self$stat$default_aes)
-  aesthetics <- compact(aesthetics)
-
-  new <- ggplot2:::strip_dots(aesthetics[ggplot2:::is_calculated_aes(aesthetics) | ggplot2:::is_staged_aes(aesthetics)])
-  if (length(new) == 0) return(data)
-
-  data_orig <- plot$scales$backtransform_df(data)
-
-  env <- child_env(baseenv(), stat = stat, after_stat = after_stat)
-  stage_mask <- child_env(emptyenv(), stage = ggplot2:::stage_calculated)
-  mask <- new_data_mask(as_environment(data_orig, stage_mask), stage_mask)
-  mask$.data <- as_data_pronoun(mask)
-  
-  new <- ggplot2:::substitute_aes(new)
-  stat_data <- lapply(new, eval_tidy, mask, env)
-  
-  nondata_stat_cols <- ggplot2:::check_nondata_cols(stat_data)
-  if (length(nondata_stat_cols) > 0) {
-    issues <- paste0("{.code ", nondata_stat_cols, " = ", as_label(aesthetics[[nondata_stat_cols]]), "}")
-    names(issues) <- rep("x", length(issues))
-    cli::cli_abort(c(
-      "Aesthetics must be valid computed stats.",
-      "x" = "The following aesthetics are invalid:",
-      issues,
-      "i" = "Did you map your stat in the wrong layer?"
-    ))
-  }
-
-  names(stat_data) <- names(new)
-  stat_data <- ggplot2:::data_frame0(!!!compact(stat_data))
-
-  plot$scales$add_defaults(stat_data, plot$plot_env)
-
-  if (self$stat$retransform) {
-    stat_data <- plot$scales$transform_df(stat_data)
-  }
-
-  ggplot2:::cunion(stat_data, data)
-}
-
-actualizar_plot <- function(grafico) {
-  for (layer in 1:length(grafico$layers)) {#Para cada capa
-    #Actualiza las funciones
-    grafico$layers[[layer]]$compute_aesthetics <- compute_aesthetics
-    grafico$layers[[layer]]$map_statistic <- map_statistic
-  }
-  #Añade guides
-  grafico$guides <- ggplot2:::Guides
-  #Devuelve el gráfico actualizado
-  return(grafico)
 }

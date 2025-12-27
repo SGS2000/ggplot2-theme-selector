@@ -69,10 +69,7 @@ names(descripciones) <- paquetes
 names(citas) <- paquetes
 
   #Se excluyen funciones que no son temas
-excluir <- c(
-  "register_theme_elements", "reset_theme_settings", "theme_get", "theme_set",
-  "theme_update", "theme_replace", "invert_theme_elements", "theme_test",
-  "gg_supports_theme_attribute", "is_theme_element")
+excluir <- c("invert_theme_elements", "gg_supports_theme_attribute")
 
 temas <- lapply(temas, function(x) x[!x %in% excluir])
 names(temas) <- paquetes
@@ -80,6 +77,9 @@ names(temas) <- paquetes
   #Algunas funciones no contienen la palabra "theme" o usan otra sintaxis
 temas[["bbplot"]][1] <- "bbc_style"
 temas[["gglgbtq"]] <- c(paste0("theme_lgbtq('", c(show_pride()$palettes), "')"))
+temas[["ggplot2"]] <- c("theme_test", "theme_grey", "theme_gray", "theme_bw",
+                        "theme_linedraw", "theme_light", "theme_dark",
+                        "theme_minimal", "theme_classic", "theme_void")
 temas[["ggtech"]] <- c("theme_airbnb_fancy", "theme_tech(theme='airbnb')",
                        "theme_tech(theme='etsy')", "theme_tech(theme='facebook')",
                        "theme_tech(theme='google')", "theme_tech(theme='twitter')",
@@ -245,11 +245,7 @@ server <- function(input, output, session) {
 
   observeEvent(input$selectorGraf, {
     req(input$selectorGraf)
-    #Corrige `guides` si el gráfico es previo a la versión 3.5.0 de gplot2
     plot_usuario <- get(load(input$selectorGraf$datapath))
-    if (!"ggproto" %in% class(plot_usuario$guides)) {
-      plot_usuario <-  actualizar_plot(plot_usuario)
-    }
     grafico(plot_usuario)
   })
 
