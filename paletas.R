@@ -232,6 +232,15 @@ paletasColor[["MoMAColors"]] <- c(paletasColor[["MoMAColors"]], paste0("scale_co
 paletasFill[["MoMAColors"]] <- c(paste0("scale_fill_moma_c(palette_palette ='", names(MoMAColors::MoMAPalettes), "')"))
 paletasFill[["MoMAColors"]] <- c(paletasFill[["MoMAColors"]], paste0("scale_fill_moma_d(palette_palette ='", names(MoMAColors::MoMAPalettes), "')"))
 
+paletasColor[["MSUthemes"]] <- c(paste0("scale_color_bigten_c(palette = '", c("primary", "secondary"), "')"))
+paletasColor[["MSUthemes"]] <- c(paletasColor[["MSUthemes"]], paste0("scale_color_bigten_d(palette = '", c("primary", "secondary"), "')"))
+paletasColor[["MSUthemes"]] <- c(paletasColor[["MSUthemes"]], paste0("scale_color_msu_c(palette = '", names(MSUthemes::MSUpalettes), "')") )
+paletasColor[["MSUthemes"]] <- c(paletasColor[["MSUthemes"]], paste0("scale_color_msu_d(palette = '", names(MSUthemes::MSUpalettes), "')") )
+paletasFill[["MSUthemes"]] <- c(paste0("scale_fill_bigten_c(palette = '", c("primary", "secondary"), "')"))
+paletasFill[["MSUthemes"]] <- c(paletasFill[["MSUthemes"]], paste0("scale_fill_bigten_d(palette = '", c("primary", "secondary"), "')"))
+paletasFill[["MSUthemes"]] <- c(paletasFill[["MSUthemes"]], paste0("scale_fill_msu_c(palette = '", names(MSUthemes::MSUpalettes), "')") )
+paletasFill[["MSUthemes"]] <- c(paletasFill[["MSUthemes"]], paste0("scale_fill_msu_d(palette = '", names(MSUthemes::MSUpalettes), "')") )
+
 paletasColor[["NatParksPalettes"]] <- c(paste0("scale_color_natparks_c(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 paletasColor[["NatParksPalettes"]] <- c(paletasColor[["NatParksPalettes"]], paste0("scale_color_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
@@ -465,6 +474,9 @@ paletasColor[["ggsci (Tailwind)"]] <- sort(c(paste0("scale_color_tw3('", c("slat
 paletasFill[["ggsci (Tailwind)"]] <- sort(c(paste0("scale_fill_tw3('", c("slate", "gray", "zinc", "neutral", "stone", "red", "orange", "amber",
                                                                           "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo",
                                                                           "violet", "purple", "fuchsia", "pink", "rose"), "')")))
+
+paletasColor[["ggsci (iTerm)"]] <- c(paste0("scale_color_iterm(palette = '", c(ggsci::iterm_palettes()), "')"))
+paletasFill[["ggsci (iTerm)"]] <- c(paste0("scale_fill_iterm(palette = '", c(ggsci::iterm_palettes()), "')"))
 
 #Se añaden opciones discretas / continuas
 nueva_opcion <- function(lista_paletas, nuevo_texto) {

@@ -32,10 +32,10 @@ paquetes <- c("ggplot2", sort(c(
   "ggexpanse", "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc",
   "ggpomological", "ggprism", "ggpubfigs", "ggpubr", "ggshredR", "ggtech",
   "ggthemepark", "ggthemes", "ggthemr", "gouvdown", "hjplottools", "hrbrthemes",
-  "industRial", "jmvcore", "lato", "pilot", "profiplots", "randplot", "Rokemon",
-  "RSSthemes", "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark",
-  "tvthemes", "unhcrthemes", "urbnthemes", "vapoRwave", "visibly", "wwplot",
-  "xkcd"
+  "industRial", "jmvcore", "lato", "MSUthemes", "pilot", "profiplots",
+  "randplot", "Rokemon", "RSSthemes", "see", "sfthemes", "sjPlot",
+  "stevethemes", "ThemePark", "tvthemes", "unhcrthemes", "urbnthemes",
+  "vapoRwave", "visibly", "wwplot", "xkcd"
 )))
 
 library(ggshredR)
@@ -48,9 +48,9 @@ p_load(
   "ggexpanse", "gghighcontrast", "gglgbtq", "ggnuplot", "ggplot2bdc",
   "ggpomological", "ggprism", "ggpubfigs", "ggpubr", "ggtech", "ggthemepark",
   "ggthemes", "ggthemr", "gouvdown", "hjplottools", "hrbrthemes", "industRial",
-  "jmvcore", "lato", "pilot", "profiplots", "randplot", "Rokemon", "RSSthemes",
-  "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark", "tvthemes",
-  "unhcrthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
+  "jmvcore", "lato", "MSUthemes", "pilot", "profiplots", "randplot", "Rokemon",
+  "RSSthemes", "see", "sfthemes", "sjPlot", "stevethemes", "ThemePark",
+  "tvthemes", "unhcrthemes", "vapoRwave", "visibly", "wwplot", "xkcd"
 )
 
   #Guardar temas, descripciones y citas
