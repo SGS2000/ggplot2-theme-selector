@@ -247,9 +247,9 @@ paletasFill[["NatParksPalettes"]] <- c(paste0("scale_fill_natparks_c(palette ='"
 paletasFill[["NatParksPalettes"]] <- c(paletasFill[["NatParksPalettes"]], paste0("scale_fill_natparks_d(palette ='", names(NatParksPalettes::NatParksPalettes), "')"))
 
 paletasColor[["okcolors"]] <- c(paste0("scale_color_okcolors(palette ='", c(okcolors:::valid_palettes()), "')"))
-paletasColor[["okcolors"]] <- c(paletasColor[["okcolors"]], paste0("scale_color_okcolors(palette ='", c(okcolors:::valid_palettes()), "', discrete = FALSE)"))
+paletasColor[["okcolors"]] <- c(paletasColor[["okcolors"]], paste0("scale_color_okcolors(palette ='", c(okcolors:::valid_palettes()), "', discrete = TRUE)"))
 paletasFill[["okcolors"]] <- c(paste0("scale_fill_okcolors(palette ='", okcolors:::valid_palettes(), "')"))
-paletasFill[["okcolors"]] <- c(paletasFill[["okcolors"]], paste0("scale_fill_okcolors(palette ='", okcolors:::valid_palettes(), "', discrete = FALSE)"))
+paletasFill[["okcolors"]] <- c(paletasFill[["okcolors"]], paste0("scale_fill_okcolors(palette ='", okcolors:::valid_palettes(), "', discrete = TRUE)"))
 
 paletasColor[["palettetown"]] <- c(paste0("scale_color_poke(pokemon='", names(palettetown:::pokeColours), "')"))
 paletasFill[["palettetown"]] <- c(paste0("scale_fill_poke(pokemon='", names(palettetown:::pokeColours), "')"))
@@ -447,11 +447,11 @@ paletasFill[["ggthemes (tableau continuo)"]] <- c(paletasFill[["ggthemes (tablea
                                                   paste0("scale_fill_gradient2_tableau(palette = '", c(names(ggthemes_data$tableau$`color-palettes`$`ordered-diverging`)), "')"))
 
 #Se divide el paquete ggsci para mejorar la visualización
-paletasFill[["ggsci"]] <- sort(c(paletasFill[["ggsci"]][!paletasFill[["ggsci"]] %in% c("scale_fill_bs5", "scale_fill_material", "scale_fill_tw3")],
+paletasFill[["ggsci"]] <- sort(c(paletasFill[["ggsci"]][!paletasFill[["ggsci"]] %in% c("scale_fill_bs5", "scale_fill_material", "scale_fill_tw3", "scale_fill_gephi")],
                                 "scale_fill_d3('category20')", "scale_fill_d3('category20b')", "scale_fill_d3('category20c')",
                                 "scale_fill_igv('alternating')", "scale_fill_cosmic('hallmarks_dark')", "scale_fill_cosmic('signature_substitutions')",
                                 "scale_fill_uchicago('dark')", "scale_fill_uchicago('light')", "scale_fill_flatui('flattastic')", "scale_fill_flatui('aussie')"))
-paletasColor[["ggsci"]] <- sort(c(paletasColor[["ggsci"]][!paletasColor[["ggsci"]] %in% c("scale_color_bs5", "scale_color_material", "scale_color_tw3")],
+paletasColor[["ggsci"]] <- sort(c(paletasColor[["ggsci"]][!paletasColor[["ggsci"]] %in% c("scale_color_bs5", "scale_color_material", "scale_color_tw3", "scale_color_gephi")],
                                 "scale_color_d3('category20')", "scale_color_d3('category20b')", "scale_color_d3('category20c')",
                                 "scale_color_igv('alternating')", "scale_color_cosmic('hallmarks_dark')", "scale_color_cosmic('signature_substitutions')",
                                 "scale_color_uchicago('dark')", "scale_color_uchicago('light')", "scale_color_flatui('flattastic')",
@@ -477,6 +477,9 @@ paletasFill[["ggsci (Tailwind)"]] <- sort(c(paste0("scale_fill_tw3('", c("slate"
 
 paletasColor[["ggsci (iTerm)"]] <- c(paste0("scale_color_iterm(palette = '", c(ggsci::iterm_palettes()), "')"))
 paletasFill[["ggsci (iTerm)"]] <- c(paste0("scale_fill_iterm(palette = '", c(ggsci::iterm_palettes()), "')"))
+
+paletasColor[["ggsci (gephi)"]] <- c(paste0("scale_color_gephi(palette = '", c(ggsci::gephi_palettes()), "')"))
+paletasFill[["ggsci (gephi)"]] <- c(paste0("scale_fill_gephi(palette = '", c(ggsci::gephi_palettes()), "')"))
 
 #Se añaden opciones discretas / continuas
 nueva_opcion <- function(lista_paletas, nuevo_texto) {
